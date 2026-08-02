@@ -18,6 +18,8 @@ struct AddExpenseFlow: View {
     @State private var showHavePause = false  // 冲动时弹"已拥有清单"冷静期
     @Query private var haves: [AlreadyHaveItem] = []     // 已拥有清单，用于对比提醒
 
+    @FocusState private var amountFocused: Bool
+
     /// 当前币种代码（从 AppSettings 读取，用于金额显示）
     private var currentCurrencyCode: String {
         CurrencyService.shared.currentCurrency(in: modelContext)
@@ -101,6 +103,7 @@ struct AddExpenseFlow: View {
                     .keyboardType(.decimalPad)
                     .multilineTextAlignment(.center)
                     .frame(width: 200)
+                    .focused($amountFocused)
             }
 
             Spacer()
@@ -118,6 +121,7 @@ struct AddExpenseFlow: View {
             }
             .disabled(amount.isEmpty)
             .padding(.horizontal, DesignTokens.Spacing.lg)
+            .onAppear { amountFocused = true }
             .padding(.bottom, DesignTokens.Spacing.xl)
         }
     }

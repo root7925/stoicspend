@@ -58,6 +58,7 @@ struct CircleDashboardView: View {
                 }
                 .padding(.horizontal, DesignTokens.Spacing.md)
                 .padding(.top, DesignTokens.Spacing.md)
+                .padding(.bottom, 30)
             }
             .background(DesignTokens.paper)
             .navigationTitle("The Circle")
