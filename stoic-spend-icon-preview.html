@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stoic Spend — Icon & Launch Screen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C1B17; --stone:#E6E0D2; --bronze:#8B6A42; --ash:#6E6B60;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'IBM Plex Mono',monospace;background:#EFEAE0;color:var(--ink);padding:56px 24px 100px;}
+  .eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--bronze);}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:32px;margin:6px 0 40px;max-width:800px;}
+  .section{max-width:1200px;margin:0 auto 64px;}
+  .section h2{font-family:'Fraunces',serif;font-weight:600;font-size:18px;border-bottom:1px solid var(--ink);padding-bottom:10px;margin-bottom:24px;}
+  .icon-row{display:flex;align-items:flex-end;gap:32px;flex-wrap:wrap;}
+  .icon-cell{text-align:center;}
+  .icon-cell img, .icon-cell svg{display:block;}
+  .icon-mark{background:radial-gradient(circle at 50% 42%, #242017, #181712);display:flex;align-items:center;justify-content:center;}
+  .icon-cap{font-size:10px;color:var(--ash);margin-top:8px;}
+  .rounded{border-radius:22.37%;overflow:hidden;} /* iOS superellipse approximation for preview only */
+
+  .phone-shell{
+    width:290px;
+    border-radius:38px;
+    background:var(--ink);
+    padding:10px;
+    box-shadow:0 18px 40px -14px rgba(28,27,23,0.45);
+  }
+  .launch-screen{
+    height:580px;
+    border-radius:28px;
+    background:radial-gradient(circle at 50% 42%, #242017, #181712);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .note{max-width:640px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.8;color:var(--ash);}
+</style>
+</head>
+<body>
+
+<div class="eyebrow">Icon & Launch Screen — v1</div>
+<h1>The control ring, at every scale.</h1>
+
+<div class="section">
+  <h2>App Icon — construction</h2>
+  <div class="icon-row">
+    <div class="icon-cell">
+      <div class="icon-mark rounded" style="width:220px;height:220px;">
+        <svg width="220" height="220" viewBox="0 0 1024 1024">
+          <circle cx="512" cy="512" r="318" fill="none" stroke="#8B6A42" stroke-width="58"/>
+          <rect x="497" y="150" width="30" height="72" rx="4" fill="#E6E0D2"/>
+          <circle cx="512" cy="512" r="66" fill="#E6E0D2"/>
+        </svg>
+      </div>
+      <div class="icon-cap">1024×1024 master</div>
+    </div>
+    <div class="icon-cell">
+      <div class="icon-mark rounded" style="width:120px;height:120px;">
+        <svg width="120" height="120" viewBox="0 0 1024 1024">
+          <circle cx="512" cy="512" r="318" fill="none" stroke="#8B6A42" stroke-width="58"/>
+          <rect x="497" y="150" width="30" height="72" rx="4" fill="#E6E0D2"/>
+          <circle cx="512" cy="512" r="66" fill="#E6E0D2"/>
+        </svg>
+      </div>
+      <div class="icon-cap">Home screen (~120pt)</div>
+    </div>
+    <div class="icon-cell">
+      <div class="icon-mark rounded" style="width:80px;height:80px;">
+        <svg width="80" height="80" viewBox="0 0 1024 1024">
+          <circle cx="512" cy="512" r="318" fill="none" stroke="#8B6A42" stroke-width="58"/>
+          <rect x="497" y="150" width="30" height="72" rx="4" fill="#E6E0D2"/>
+          <circle cx="512" cy="512" r="66" fill="#E6E0D2"/>
+        </svg>
+      </div>
+      <div class="icon-cap">Spotlight (~80pt)</div>
+    </div>
+    <div class="icon-cell">
+      <div class="icon-mark rounded" style="width:58px;height:58px;">
+        <svg width="58" height="58" viewBox="0 0 1024 1024">
+          <circle cx="512" cy="512" r="318" fill="none" stroke="#8B6A42" stroke-width="58"/>
+          <rect x="497" y="150" width="30" height="72" rx="4" fill="#E6E0D2"/>
+          <circle cx="512" cy="512" r="66" fill="#E6E0D2"/>
+        </svg>
+      </div>
+      <div class="icon-cap">Settings (~58pt)</div>
+    </div>
+    <div class="icon-cell">
+      <div class="icon-mark rounded" style="width:40px;height:40px;">
+        <svg width="40" height="40" viewBox="0 0 1024 1024">
+          <circle cx="512" cy="512" r="318" fill="none" stroke="#8B6A42" stroke-width="58"/>
+          <rect x="497" y="150" width="30" height="72" rx="4" fill="#E6E0D2"/>
+          <circle cx="512" cy="512" r="66" fill="#E6E0D2"/>
+        </svg>
+      </div>
+      <div class="icon-cap">Notification (~40pt)</div>
+    </div>
+  </div>
+  <p class="note" style="margin-top:24px;">Reads at every size because it's three shapes: a ring, a tick, a dot. Nothing thinner than 58px at the 1024 master, so nothing disappears at 40pt. Corners shown rounded here for preview only — export the full square; iOS applies its own mask.</p>
+</div>
+
+<div class="section">
+  <h2>Launch Screen — mockup</h2>
+  <div class="phone-shell">
+    <div class="launch-screen">
+      <svg width="140" height="140" viewBox="0 0 1024 1024">
+        <circle cx="512" cy="512" r="318" fill="none" stroke="#8B6A42" stroke-width="58"/>
+        <rect x="497" y="150" width="30" height="72" rx="4" fill="#E6E0D2"/>
+        <circle cx="512" cy="512" r="66" fill="#E6E0D2"/>
+      </svg>
+    </div>
+  </div>
+  <p class="note" style="margin-top:24px;max-width:290px;">No text, no spinner, no tagline — the mark alone, sized so the transition into Onboarding's loading ring (same mark, same position) reads as one continuous moment rather than two screens.</p>
+</div>
+
+</body>
+</html>

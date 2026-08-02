@@ -1,0 +1,20 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#242017"/>
+      <stop offset="100%" stop-color="#181712"/>
+    </radialGradient>
+  </defs>
+
+  <!-- full-bleed background; iOS applies corner mask automatically, do not round here -->
+  <rect x="0" y="0" width="1024" height="1024" fill="url(#bg)"/>
+
+  <!-- control ring -->
+  <circle cx="512" cy="512" r="318" fill="none" stroke="#8B6A42" stroke-width="58"/>
+
+  <!-- present-moment tick at 12 o'clock -->
+  <rect x="497" y="150" width="30" height="72" rx="4" fill="#E6E0D2"/>
+
+  <!-- center dot: the self, the one constant -->
+  <circle cx="512" cy="512" r="66" fill="#E6E0D2"/>
+</svg>
