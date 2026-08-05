@@ -37,13 +37,6 @@ struct TodayView: View {
         todayExpenses.reduce(0) { $0 + $1.amount }
     }
 
-    private var weekControllableRatio: Double {
-        guard !weekExpenses.isEmpty else { return 0 }
-        let controllable = weekExpenses.filter { $0.isControllable }.reduce(0.0) { $0 + $1.amount }
-        let total = weekExpenses.reduce(0.0) { $0 + $1.amount }
-        return total > 0 ? controllable / total : 0
-    }
-
     private var dailyQuote: StoicQuote {
         let quotes = StoicQuotes.all
         let dayOfYear = Calendar.current.ordinality(of: .day, in: .year, for: .now) ?? 1
@@ -66,15 +59,13 @@ struct TodayView: View {
                     // 今日汇总
                     todaySummaryCard
 
-                    // 本周控制圈预览
-                    weeklyPreviewCard
-
                     // 周复盘入口
                     weeklyReviewEntry
                 }
                 .padding(.horizontal, DesignTokens.Spacing.md)
                 .padding(.top, DesignTokens.Spacing.md)
-                .padding(.bottom, 30)
+                .padding(.bottom, DesignTokens.Spacing.xl)
+                .contentMargins(.bottom, DesignTokens.Spacing.xl)
             }
             .background(DesignTokens.paper)
             .navigationTitle("Today")
@@ -244,36 +235,6 @@ struct TodayView: View {
                             .foregroundStyle(DesignTokens.ink)
                     }
                 }
-            }
-        }
-        .padding(DesignTokens.Spacing.md)
-        .background(DesignTokens.card)
-        .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.lg))
-    }
-
-    private var weeklyPreviewCard: some View {
-        HStack(spacing: DesignTokens.Spacing.md) {
-            ControlRingBadge(progress: weekControllableRatio)
-
-            VStack(alignment: .leading, spacing: DesignTokens.Spacing.xs) {
-                Text("This Week")
-                    .sansBody(13, weight: .medium)
-                    .foregroundStyle(DesignTokens.ash)
-                (Text(verbatim: "\(Int(weekControllableRatio * 100))% ") + Text("in control"))
-                    .serifTitle(18, weight: .semibold)
-                    .foregroundStyle(DesignTokens.ink)
-                (Text(verbatim: "\(weekExpenses.count) ") + Text("expenses tracked"))
-                    .sansBody(13)
-                    .foregroundStyle(DesignTokens.ash)
-            }
-
-            Spacer()
-
-            NavigationLink {
-                CircleDashboardView()
-            } label: {
-                Image(systemName: "chevron.right")
-                    .foregroundStyle(DesignTokens.ash)
             }
         }
         .padding(DesignTokens.Spacing.md)

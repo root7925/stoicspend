@@ -25,6 +25,8 @@ struct AlreadyHaveView: View {
                     }
                     .padding(.horizontal, DesignTokens.Spacing.md)
                     .padding(.top, DesignTokens.Spacing.md)
+                    .padding(.bottom, DesignTokens.Spacing.xl)
+                    .contentMargins(.bottom, DesignTokens.Spacing.xl)
                 }
             }
             .background(DesignTokens.paper)

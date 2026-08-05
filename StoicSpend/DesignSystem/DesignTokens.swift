@@ -36,6 +36,17 @@ enum DesignTokens {
     
     /// 深色卡片背景（Paywall/ShareCard 等深色场景，不随模式切换）
     static let darkCard = Color(hex: 0x252320)
+
+    // MARK: - 常驻深色 token（Paywall 等固定深色 UI，不随系统外观切换）
+
+    /// 深色页面背景 — 固定深墨色
+    static let darkInk = Color(hex: 0x1C1B17)
+
+    /// 深色卡片上的主文字 — 固定石色
+    static let darkStone = Color(hex: 0xE6E0D2)
+
+    /// 深色卡片上的次要文字 — 固定灰墨色
+    static let darkAsh = Color(hex: 0x9E9B8E)
     
     /// 深色径向渐变起始色（启动图/Onboarding 背景）
     static let gradientStart = Color(hex: 0x242017)

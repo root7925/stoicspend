@@ -38,6 +38,9 @@ struct SettingsView: View {
                     // 5. 币种
                     currencySection
 
+                    // 6. 外观
+                    appearanceSection
+
                     // 关于（最低调）
                     aboutSection
                 }
@@ -58,28 +61,6 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $showCurrencyPicker) {
             currencyPickerSheet
-        }
-        .confirmationDialog(
-            pendingCurrency != nil ? "Switch Currency" : "",
-            isPresented: Binding(
-                get: { pendingCurrency != nil },
-                set: { if !$0 { pendingCurrency = nil } }
-            ),
-            titleVisibility: .visible
-        ) {
-            if let target = pendingCurrency {
-                Button("Convert & Switch") {
-                    CurrencyService.shared.switchCurrency(to: target, in: modelContext)
-                    pendingCurrency = nil
-                }
-                Button("Cancel", role: .cancel) {
-                    pendingCurrency = nil
-                }
-            }
-        } message: {
-            if let target = pendingCurrency {
-                Text(currencySwitchMessage(target: target))
-            }
         }
         .confirmationDialog(
             "Delete all data?",
@@ -113,7 +94,7 @@ struct SettingsView: View {
                         .foregroundStyle(DesignTokens.ink)
                     Text(store.isPremium
                          ? "All features unlocked"
-                         : "Upgrade for trends, AI & more")
+                         : "Upgrade for AI & more")
                         .sansBody(13)
                         .foregroundStyle(DesignTokens.ash)
                 }
@@ -222,6 +203,28 @@ struct SettingsView: View {
             } label: {
                 settingRow(icon: "arrow.left.arrow.right", title: "Switch Currency", color: DesignTokens.bronze)
             }
+            .confirmationDialog(
+                pendingCurrency != nil ? "Switch Currency" : "",
+                isPresented: Binding(
+                    get: { pendingCurrency != nil },
+                    set: { if !$0 { pendingCurrency = nil } }
+                ),
+                titleVisibility: .visible
+            ) {
+                if let target = pendingCurrency {
+                    Button("Convert & Switch") {
+                        CurrencyService.shared.switchCurrency(to: target, in: modelContext)
+                        pendingCurrency = nil
+                    }
+                    Button("Cancel", role: .cancel) {
+                        pendingCurrency = nil
+                    }
+                }
+            } message: {
+                if let target = pendingCurrency {
+                    Text(currencySwitchMessage(target: target))
+                }
+            }
         }
         .padding(DesignTokens.Spacing.md)
         .background(DesignTokens.card)
@@ -231,6 +234,49 @@ struct SettingsView: View {
     private var currentCurrencyCode: String {
         let code = currentSettings.currentCurrency
         return code.isEmpty ? CurrencyService.defaultCurrencyForCurrentLocale() : code
+    }
+
+    // MARK: - 外观设置
+
+    @AppStorage("appearancePreference") private var appearance: String = "system"
+
+    private var appearanceSection: some View {
+        VStack(alignment: .leading, spacing: DesignTokens.Spacing.md) {
+            sectionHeader("Appearance")
+
+            HStack(spacing: DesignTokens.Spacing.sm) {
+                Image(systemName: "circle.lefthalf.filled")
+                    .foregroundStyle(DesignTokens.bronze)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Theme")
+                        .sansBody(15, weight: .medium)
+                        .foregroundStyle(DesignTokens.ink)
+                    Text(appearanceSubtitle)
+                        .sansBody(13)
+                        .foregroundStyle(DesignTokens.ash)
+                }
+                Spacer()
+                Picker("", selection: $appearance) {
+                    Text("System").tag("system")
+                    Text("Light").tag("light")
+                    Text("Dark").tag("dark")
+                }
+                .pickerStyle(.segmented)
+                .frame(width: 180)
+                .labelsHidden()
+            }
+        }
+        .padding(DesignTokens.Spacing.md)
+        .background(DesignTokens.card)
+        .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.lg))
+    }
+
+    private var appearanceSubtitle: String {
+        switch appearance {
+        case "light": return String(localized: "Always light")
+        case "dark": return String(localized: "Always dark")
+        default: return String(localized: "Follow system")
+        }
     }
 
     private var currencySubtitle: String {

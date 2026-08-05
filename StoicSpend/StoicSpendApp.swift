@@ -27,10 +27,23 @@ struct RootView: View {
     }
 
     var body: some View {
-        if hasCompletedOnboarding {
-            MainTabView()
-        } else {
-            OnboardingView()
+        Group {
+            if hasCompletedOnboarding {
+                MainTabView()
+            } else {
+                OnboardingView()
+            }
+        }
+        .preferredColorScheme(appearanceScheme)
+    }
+
+    @AppStorage("appearancePreference") private var appearance: String = "system"
+
+    private var appearanceScheme: ColorScheme? {
+        switch appearance {
+        case "light": return .light
+        case "dark": return .dark
+        default: return nil
         }
     }
 }

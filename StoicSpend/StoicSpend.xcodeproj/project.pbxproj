@@ -12,8 +12,11 @@
 		0B1DD6E1C0AA072105B631CA /* StoicQuotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 0F2F40729E03F298FEC189C9 /* StoicQuotes.json */; };
 		0F7B00008C465659360A3CD4 /* AddExpenseFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC910D265D9DD3B6F5A7D26 /* AddExpenseFlow.swift */; };
 		1429EBF000356D168366280A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 04B65866729998F993C1B006 /* Localizable.xcstrings */; };
+		1995594202BC50F3DCB6E892 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB90599795ADB49659E8D1C /* HistoryView.swift */; };
+		2085B2F040C66A63E4825B98 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_7CC86EB7-476C-40DE-BF12-BA383C8F265D" /* StoicSpendApp.swift */; };
 		25E2BE9B91030EC7A586E520 /* AlreadyHaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDA5338FD06F6315FC5448 /* AlreadyHaveView.swift */; };
 		36B55F036B80E64CB8B41901 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E909A052071F5ED6AC8F7EB4 /* SettingsView.swift */; };
+		38DF8CCA0DBDEB08FD350A8C /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = "TEMP_ADAC4B23-D4E1-4F25-84FB-21D7901D97A5" /* Products.storekit */; };
 		39DBF1414C7D6520EBCC7D08 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849C1E3666179272AD14148 /* CurrencyService.swift */; };
 		3A8E7533E61F3CC81A64EBC0 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEB35780098DAFF381F5115 /* Typography.swift */; };
 		4A90C2DD95D41F93AABD4BC7 /* SubscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751EEDAEA0610C257A3E7B9B /* SubscriptionViewModel.swift */; };
@@ -22,9 +25,9 @@
 		539D5898B55FD9C80E29DF9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */; };
 		61787E1B70D79F9EF5224120 /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78C733D66C586E5C569CC /* ShareCardView.swift */; };
 		65F17B8334349C457F9F00DD /* DailyQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786C9F7B49F1A5B2E976D35 /* DailyQuote.swift */; };
+		6FC6F4E1DE75F845B1F196F3 /* LegalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EB844FB62562753C3EE457 /* LegalLinks.swift */; };
 		903CC02E5A30670518F80949 /* ControlRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C799D9BC3E92F18F31363 /* ControlRing.swift */; };
 		94FF5F1F3F76911766830532 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CD8C11BBCB58165A4A593 /* AppSettings.swift */; };
-		97A25EF234538F319D823E88 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_C42E8990-7333-4124-BE76-C335ABB61B33" /* StoicSpendApp.swift */; };
 		9C0E62E26A6ADEEE91C4CC2E /* FoundationModelsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CB802F63EFF66496582E8B /* FoundationModelsService.swift */; };
 		9EEBF50869719F7E9A7ECBFF /* CircleDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE4786AACB3EDEE4F29E3C /* CircleDashboardView.swift */; };
 		A7F686272383880C2BF9935B /* ModelContainerSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EA082FF746022662BDD6B6 /* ModelContainerSetup.swift */; };
@@ -66,13 +69,16 @@
 		E5F78C733D66C586E5C569CC /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
 		E75F2E405058A01232854D1C /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
 		E909A052071F5ED6AC8F7EB4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EAB90599795ADB49659E8D1C /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		EAEB35780098DAFF381F5115 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		EAEE01372BE8E232B96AA9C3 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		F2CDA5338FD06F6315FC5448 /* AlreadyHaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyHaveView.swift; sourceTree = "<group>"; };
 		F2FE4786AACB3EDEE4F29E3C /* CircleDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDashboardView.swift; sourceTree = "<group>"; };
+		F4EB844FB62562753C3EE457 /* LegalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalLinks.swift; sourceTree = "<group>"; };
 		F6A33D7C888B545099D97CFF /* WeeklyReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReviewView.swift; sourceTree = "<group>"; };
 		F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		"TEMP_C42E8990-7333-4124-BE76-C335ABB61B33" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
+		"TEMP_7CC86EB7-476C-40DE-BF12-BA383C8F265D" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
+		"TEMP_ADAC4B23-D4E1-4F25-84FB-21D7901D97A5" /* Products.storekit */ = {isa = PBXFileReference; path = Products.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -148,6 +154,7 @@
 			children = (
 				E60ACB0DC3D615167FB9D7DF /* AlreadyHave */,
 				30E3C71EB4F9946BF12884DF /* Circle */,
+				AE860DEBE48B4772CA18D2F9 /* History */,
 				4F73045713658A4989892121 /* Onboarding */,
 				7C857F23404F470B4C4317AD /* Paywall */,
 				38DB831200F8DC6C1E05181B /* Resilience */,
@@ -180,6 +187,14 @@
 			);
 			sourceTree = "<group>";
 		};
+		AE860DEBE48B4772CA18D2F9 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				EAB90599795ADB49659E8D1C /* HistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		C86772CA254EAC590249C342 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +222,7 @@
 			children = (
 				B849C1E3666179272AD14148 /* CurrencyService.swift */,
 				67CB802F63EFF66496582E8B /* FoundationModelsService.swift */,
+				F4EB844FB62562753C3EE457 /* LegalLinks.swift */,
 				78EA082FF746022662BDD6B6 /* ModelContainerSetup.swift */,
 				A1E357D5932E759F40C1796D /* StoreKitService.swift */,
 			);
@@ -241,10 +257,11 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		"TEMP_6EA24DA5-B143-4233-857D-B5E46C67AA46" /* StoicSpend */ = {
+		"TEMP_A146D95F-E01C-41B2-9209-C3F8DAA8174C" /* StoicSpend */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_C42E8990-7333-4124-BE76-C335ABB61B33" /* StoicSpendApp.swift */,
+				"TEMP_ADAC4B23-D4E1-4F25-84FB-21D7901D97A5" /* Products.storekit */,
+				"TEMP_7CC86EB7-476C-40DE-BF12-BA383C8F265D" /* StoicSpendApp.swift */,
 				CBD8D449A192117F130D3A72 /* ViewModels */,
 				00DA4726EB3DAD9CB1D10EDA /* DesignSystem */,
 				EEF43067302B8BDBD3CF4B70 /* Resources */,
@@ -331,6 +348,7 @@
 				D2A55AB9FD17E2B7482B610C /* ExchangeRates.json in Resources */,
 				DCF0DD7D38BCC599E2A975E9 /* LaunchScreen.storyboard in Resources */,
 				1429EBF000356D168366280A /* Localizable.xcstrings in Resources */,
+				38DF8CCA0DBDEB08FD350A8C /* Products.storekit in Resources */,
 				0B1DD6E1C0AA072105B631CA /* StoicQuotes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,13 +373,15 @@
 				DEC635385F86B0D39DD46EB4 /* Expense.swift in Sources */,
 				4E24C6E6537D1E20B390272B /* ExpenseViewModel.swift in Sources */,
 				9C0E62E26A6ADEEE91C4CC2E /* FoundationModelsService.swift in Sources */,
+				1995594202BC50F3DCB6E892 /* HistoryView.swift in Sources */,
+				6FC6F4E1DE75F845B1F196F3 /* LegalLinks.swift in Sources */,
 				A7F686272383880C2BF9935B /* ModelContainerSetup.swift in Sources */,
 				032A77177BC583F4D8E1E592 /* OnboardingView.swift in Sources */,
 				D2272A6DE8E42A96879CC20A /* PaywallView.swift in Sources */,
 				B31CC5D0836DB640D85DB97F /* ResilienceView.swift in Sources */,
 				36B55F036B80E64CB8B41901 /* SettingsView.swift in Sources */,
 				61787E1B70D79F9EF5224120 /* ShareCardView.swift in Sources */,
-				97A25EF234538F319D823E88 /* StoicSpendApp.swift in Sources */,
+				2085B2F040C66A63E4825B98 /* StoicSpendApp.swift in Sources */,
 				E642B58BF5CFEBB9762C40D9 /* StoreKitService.swift in Sources */,
 				4A90C2DD95D41F93AABD4BC7 /* SubscriptionViewModel.swift in Sources */,
 				BD587680CF75AF8FE3ED5683 /* TodayView.swift in Sources */,

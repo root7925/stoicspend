@@ -1,0 +1,90 @@
+{
+  "identifier" : "8F4D9E2A-3B7C-4F1A-9D5E-6C8B2A3F1E5D",
+  "type" : "subscriptions",
+  "version" : 3,
+  "subscriptionGroup" : {
+    "id" : "B5C8F2D1-7E3A-4B6C-9D1E-2F5A8C3B7D6E",
+    "localizations" : [
+      {
+        "description" : "Unlock advanced resilience scenarios, AI follow-ups, and premium card designs.",
+        "displayName" : "StoicSpend Premium",
+        "locale" : "en_US"
+      },
+      {
+        "description" : "解锁进阶韧性模拟、AI 追问与高级分享卡片模板。",
+        "displayName" : "StoicSpend 高级版",
+        "locale" : "zh_Hans"
+      }
+    ],
+    "name" : "StoicSpend Premium",
+    "subscriptions" : [
+      {
+        "adHocOffers" : [],
+        "codeOffers" : [],
+        "displayname" : "Monthly",
+        "id" : "A1B2C3D4-E5F6-4A5B-8C9D-0E1F2A3B4C5D",
+        "introductoryOffer" : null,
+        "promotionalOffers" : [],
+        "recurringSubscriptionPeriod" : "P1M",
+        "referenceName" : "Monthly",
+        "subscriptionPeriod" : "P1M",
+        "subscriptionPeriodUnit" : "month",
+        "subscriptionPeriodUnits" : 1,
+        "defaultPrice" : {
+          "price" : 4990,
+          "currency" : "USD"
+        },
+        "productID" : "stoicspend.monthly",
+        "enabled" : true,
+        "familySharable" : true,
+        "contentKey" : "",
+        "contentHost" : ""
+      },
+      {
+        "adHocOffers" : [],
+        "codeOffers" : [],
+        "displayname" : "Yearly",
+        "id" : "B2C3D4E5-F6A7-4B6C-9D1E-1F2A3B4C5D6E",
+        "introductoryOffer" : null,
+        "promotionalOffers" : [],
+        "recurringSubscriptionPeriod" : "P1Y",
+        "referenceName" : "Yearly",
+        "subscriptionPeriod" : "P1Y",
+        "subscriptionPeriodUnit" : "year",
+        "subscriptionPeriodUnits" : 1,
+        "defaultPrice" : {
+          "price" : 39990,
+          "currency" : "USD"
+        },
+        "productID" : "stoicspend.yearly",
+        "enabled" : true,
+        "familySharable" : true,
+        "contentKey" : "",
+        "contentHost" : ""
+      },
+      {
+        "adHocOffers" : [],
+        "codeOffers" : [],
+        "displayname" : "Intro Offer",
+        "id" : "C3D4E5F6-A7B8-4C6D-1E2F-2A3B4C5D6E7F",
+        "introductoryOffer" : null,
+        "promotionalOffers" : [],
+        "recurringSubscriptionPeriod" : "P1M",
+        "referenceName" : "Intro Offer",
+        "subscriptionPeriod" : "P1M",
+        "subscriptionPeriodUnit" : "month",
+        "subscriptionPeriodUnits" : 1,
+        "defaultPrice" : {
+          "price" : 99,
+          "currency" : "USD"
+        },
+        "productID" : "stoicspend.intro",
+        "enabled" : true,
+        "familySharable" : false,
+        "contentKey" : "",
+        "contentHost" : ""
+      }
+    ]
+  },
+  "products" : []
+}

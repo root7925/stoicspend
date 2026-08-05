@@ -8,7 +8,6 @@ struct CircleDashboardView: View {
     @Query private var weekExpenses: [Expense]
     @Environment(\.modelContext) private var modelContext
 
-    @State private var showPaywall = false
     @State private var showResilience = false
 
     init() {
@@ -47,9 +46,6 @@ struct CircleDashboardView: View {
                     // 可控 vs 不可控明细
                     breakdownSection
 
-                    // 付费锁定区域
-                    lockedTrendsCard
-
                     // 财务韧性模拟入口（斯多葛"预先设想负面情境"）
                     resilienceEntry
 
@@ -58,14 +54,22 @@ struct CircleDashboardView: View {
                 }
                 .padding(.horizontal, DesignTokens.Spacing.md)
                 .padding(.top, DesignTokens.Spacing.md)
-                .padding(.bottom, 30)
+                .padding(.bottom, DesignTokens.Spacing.xl)
+                .contentMargins(.bottom, DesignTokens.Spacing.xl)
             }
             .background(DesignTokens.paper)
             .navigationTitle("The Circle")
             .navigationBarTitleDisplayMode(.inline)
-        }
-        .sheet(isPresented: $showPaywall) {
-            PaywallView()
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        HistoryView()
+                    } label: {
+                        Image(systemName: "chart.bar")
+                            .foregroundStyle(DesignTokens.bronze)
+                    }
+                }
+            }
         }
         .sheet(isPresented: $showResilience) {
             ResilienceView()
@@ -137,35 +141,6 @@ struct CircleDashboardView: View {
         .padding(DesignTokens.Spacing.md)
         .background(DesignTokens.card)
         .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.lg))
-    }
-
-    private var lockedTrendsCard: some View {
-        Button {
-            showPaywall = true
-        } label: {
-            HStack {
-                VStack(alignment: .leading, spacing: DesignTokens.Spacing.xs) {
-                    HStack {
-                        Image(systemName: "chart.bar")
-                            .foregroundStyle(DesignTokens.rust)
-                        Text("Trends & History")
-                            .sansBody(16, weight: .semibold)
-                            .foregroundStyle(DesignTokens.ink)
-                    }
-                    Text("Monthly and yearly comparisons")
-                        .sansBody(13)
-                        .foregroundStyle(DesignTokens.ash)
-                }
-
-                Spacer()
-
-                Image(systemName: "lock")
-                    .foregroundStyle(DesignTokens.rust)
-            }
-            .padding(DesignTokens.Spacing.md)
-            .background(DesignTokens.card)
-            .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.lg))
-        }
     }
 
     /// 财务韧性模拟入口卡 — 斯多葛"预先设想负面情境"（Premeditatio Malorum）
