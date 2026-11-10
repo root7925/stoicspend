@@ -31,3 +31,16 @@ fastlane/test_output
 Agent.md
 Process.md
 .trae/
+
+# 内部产品文档（本地保留，不入公开仓库）
+StoicSpend_*.md
+StoicLedger_Design_Doc_v1.md
+Stoic Spend_Design_Doc_v1.md
+Stoic Spend — Settings Redesign v2.html
+StoicSpend_AI_Handoff_Prompts.md
+iOS本地化工作流.md
+stoic-spend-ui.html
+stoic-spend-wireframes.html
+stoic-spend-prd/
+stoic-spend-positioning/
+stoic-spend-prototype/
