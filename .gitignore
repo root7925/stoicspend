@@ -26,3 +26,8 @@ fastlane/test_output
 
 # Trae IDE share packages
 .trae-html-share-packages/
+
+# 内部协作文档（含个人信息，不入公开仓库）
+Agent.md
+Process.md
+.trae/
