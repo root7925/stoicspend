@@ -45,10 +45,15 @@
     .sidebar td.here { background: #aebadd; }
     .sidebar td a { text-decoration: none; color: #000080; display: block; }
     .badge {
-      display: inline-block; width: 84px; padding: 6px 4px; margin-top: 10px; text-align: center;
-      background: radial-gradient(circle at 50% 35%, #fff8b0, #d4a017);
-      border: 2px outset #d4a017; font-size: 10px; font-weight: bold; color: #5a4000; line-height: 1.3;
+      display: block; width: 150px; margin: 16px auto 0; padding: 9px 6px 8px; text-align: center; line-height: 1.5;
+      background: #fbf7ea; color: #6b5322;
+      border: 2px solid #a3862f;
+      box-shadow: inset 0 0 0 3px #fbf7ea, inset 0 0 0 4px #c9b47c;
+      font-variant: small-caps; letter-spacing: 1px;
     }
+    .badge .b-star { display: block; font-size: 10px; letter-spacing: 4px; color: #a3862f; }
+    .badge .b-main { display: block; font-weight: bold; font-size: 16px; letter-spacing: 2px; }
+    .badge .b-sub { display: block; font-size: 11px; letter-spacing: 0; color: #8a7443; }
     .counter { font-family: "Courier New", monospace; background: #000; color: #33ff33; padding: 2px 8px; letter-spacing: 2px; font-size: 13px; }
     .langbtn {
       font-family: "Times New Roman", Times, serif; font-size: 13px; font-weight: bold;
@@ -146,7 +151,7 @@
             <p class="center"><a href="mailto:guanerlin9527@gmail.com">E-mail the author</a></p>
             <p class="center"><a href="https://weibo.com/u/1787492425">Follow on Weibo</a></p>
             <p class="center"><a href="https://github.com/root7925/stoicspend">Source code on GitHub</a></p>
-            <div class="badge">★ 100% FREE<br>FOREVER ★<br>no IAP · no ads</div>
+            <div class="badge"><span class="b-star">★ ★ ★</span><span class="b-main">Free Forever</span><span class="b-sub">no IAP · no ads</span></div>
           </div>
           <div class="lang" data-lang="zh">
             <table>
@@ -158,7 +163,7 @@
             <p class="center"><a href="mailto:guanerlin9527@gmail.com">发邮件给作者</a></p>
             <p class="center"><a href="https://weibo.com/u/1787492425">关注微博</a></p>
             <p class="center"><a href="https://github.com/root7925/stoicspend">GitHub 源代码</a></p>
-            <div class="badge">★ 永久免费 ★<br>无内购 · 无广告</div>
+            <div class="badge"><span class="b-star">★ ★ ★</span><span class="b-main">永久免费</span><span class="b-sub">无内购 · 无广告</span></div>
           </div>
         </td>
 
