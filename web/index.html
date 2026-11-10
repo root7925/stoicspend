@@ -10,13 +10,24 @@
     a { color: #0000EE; }
     a:visited { color: #551A8B; }
     .wrap { max-width: 660px; margin: 0 auto; }
-    /* WordArt 式渐变标题 */
+    /* WordArt 式渐变标题（斯多葛：罗马小体大写 + 拉丁格言） */
     .logo { text-align: center; margin-bottom: 2px; }
+    .motto { text-align: center; font-size: 12px; letter-spacing: 2px; color: #666; font-variant: small-caps; margin: 0; }
     .logo h1 {
-      margin: 0; font-size: 44px; font-style: italic; font-weight: bold; letter-spacing: 2px;
+      margin: 2px 0; font-size: 40px; font-style: normal; font-weight: bold; letter-spacing: 7px;
+      font-variant: small-caps;
       background: linear-gradient(180deg, #2e7d32 0%, #7cb342 45%, #b8860b 55%, #ffd54f 100%);
       -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 1px 1px 0 rgba(0,0,0,0.08);
     }
+    .quotebox { border: 2px groove #808080; background: #f3efe2; padding: 10px 14px; margin-bottom: 12px; text-align: center; }
+    .quotebox .q-label { font-size: 11px; font-weight: bold; letter-spacing: 3px; color: #7a6a3a; font-variant: small-caps; margin: 0 0 6px; }
+    .quotebox .q-text { font-style: italic; font-size: 15px; margin: 0; }
+    .quotebox .q-author { font-size: 13px; color: #555; margin: 6px 0 0; }
+    .virtues { width: 100%; border-collapse: collapse; margin-top: 4px; }
+    .virtues td { border: 1px solid #a9a9a9; background: #faf8ef; text-align: center; padding: 8px 6px; width: 25%; }
+    .virtues .v-greek { font-size: 11px; letter-spacing: 2px; color: #7a6a3a; display: block; }
+    .virtues .v-name { font-weight: bold; font-size: 15px; display: block; margin: 2px 0; }
+    .virtues .v-desc { font-size: 12px; font-style: italic; color: #555; display: block; }
     .tagline { text-align: center; font-style: italic; font-size: 15px; color: #444444; margin: 0 0 14px; }
     /* 跑马灯横幅 */
     marquee { border: 2px groove #808080; background: #ffffcc; color: #7a0000; font-weight: bold; padding: 3px 0; font-size: 15px; margin-bottom: 14px; }
@@ -54,6 +65,31 @@
     .langswitch { text-align: right; margin-bottom: 6px; }
   </style>
   <script>
+    var QUOTES = {
+      en: [
+        ["Wealth consists not in having great possessions, but in having few wants.", "Epictetus"],
+        ["You have power over your mind — not outside events.", "Marcus Aurelius"],
+        ["We suffer more often in imagination than in reality.", "Seneca"],
+        ["No man is free who is not master of himself.", "Epictetus"],
+        ["It's not what happens to you, but how you react to it that matters.", "Epictetus"],
+        ["Waste no more time arguing what a good man should be. Be one.", "Marcus Aurelius"]
+      ],
+      zh: [
+        ["财富不在于拥有很多，而在于欲求很少。", "爱比克泰德"],
+        ["你有力量支配自己的内心，而非身外之事。", "马可·奥勒留"],
+        ["我们在想象中受的苦，往往多于在现实中。", "塞涅卡"],
+        ["不能自制者，不得自由。", "爱比克泰德"],
+        ["重要的不是发生了什么，而是你如何回应。", "爱比克泰德"],
+        ["别再争论怎样才算好人，去做一个好人。", "马可·奥勒留"]
+      ]
+    };
+    function showQuote() {
+      var lang = document.body.dataset.lang || 'en';
+      var list = QUOTES[lang] || QUOTES.en;
+      var q = list[Math.floor(Math.random() * list.length)];
+      document.getElementById('quote-text').textContent = '“' + q[0] + '”';
+      document.getElementById('quote-author').textContent = '— ' + q[1];
+    }
     function setLang(l) {
       document.body.dataset.lang = l;
       try { localStorage.setItem('ss-lang', l); } catch (e) {}
@@ -61,6 +97,7 @@
       var en = document.getElementById('btn-en'), zh = document.getElementById('btn-zh');
       en.className = 'langbtn' + (l === 'en' ? ' here' : '');
       zh.className = 'langbtn' + (l === 'zh' ? ' here' : '');
+      showQuote();
     }
     (function () {
       var saved = null;
@@ -78,9 +115,20 @@
       <button id="btn-zh" class="langbtn" onclick="setLang('zh')">中文</button>
     </div>
 
-    <div class="logo"><h1>🏺 STOIC SPEND 🏺</h1></div>
+    <div class="logo">
+      <p class="motto">· EST. MMXXVI ·</p>
+      <h1>Stoic Spend</h1>
+      <p class="motto">«Ducunt volentem fata, nolentem trahunt» — Seneca</p>
+    </div>
     <p class="tagline lang" data-lang="en">A stoic spending journal — control what you can, spend what matters.</p>
     <p class="tagline lang" data-lang="zh">斯多葛记账本 — 控制能控制的，把钱花在真正重要的事上。</p>
+
+    <div class="quotebox">
+      <p class="q-label lang" data-lang="en">☀ Daily Meditation</p>
+      <p class="q-label lang" data-lang="zh">☀ 每日静思</p>
+      <p class="q-text" id="quote-text"></p>
+      <p class="q-author" id="quote-author"></p>
+    </div>
 
     <marquee class="lang" data-lang="en">✦ No subscriptions ✦ No in-app purchases ✦ 100% free FOREVER — every future update included ✦ Open source ✦</marquee>
     <marquee class="lang" data-lang="zh">✦ 没有订阅 ✦ 没有内购 ✦ 永久 100% 免费——未来的每次更新也一样 ✦ 全部开源 ✦</marquee>
@@ -148,12 +196,38 @@
         </td>
       </tr>
       <tr>
+        <td class="cell full" colspan="2">
+          <div class="lang" data-lang="en">
+            <table class="virtues">
+              <tr>
+                <td><span class="v-greek">ΣΟΦΙΑ</span><span class="v-name">Wisdom</span><span class="v-desc">Spend with attention.</span></td>
+                <td><span class="v-greek">ΑΝΔΡΕΙΑ</span><span class="v-name">Courage</span><span class="v-desc">Face your numbers.</span></td>
+                <td><span class="v-greek">ΔΙΚΑΙΟΣΥΝΗ</span><span class="v-name">Justice</span><span class="v-desc">Money serves, not rules.</span></td>
+                <td><span class="v-greek">ΣΩΦΡΟΣΥΝΗ</span><span class="v-name">Temperance</span><span class="v-desc">The spender's virtue.</span></td>
+              </tr>
+            </table>
+          </div>
+          <div class="lang" data-lang="zh">
+            <table class="virtues">
+              <tr>
+                <td><span class="v-greek">ΣΟΦΙΑ</span><span class="v-name">智慧</span><span class="v-desc">带着觉察去花钱。</span></td>
+                <td><span class="v-greek">ΑΝΔΡΕΙΑ</span><span class="v-name">勇气</span><span class="v-desc">直面你的账目。</span></td>
+                <td><span class="v-greek">ΔΙΚΑΙΟΣΥΝΗ</span><span class="v-name">正义</span><span class="v-desc">钱为人服务，而非相反。</span></td>
+                <td><span class="v-greek">ΣΩΦΡΟΣΥΝΗ</span><span class="v-name">节制</span><span class="v-desc">记账者的核心德性。</span></td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+      <tr>
         <td class="cell full center" colspan="2">
           <div class="lang" data-lang="en">© Copyright 2026 <a href="https://github.com/root7925/stoicspend">Stoic Spend</a>. All rights reserved. Released as free, open-source software.</div>
           <div class="lang" data-lang="zh">© 2026 <a href="https://github.com/root7925/stoicspend">Stoic Spend</a> 版权所有。以自由开源软件发布。</div>
         </td>
       </tr>
     </table>
+
+    <p class="footer motto">Memento Mori · Amor Fati · Premeditatio Malorum · Est. MMXXVI</p>
 
     <p class="footer lang" data-lang="en">Best viewed with Netscape Navigator 4.0 at 640×480 · This page is Y2K compliant 🗓️</p>
     <p class="footer lang" data-lang="zh">建议使用 Netscape Navigator 4.0 以 640×480 分辨率浏览 · 本页已通过千年虫（Y2K）合规检测 🗓️</p>
