@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Privacy Policy for Stoic Spend — your expenses and reflections stay on your device. Open source.">
+  <title>Privacy Policy — Stoic Spend</title>
+  <style>
+    :root { color-scheme: light dark; --fg: #1a1a1a; --muted: #555; --bg: #f5f2ea; --link: #8a6d3b; }
+    @media (prefers-color-scheme: dark) {
+      :root { --fg: #efe9dc; --muted: #a8a498; --bg: #181712; --link: #d9b96c; }
+    }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.55; }
+    main { max-width: 40rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.35rem; }
+    h2 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
+    .muted { color: var(--muted); font-size: 0.95rem; }
+    a { color: var(--link); }
+    nav { margin-bottom: 1.5rem; font-size: 0.9rem; }
+    ul { padding-left: 1.2rem; }
+    .lang { display: none; }
+    body[data-lang="en"] .lang[data-lang="en"] { display: block; }
+    body[data-lang="zh"] .lang[data-lang="zh"] { display: block; }
+    #langToggle { position: fixed; top: 0.9rem; right: 1rem; z-index: 10; font: inherit; font-size: 0.8rem; font-weight: 600; color: var(--fg); background: transparent; border: 1px solid var(--muted); border-radius: 999px; padding: 0.25rem 0.8rem; cursor: pointer; }
+    #langToggle:hover { border-color: var(--gold); color: var(--gold); }
+  </style>
+  <script>
+    function setLang(l) {
+      document.body.dataset.lang = l;
+      localStorage.setItem('ss-lang', l);
+      document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+    }
+    function toggleLang() {
+      setLang(document.body.dataset.lang === 'en' ? 'zh' : 'en');
+    }
+    (function () {
+      var saved = localStorage.getItem('ss-lang');
+      setLang(saved || (navigator.language && navigator.language.startsWith('zh') ? 'zh' : 'en'));
+    })();
+  </script>
+</head>
+<body data-lang="en">
+  <button id="langToggle" onclick="toggleLang()">中文 / EN</button>
+  <main>
+    <nav>
+      <a href="index.html">Stoic Spend</a> ·
+      <a href="privacy.html" aria-current="page">Privacy / 隐私</a> ·
+      <a href="terms.html">Terms / 条款</a>
+    </nav>
+
+    <div class="lang" data-lang="en">
+      <h1>Privacy Policy</h1>
+      <p class="muted"><strong>Last updated:</strong> November 11, 2026</p>
+      <p>INNERAGENCY Studio (“we,” “us”) operates the iOS application <strong>Stoic Spend</strong> (the “App”). This policy explains what information is involved when you use the App or this legal site. The App is fully open source — you can verify every claim here by reading the code.</p>
+
+      <h2>1. Summary</h2>
+      <ul>
+        <li>Your expenses, reflections, and settings are stored <strong>on your device</strong> (SwiftData). There is no account and no cloud service.</li>
+        <li>The App is <strong>completely free and will stay free forever</strong> — no purchases, subscriptions, or payment processing of any kind.</li>
+        <li>We do <strong>not</strong> embed third-party advertising, tracking, or analytics SDKs.</li>
+        <li>AI features run <strong>on device</strong> via Apple Foundation Models, with no data sent to us.</li>
+      </ul>
+
+      <h2>2. Information on your device</h2>
+      <p>The App stores expense amounts, categories, nature labels, emotion tags, notes, review answers, and app settings. All of this stays inside the App’s sandbox on your device. We do not transmit your data to our servers — we do not operate any servers that receive it.</p>
+
+      <h2>3. Voice quick entry (microphone &amp; speech recognition)</h2>
+      <p>With your permission, the App uses the microphone and Apple’s Speech framework to transcribe spoken expense entries. Transcription is performed <strong>on device</strong> where possible, and the transcript is used only to fill in an expense form. Audio is never stored by the App.</p>
+
+      <h2>4. Screenshot sharing (share extension)</h2>
+      <p>When you share a screenshot or text to the App via the iOS share sheet, a share extension uses Apple’s Vision framework <strong>on device</strong> to recognize an amount and optional merchant name. The screenshot itself is <strong>never stored or transmitted</strong> — only the extracted text values are passed to the App through the on-device App Group container, where you confirm the entry.</p>
+
+      <h2>5. Local network (desktop workbench)</h2>
+      <p>If you use the desktop workbench feature, the App broadcasts a local HTTP service over your Wi-Fi network (Bonjour) so a browser on the same network can view and edit entries. This traffic stays <strong>within your local network</strong> and never reaches the internet. The feature is off unless you start it.</p>
+
+      <h2>6. Photos</h2>
+      <p>If you save a share card as an image, the App writes it to your photo library only after you choose to save, using the system save flow.</p>
+
+      <h2>7. Apple services</h2>
+      <p>Some system features (speech recognition, Vision OCR, Foundation Models) are provided by Apple; Apple’s privacy terms apply to those system components. If you enable sharing diagnostics with developers in iOS Settings, Apple may provide anonymized crash logs; we do not ship a separate crash SDK.</p>
+
+      <h2>8. This website</h2>
+      <p>This static legal site does not set marketing cookies or load third-party analytics. Your browser may send standard request logs to the hosting provider (Vercel) as part of serving the page.</p>
+
+      <h2>9. Children</h2>
+      <p>The App is not directed to children under 13. We do not knowingly collect personal information from children under 13.</p>
+
+      <h2>10. Your choices</h2>
+      <p>Delete individual expenses or your entire data set inside the App (Settings → Delete All Data), or uninstall the App to remove all on-device data.</p>
+
+      <h2>11. Changes</h2>
+      <p>We may update this policy by changing the “Last updated” date on this page. Material changes may also be noted in App Store release notes when appropriate.</p>
+
+      <h2>12. Contact</h2>
+      <p>Questions: <a href="mailto:guanerlin9527@gmail.com">guanerlin9527@gmail.com</a></p>
+      <p>Source code: <a href="https://github.com/root7925/stoicspend">github.com/root7925/stoicspend</a></p>
+      <p>Also see our <a href="terms.html">Terms of Use</a>.</p>
+    </div>
+
+    <div class="lang" data-lang="zh">
+      <h1>隐私政策</h1>
+      <p class="muted"><strong>最后更新：</strong>2026 年 11 月 11 日</p>
+      <p>INNERAGENCY Studio（“我们”）运营 iOS 应用 <strong>Stoic Spend</strong>（“本应用”）。本政策说明你使用本应用或本网站时涉及哪些信息。本应用完全开源——你可以通过阅读源代码验证这里的每一项说明。</p>
+
+      <h2>1. 摘要</h2>
+      <ul>
+        <li>你的账目、反思和设置全部存储<strong>在你的设备上</strong>（SwiftData）。没有账号，没有云服务。</li>
+        <li>本应用<strong>完全免费，并承诺永久免费</strong>——没有任何购买、订阅或支付处理。</li>
+        <li>我们<strong>不</strong>嵌入任何第三方广告、追踪或分析 SDK。</li>
+        <li>AI 功能通过 Apple Foundation Models <strong>在设备端运行</strong>，不会向开发者发送任何数据。</li>
+      </ul>
+
+      <h2>2. 设备上的信息</h2>
+      <p>本应用存储支出金额、分类、性质标签、情绪标签、备注、复盘问答和应用设置。这些数据全部保留在你设备上本应用的沙盒内。我们不运营任何接收你数据的服务器，也不会把你的数据传输给我们。</p>
+
+      <h2>3. 语音快记（麦克风与语音识别）</h2>
+      <p>经你授权后，本应用使用麦克风和 Apple 语音识别框架把你说的话转写成支出条目。转写<strong>优先在设备端完成</strong>，转写文本只用于填写账单表单。本应用从不存储录音。</p>
+
+      <h2>4. 截图分享（分享扩展）</h2>
+      <p>当你通过 iOS 分享面板把截图或文本分享给本应用时，分享扩展使用 Apple Vision 框架<strong>在设备端</strong>识别金额和商户名。截图本身<strong>不会被存储或传输</strong>——只有识别出的文本数值通过设备端 App Group 容器传给本应用，由你确认后入账。</p>
+
+      <h2>5. 本地网络（电脑端工作台）</h2>
+      <p>如果你使用电脑端工作台功能，本应用会在你的 Wi-Fi 网络内广播一个本地 HTTP 服务（Bonjour），让同一网络下的浏览器可以查看和编辑账目。这些流量<strong>只在你本地网络内</strong>，不会到达互联网。该功能只有你主动开启时才会运行。</p>
+
+      <h2>6. 照片</h2>
+      <p>只有当你选择保存分享卡片时，本应用才通过系统保存流程把图片写入你的相册。</p>
+
+      <h2>7. Apple 系统服务</h2>
+      <p>语音识别、Vision OCR、Foundation Models 等系统组件由 Apple 提供，适用 Apple 的隐私条款。如果你在 iOS 设置中开启了与开发者共享诊断数据，Apple 可能提供匿名崩溃日志；我们不单独集成崩溃收集 SDK。</p>
+
+      <h2>8. 本网站</h2>
+      <p>本静态法务网站不设置营销 Cookie，也不加载第三方统计。你的浏览器可能会向托管服务商（Vercel）发送标准的访问日志。</p>
+
+      <h2>9. 儿童</h2>
+      <p>本应用不面向 13 岁以下儿童，我们不会有意收集 13 岁以下儿童的个人信息。</p>
+
+      <h2>10. 你的选择</h2>
+      <p>你可以在应用内删除单条账目或全部数据（设置 → 删除全部数据），或卸载应用以清除设备上的所有数据。</p>
+
+      <h2>11. 变更</h2>
+      <p>我们可能通过更新本页“最后更新”日期来修订本政策。重大变更也会酌情在 App Store 更新说明中注明。</p>
+
+      <h2>12. 联系我们</h2>
+      <p>疑问请发邮件：<a href="mailto:guanerlin9527@gmail.com">guanerlin9527@gmail.com</a></p>
+      <p>源代码：<a href="https://github.com/root7925/stoicspend">github.com/root7925/stoicspend</a></p>
+      <p>另请阅读<a href="terms.html">使用条款</a>。</p>
+    </div>
+  </main>
+</body>
+</html>

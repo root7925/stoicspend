@@ -23,3 +23,6 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+# Trae IDE share packages
+.trae-html-share-packages/

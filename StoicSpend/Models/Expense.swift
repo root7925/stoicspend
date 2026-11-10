@@ -37,6 +37,64 @@ enum ExpenseNature: String, Codable {
     case necessity  // 必需品 — 不可控
 }
 
+/// 消费分类 — 九分法（饮食/爱美/交通/亲朋宠/住房/电子/旅行/学习/其他）
+/// rawValue 用稳定 key（与 Localizable.xcstrings key 对应），不随语言变化
+enum ExpenseCategory: String, Codable, CaseIterable, Identifiable {
+    case food      = "cat.food"
+    case beauty    = "cat.beauty"
+    case transport = "cat.transport"
+    case family    = "cat.family"
+    case housing   = "cat.housing"
+    case gadget    = "cat.gadget"
+    case travel    = "cat.travel"
+    case learning  = "cat.learning"
+    case other     = "cat.other"
+
+    var id: String { rawValue }
+
+    var emoji: String {
+        switch self {
+        case .food:      return "🍜"
+        case .beauty:    return "💄"
+        case .transport: return "🚕"
+        case .family:    return "🐾"
+        case .housing:   return "🏠"
+        case .gadget:    return "📱"
+        case .travel:    return "✈️"
+        case .learning:  return "📚"
+        case .other:     return "◇"
+        }
+    }
+
+    /// 本地化显示名称 — 从 Localizable.xcstrings 读取
+    var localizedName: String {
+        NSLocalizedString(rawValue, comment: "")
+    }
+}
+
+/// 晚间回顾结果 — 每天 1 次，标记在某笔消费上
+enum ReviewResult: String, Codable {
+    case affirm      // ✓ 会再做同样选择
+    case reconsider  // △ 会重新考虑
+}
+
+/// 记账时可选的情绪 — 可不选
+enum ExpenseEmotion: String, Codable, CaseIterable, Identifiable {
+    case calm      = "emo.calm"      // 平静
+    case anxious   = "emo.anxious"   // 焦虑
+    case excited   = "emo.excited"   // 兴奋
+    case tired     = "emo.tired"     // 疲惫
+    case stressed  = "emo.stressed"  // 压力
+    case satisfied = "emo.satisfied" // 欣慰
+
+    var id: String { rawValue }
+
+    /// 本地化显示名称 — 从 Localizable.xcstrings 读取
+    var localizedName: String {
+        NSLocalizedString(rawValue, comment: "")
+    }
+}
+
 // MARK: - 数据模型
 
 /// 支出记录 — 核心模型，包含三问数据
@@ -52,6 +110,15 @@ final class Expense {
     var values: [ValueTag]           // Q2: 服务于哪个价值观（多选）
     var emotionalTrigger: String?    // Q3: 冲动消费的情绪触发点
 
+    // 九分法分类（带默认值，兼容 CloudKit 旧数据）
+    var category: ExpenseCategory = ExpenseCategory.food
+
+    // 记账时情绪（可选）
+    var emotion: ExpenseEmotion?
+
+    // 晚间回顾结果（可选，每天最多 1 笔被标记）
+    var review: ReviewResult?
+
     var createdAt: Date
 
     init(
@@ -60,7 +127,9 @@ final class Expense {
         note: String = "",
         nature: ExpenseNature? = nil,
         values: [ValueTag] = [],
-        emotionalTrigger: String? = nil
+        emotionalTrigger: String? = nil,
+        category: ExpenseCategory = .food,
+        emotion: ExpenseEmotion? = nil
     ) {
         self.id = UUID()
         self.amount = amount
@@ -69,6 +138,8 @@ final class Expense {
         self.nature = nature
         self.values = values
         self.emotionalTrigger = emotionalTrigger
+        self.category = category
+        self.emotion = emotion
         self.createdAt = .now
     }
 }

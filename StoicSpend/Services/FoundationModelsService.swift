@@ -12,6 +12,7 @@ import FoundationModels
 /// 2. 多轮对话 — 复用 LanguageModelSession.transcript，单次会话允许 1 轮追问回复
 /// 3. AI 建议缓存 — 24h TTL，相同输入命中缓存不重复调用端侧模型
 /// 4. 情境化 Prompt 工程 — SpendingPattern 分析冲动占比/主导价值观/情绪触发，注入 prompt
+@MainActor
 final class FoundationModelsService {
     static let shared = FoundationModelsService()
 
@@ -20,7 +21,9 @@ final class FoundationModelsService {
 
     /// 当前活跃的多轮对话 session（单用户单进程，一次只持有一个）
     #if canImport(FoundationModels)
-    private var activeSession: LanguageModelSession?
+    // 实际类型为 LanguageModelSession（iOS 26+），用 Any 擦除以兼容 iOS 18 部署目标；
+    // 使用时在 #available(iOS 26, *) 上下文内 as? 还原
+    private var activeSession: Any?
     #endif
     private var activeTurnCount: Int = 0
 
@@ -36,6 +39,10 @@ final class FoundationModelsService {
     }
 
     var availability: AIAvailability {
+        // 运行时守卫：Foundation Models 仅 iOS 26+ 可用；iOS 18/19 设备直接走模板兜底，避免崩溃
+        guard #available(iOS 26, *) else {
+            return .unavailable(reason: String(localized: "System does not support Foundation Models"))
+        }
         #if canImport(FoundationModels)
         let status = SystemLanguageModel.default.availability
         switch status {
@@ -90,6 +97,7 @@ final class FoundationModelsService {
         }
 
         #if canImport(FoundationModels)
+        guard #available(iOS 26, *) else { return Self.fallbackFollowUp }
         // 开启新多轮会话
         let session = LanguageModelSession(model: SystemLanguageModel.default)
         activeSession = session
@@ -137,7 +145,7 @@ final class FoundationModelsService {
         }
 
         #if canImport(FoundationModels)
-        guard let session = activeSession else { return nil }
+        guard #available(iOS 26, *), let session = activeSession as? LanguageModelSession else { return nil }
         do {
             let response = try await session.respond(to: trimmed)
             activeTurnCount += 1
@@ -189,6 +197,7 @@ final class FoundationModelsService {
         }
 
         #if canImport(FoundationModels)
+        guard #available(iOS 26, *) else { return Self.fallbackResilienceAdvice }
         do {
             let session = LanguageModelSession(model: SystemLanguageModel.default)
             let prompt = buildResiliencePrompt(
@@ -218,6 +227,85 @@ final class FoundationModelsService {
         return Self.fallbackResilienceAdvice
         #endif
     }
+
+    // MARK: - 消费粉碎机劝退弹药（FR-08 — 本地 AI，不设 Premium 门槛）
+
+    /// 生成 3 条劝退弹药（附机制名，FR-27 偏好记录用）；不可用/失败时返回空数组，由调用方降级到内置弹药库
+    func generateShredLines(itemName: String, amount: Double) async -> [ShredAmmo.Drawn] {
+        guard isAvailable else { return [] }
+
+        #if canImport(FoundationModels)
+        guard #available(iOS 26, *) else { return [] }
+        do {
+            let session = LanguageModelSession(model: SystemLanguageModel.default, instructions: Self.shredInstructions)
+            let item = itemName.isEmpty ? "一件商品" : itemName
+            let prefHint: String
+            if let pref = ShredAmmo.preferredMechanism,
+               let name = ShredAmmo.mechanismNames[pref] {
+                prefHint = "用户上次反馈「\(name)」最戳，请让其中 1 条从该机制切入。\n"
+            } else {
+                prefHint = ""
+            }
+            let prompt = """
+            用户想花 ¥\(String(format: "%.0f", amount)) 买「\(item)」，但标注了「冲动」。
+            生成 3 条劝退文案，每条单独一行，格式严格为「机制名|文案」。
+            \(prefHint)机制名从以下 9 种中选且 3 条互不相同：锚定陷阱/身份幻觉/多巴胺结算/限量话术/机会成本/折扣算术/复利视角/回忆测试/延迟魔法。
+            文案不超过 60 字；不羞辱、不道德评价；用平实语气陈述机制本身。
+            """
+            let response = try await session.respond(to: prompt)
+            let drawn = response.content
+                .split(separator: "\n")
+                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                .compactMap { raw -> ShredAmmo.Drawn? in
+                    guard let idx = raw.firstIndex(of: "|") else { return nil }
+                    let mechanism = String(raw[..<idx]).trimmingCharacters(in: .whitespaces)
+                    let text = String(raw[raw.index(after: idx)...]).trimmingCharacters(in: .whitespaces)
+                    guard !text.isEmpty, text.count <= 60 else { return nil }
+                    return ShredAmmo.Drawn(mechanism: mechanism, text: text)
+                }
+            return Array(drawn.prefix(3))
+        } catch {
+            return []
+        }
+        #else
+        return []
+        #endif
+    }
+
+    private static let shredInstructions = """
+    你是反消费主义机制拆解者。你的任务不是道德说教，而是拆解消费主义的话术机制（锚定、稀缺、身份幻觉、多巴胺结算等）。
+    语气平实、克制、不羞辱用户。每次输出恰好 3 条，每条不超过 60 字。
+    """
+
+    /// 奥卡姆之刃 — 根据用户三答给出一句话剃刀结论；不可用返回 nil 由调用方降级
+    func generateOccamVerdict(item: String, answers: [String]) async -> String? {
+        guard isAvailable else { return nil }
+
+        #if canImport(FoundationModels)
+        guard #available(iOS 26, *) else { return nil }
+        do {
+            let session = LanguageModelSession(model: SystemLanguageModel.default, instructions: Self.occamInstructions)
+            let prompt = """
+            用户想买「\(item)」，回答了奥卡姆三问：
+            1. 它解决什么问题：\(answers[0])
+            2. 已有替代品吗：\(answers[1])
+            3. 72 小时后还想要吗：\(answers[2])
+            给出一句话剃刀结论（不超过 60 字）：这件东西是必要，还是可以剃掉。平实语气，不说教，不羞辱。
+            """
+            let response = try await session.respond(to: prompt)
+            let text = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
+            return text.isEmpty ? nil : text
+        } catch {
+            return nil
+        }
+        #else
+        return nil
+        #endif
+    }
+
+    private static let occamInstructions = """
+    你是奥卡姆剃刀的化身，帮助用户区分「必要」与「多余」。语气平实克制，一句话给出判断，不说教、不羞辱、不引用名言。
+    """
 
     // MARK: - Private: Prompt 工程（情境化）
 
@@ -335,12 +423,14 @@ struct ResilienceAdviceResult: Codable, Sendable {
 // MARK: - @Generable 结构化输出 schema（私有，仅 Service 内部使用）
 
 #if canImport(FoundationModels)
+@available(iOS 26, *)
 @Generable(description: "A personalized Stoic weekly reflection follow-up question")
 private struct WeeklyFollowUpContent {
     var question: String
     var focusAngle: String
 }
 
+@available(iOS 26, *)
 @Generable(description: "A Stoic counsel for a financial resilience simulation")
 private struct ResilienceAdviceContent {
     var advice: String

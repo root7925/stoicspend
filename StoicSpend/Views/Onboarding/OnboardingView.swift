@@ -1,18 +1,14 @@
 import SwiftUI
 import SwiftData
 
-/// 页面 1 — Onboarding 隐私承诺页
-/// 深色径向渐变背景 + 控制环加载态 + 斯多葛短句 + "开始"按钮
+/// 页面 1 — Onboarding（FR-07 P1：1 屏极简引导）
+/// 品牌句 + 隐私一行 + 「开始」；不做多屏教学、不解释哲学概念
 /// 与启动图共享同一视觉语言，实现无缝衔接
 struct OnboardingView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var settings: [AppSettings]
 
     @State private var showContent = false
-
-    private var stoicQuote: String {
-        String(localized: "You have power over your mind — not outside events.\nRealize this, and you will find strength.")
-    }
 
     var body: some View {
         ZStack {
@@ -28,36 +24,38 @@ struct OnboardingView: View {
             VStack(spacing: DesignTokens.Spacing.xxl) {
                 Spacer()
 
-                // 控制环加载态
-                ControlRingLoading(size: 100)
-                    .opacity(showContent ? 1 : 0)
+                VStack(spacing: DesignTokens.Spacing.xl) {
+                    ControlRingLoading(size: 92)
 
-                // 斯多葛短句
-                VStack(spacing: DesignTokens.Spacing.md) {
-                    Text(stoicQuote)
-                        .serifTitle(24, weight: .regular)
-                        .foregroundStyle(DesignTokens.stone)
+                    VStack(spacing: DesignTokens.Spacing.md) {
+                        Text("Some money you spend feels right.")
+                            .serifTitle(26, weight: .regular)
+                            .foregroundStyle(DesignTokens.stone)
+
+                        Text("Some you regret the moment it's gone.")
+                            .serifTitle(26, weight: .regular)
+                            .foregroundStyle(DesignTokens.bronze)
+                    }
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, DesignTokens.Spacing.xl)
+
+                    Text("Three quick questions right after you spend — about 10 seconds per expense.")
+                        .sansBody(15)
+                        .foregroundStyle(DesignTokens.ash)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, DesignTokens.Spacing.xl)
 
-                    Text("— Inspired by Marcus Aurelius")
-                        .sansBody(13)
-                        .foregroundStyle(DesignTokens.ash)
+                    // 隐私一行（不做第二屏）
+                    HStack(spacing: DesignTokens.Spacing.md) {
+                        privacyPill(icon: "iphone", text: "On-device")
+                        privacyPill(icon: "icloud.slash", text: "No server")
+                        privacyPill(icon: "wifi.slash", text: "Offline")
+                    }
                 }
                 .opacity(showContent ? 1 : 0)
-                .offset(y: showContent ? 0 : 20)
 
                 Spacer()
 
-                // 隐私承诺 — 胶囊式标签
-                HStack(spacing: DesignTokens.Spacing.md) {
-                    privacyPill(icon: "iphone", text: "On-device")
-                    privacyPill(icon: "icloud.slash", text: "No server")
-                    privacyPill(icon: "wifi.slash", text: "Offline")
-                }
-                .opacity(showContent ? 1 : 0)
-
-                // 开始按钮
                 Button {
                     completeOnboarding()
                 } label: {
@@ -75,13 +73,13 @@ struct OnboardingView: View {
             }
         }
         .onAppear {
-            withAnimation(.easeInOut(duration: 1.0).delay(0.3)) {
+            withAnimation(.easeInOut(duration: 0.9).delay(0.2)) {
                 showContent = true
             }
         }
     }
 
-    // MARK: - 隐私胶囊标签
+    // MARK: - 组件
 
     private func privacyPill(icon: String, text: LocalizedStringKey) -> some View {
         HStack(spacing: DesignTokens.Spacing.xs) {

@@ -19,11 +19,14 @@ enum DesignTokens {
     /// 卡片背景
     static let card = Color(light: 0xF2EFE6, dark: 0x252320)
     
-    /// 主强调色 — 铜色
-    static let bronze = Color(light: 0x8B6A42, dark: 0xC09356)
-    
-    /// 次强调色 — 铜绿
-    static let verdigris = Color(light: 0x5E6E62, dark: 0x7A9080)
+    /// 主强调色 — 随主题切换（ bronze 保留旧名，向后兼容）
+    static var bronze: Color { ThemeManager.shared.current.accentColor }
+
+    /// 次强调色 — 主强调色的衍生深色，随主题切换
+    static var verdigris: Color { ThemeManager.shared.current.verdigrisColor }
+
+    /// 金色 — 冲动/粉碎机语义色，固定不随主题切换
+    static let gold = Color(light: 0x9A7A33, dark: 0xC9A84C)
     
     /// 付费锁定标识 — 锈色
     static let rust = Color(light: 0x7C4A36, dark: 0xC4755A)

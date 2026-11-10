@@ -1,0 +1,13 @@
+# SwiftLint 基础配置（工程化整改 P2-7 建立静态门禁）
+# 以 warning 为主，渐进式收紧，避免一次性大量报错阻塞 CI。
+only_rules: []
+opt_in_rules:
+  - empty_count
+  - fatal_error_message
+  - sorted_imports
+  - trailing_closure
+included:
+  - StoicSpend
+excluded:
+  - StoicSpend/StoicSpend.xcodeproj
+warning_threshold: 50

@@ -2,7 +2,7 @@ name: StoicSpend
 options:
   bundleIdPrefix: com.zhenglin
   deploymentTarget:
-    iOS: "26.0"
+    iOS: "18.0"
   createIntermediateGroups: true
   groupSortPosition: top
   knownRegions:
@@ -24,7 +24,7 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.0"
-    IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+    IPHONEOS_DEPLOYMENT_TARGET: "18.0"
     DEVELOPMENT_TEAM: "ET3J52FQ3C"
     CODE_SIGN_STYLE: Automatic
 
@@ -32,15 +32,23 @@ targets:
   StoicSpend:
     type: application
     platform: iOS
-    deploymentTarget: "26.0"
+    deploymentTarget: "18.0"
     sources:
       - path: .
         excludes:
           - "StoicSpend.xcodeproj"
           - "project.yml"
+          - "StoicSpendWidgets"
+          - "StoicSpendShare"
+    dependencies:
+      # FR-13 — 控制中心/锁屏快记入口（Widget 扩展，随主 App 嵌入）
+      - target: StoicSpendWidgets
+      # FR-25 — 截图/分享扩展记账（分享面板，随主 App 嵌入）
+      - target: StoicSpendShare
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.zhenglin.stoicspand
+        CODE_SIGN_ENTITLEMENTS: Entitlements.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.zhenglin.stoicspend
         PRODUCT_NAME: StoicSpend
         MARKETING_VERSION: "1.0.0"
         CURRENT_PROJECT_VERSION: "1"
@@ -50,11 +58,139 @@ targets:
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
-        INFOPLIST_KEY_NSPrivacyAccessedAPITypes: ""
         TARGETED_DEVICE_FAMILY: "1,2"
         ENABLE_PREVIEWS: YES
         SWIFT_EMIT_LOC_STRINGS: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES: "AppIcon-jade AppIcon-gilded AppIcon-celadon AppIcon-dusk AppIcon-amber AppIcon-rose"
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        # 图标动态替换（FR-06 P1）：6 主题色 alternate icons
+    info:
+      path: Info.plist
+      properties:
+        # FR-20 — 冷静清单锁屏/灵动岛倒计时
+        NSSupportsLiveActivities: true
+        # FR-13 — 快记深链（Widget/控制中心 → stoicspend://quickadd）
+        CFBundleURLTypes:
+          - CFBundleURLName: com.zhenglin.stoicspend.quickadd
+            CFBundleURLSchemes:
+              - stoicspend
+        # 电脑端工作台（FR-11）：局域网 HTTP + Bonjour 广播需要本地网络权限
+        NSLocalNetworkUsageDescription: "Stoic Spend 需要本地网络权限，以便同一 Wi-Fi 下的电脑浏览器访问工作台查看和编辑账目。数据仅在你的局域网内传输。"
+        NSBonjourServices:
+          - "_stoicspend._tcp"
+        # FR-26 语音快记：麦克风采集 + 端侧语音识别转写
+        NSMicrophoneUsageDescription: "Stoic Spend 需要麦克风权限，方便你说话快速记账。录音仅用于转写账单文字。"
+        NSSpeechRecognitionUsageDescription: "Stoic Spend 需要语音识别权限，把你说的话转成文字填入账单。转写优先在设备本地完成。"
+        # 展示层字体（用户可选）：霞鹜文楷 Lite 与 Playfair Display，均为 OFL 开源可商用
+        UIAppFonts:
+          - Resources/Fonts/LXGWWenKaiLite-Medium.ttf
+          - Resources/Fonts/PlayfairDisplay-Medium.ttf
+          - Resources/Fonts/PlayfairDisplay-SemiBold.ttf
+          - Resources/Fonts/PlayfairDisplay-Bold.ttf
+        CFBundleIcons:
+          CFBundleAlternateIcons:
+            AppIcon-jade:
+              CFBundleIconFiles: [AppIcon-jade]
+              UIPrerenderedIcon: true
+            AppIcon-gilded:
+              CFBundleIconFiles: [AppIcon-gilded]
+              UIPrerenderedIcon: true
+            AppIcon-celadon:
+              CFBundleIconFiles: [AppIcon-celadon]
+              UIPrerenderedIcon: true
+            AppIcon-dusk:
+              CFBundleIconFiles: [AppIcon-dusk]
+              UIPrerenderedIcon: true
+            AppIcon-amber:
+              CFBundleIconFiles: [AppIcon-amber]
+              UIPrerenderedIcon: true
+            AppIcon-rose:
+              CFBundleIconFiles: [AppIcon-rose]
+              UIPrerenderedIcon: true
     scheme:
-      storeKitConfiguration: Products.storekit
+      testTargets:
+        - StoicSpendTests
+        - StoicSpendUITests
+
+  # FR-13 — 控制中心 / 锁屏 / 操作按钮快记入口
+  StoicSpendWidgets:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: StoicSpendWidgets
+      - path: Shared
+    info:
+      path: StoicSpendWidgets/Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zhenglin.stoicspend.widgets
+        PRODUCT_NAME: StoicSpendWidgets
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
+        INFOPLIST_KEY_CFBundleDisplayName: StoicSpendWidgets
+        CODE_SIGN_ENTITLEMENTS: StoicSpendWidgets/WidgetsEntitlements.plist
+
+  # FR-25 — 截图 / 分享扩展记账（Vision OCR 识别金额，App Group 传递）
+  StoicSpendShare:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: StoicSpendShare
+      - path: Shared/PendingCapture.swift
+      - path: Resources/Localizable.xcstrings
+        type: file
+        buildPhase: resources
+    info:
+      path: StoicSpendShare/Info.plist
+      properties:
+        CFBundleDisplayName: StoicSpend 记账
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: "$(PRODUCT_MODULE_NAME).ShareViewController"
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsImageWithMaxCount: 1
+              NSExtensionActivationSupportsText: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zhenglin.stoicspend.share
+        PRODUCT_NAME: StoicSpendShare
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
+        INFOPLIST_KEY_CFBundleDisplayName: StoicSpend 记账
+        CODE_SIGN_ENTITLEMENTS: StoicSpendShare/ShareEntitlements.plist
+
+  StoicSpendTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: ../StoicSpendTests
+    dependencies:
+      - target: StoicSpend
+    settings:
+      base:
+        IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/StoicSpend.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StoicSpend"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+        CODE_SIGN_STYLE: Automatic
+
+  StoicSpendUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: ../StoicSpendUITests
+    dependencies:
+      - target: StoicSpend
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: StoicSpend
+        IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+        CODE_SIGN_STYLE: Automatic

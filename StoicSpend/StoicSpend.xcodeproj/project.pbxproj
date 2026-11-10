@@ -7,78 +7,198 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		016044A67508EC0CE662BAA4 /* QuickAddIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58110540E85E3B5355894468 /* QuickAddIntent.swift */; };
 		032A77177BC583F4D8E1E592 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD1642DAB08B237C47848E2 /* OnboardingView.swift */; };
 		04149743CC3419D7DD8417FB /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12ED79D7EF437A74472335B /* DesignTokens.swift */; };
-		0B1DD6E1C0AA072105B631CA /* StoicQuotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 0F2F40729E03F298FEC189C9 /* StoicQuotes.json */; };
-		0F7B00008C465659360A3CD4 /* AddExpenseFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC910D265D9DD3B6F5A7D26 /* AddExpenseFlow.swift */; };
+		09E53E1BA189885E355196C5 /* WorkbenchWebUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB44ED3C8885E1F4AA16A8 /* WorkbenchWebUI.swift */; };
+		0F8B3AE21E8987B2402C94EA /* StoicSpendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C348716AADBB5B0AC7C59919 /* StoicSpendUITests.swift */; };
 		1429EBF000356D168366280A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 04B65866729998F993C1B006 /* Localizable.xcstrings */; };
-		1995594202BC50F3DCB6E892 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB90599795ADB49659E8D1C /* HistoryView.swift */; };
-		2085B2F040C66A63E4825B98 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_7CC86EB7-476C-40DE-BF12-BA383C8F265D" /* StoicSpendApp.swift */; };
-		25E2BE9B91030EC7A586E520 /* AlreadyHaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDA5338FD06F6315FC5448 /* AlreadyHaveView.swift */; };
+		15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92634626ABCB57287FBC297 /* ShareSheet.swift */; };
+		17868E48F604CE138CECB4A9 /* WidgetSnapshotWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEA34219850CD9F7463EF5 /* WidgetSnapshotWriter.swift */; };
+		181EDC966027C51824061243 /* SubscriptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7711613A0E690722A6616E /* SubscriptionServiceTests.swift */; };
+		1EF6AE9AF34724FA0F2CD478 /* RazorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B6C6413D67BE64982F6836 /* RazorKit.swift */; };
+		1FBD4D06051629BE4ACF0D9E /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548A07849A4530BFCF3743C /* Haptics.swift */; };
+		26FF563487FFAFE13A105986 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953103E53E5FA7A762EC6F14 /* WidgetSnapshot.swift */; };
+		31A459A7516C55BCEE4AB67A /* WidgetsEntitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E938DDBBF7A90C534593BE8 /* WidgetsEntitlements.plist */; };
+		34AB22246EB0B8013F9623F4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3528D9E0F5DF8D7D79E550E1 /* Theme.swift */; };
+		3670D465E5577FC4085693F0 /* OccamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CAEC011637C538A27541B /* OccamView.swift */; };
 		36B55F036B80E64CB8B41901 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E909A052071F5ED6AC8F7EB4 /* SettingsView.swift */; };
-		38DF8CCA0DBDEB08FD350A8C /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = "TEMP_ADAC4B23-D4E1-4F25-84FB-21D7901D97A5" /* Products.storekit */; };
 		39DBF1414C7D6520EBCC7D08 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849C1E3666179272AD14148 /* CurrencyService.swift */; };
 		3A8E7533E61F3CC81A64EBC0 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEB35780098DAFF381F5115 /* Typography.swift */; };
-		4A90C2DD95D41F93AABD4BC7 /* SubscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751EEDAEA0610C257A3E7B9B /* SubscriptionViewModel.swift */; };
-		4AFBFA7670CD96305132D64D /* CircleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE3CB7E3AA4C8D9CC4A540 /* CircleViewModel.swift */; };
-		4E24C6E6537D1E20B390272B /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75F2E405058A01232854D1C /* ExpenseViewModel.swift */; };
+		3AAE15A99BE3AC9E4937791C /* AppIconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E72DDA6436B46C77D0B192 /* AppIconService.swift */; };
+		45A634711B7B9AF8AACBA337 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 58079AB2D426816AFA3ED255 /* PrivacyInfo.xcprivacy */; };
+		4FF99A9BB323AD1C786B41B4 /* PlayfairDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C42D09516D9EF6575F6A01A /* PlayfairDisplay-Bold.ttf */; };
+		535D2792F92B133247ACAF82 /* LXGWWenKaiLite-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8ADC5076A2E933BE033F595F /* LXGWWenKaiLite-Medium.ttf */; };
 		539D5898B55FD9C80E29DF9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */; };
-		61787E1B70D79F9EF5224120 /* ShareCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F78C733D66C586E5C569CC /* ShareCardView.swift */; };
+		5BE6BBC5DFEEBBFDDD6150B1 /* RecentComboStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CF02B9F07D6BDF03A357C1 /* RecentComboStore.swift */; };
+		5F324A753AD33353AEE89CED /* RazorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B6C6413D67BE64982F6836 /* RazorKit.swift */; };
+		62AD9E5F6567D38C769442E0 /* StoicSpendShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0EBB3D5C3AEABC169A5292E /* StoicSpendShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		64D92CF6B7BD22E1BE26B899 /* WorkbenchHTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83301F68C86AC0C95C2A135A /* WorkbenchHTTPServer.swift */; };
 		65F17B8334349C457F9F00DD /* DailyQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786C9F7B49F1A5B2E976D35 /* DailyQuote.swift */; };
+		68AA10781D425BBAEF7D8D41 /* WorkbenchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283D550255AF68C9D0227ED /* WorkbenchService.swift */; };
+		6AC77E8215065253220C80A6 /* LedgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F54FF7173067B6D55BB33C1 /* LedgerView.swift */; };
+		6F34F114AA55973023E4E587 /* ShredAmmo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3D0350AAEAEE36E8C691F8 /* ShredAmmo.swift */; };
 		6FC6F4E1DE75F845B1F196F3 /* LegalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EB844FB62562753C3EE457 /* LegalLinks.swift */; };
+		767FA20B0D90B6625FC0FA2B /* ReferralService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A492A252300A408DCAF6DCE /* ReferralService.swift */; };
+		78F15EE8EAE4240C1351C5D4 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DDDD00433F60B80E5FF8AC /* SubscriptionService.swift */; };
+		7E7B14F4AE53E4F578464668 /* BackupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C1912C4F8EBF29FBBB62E /* BackupService.swift */; };
 		903CC02E5A30670518F80949 /* ControlRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C799D9BC3E92F18F31363 /* ControlRing.swift */; };
+		91EF0FD27F9D7D46B3634F7D /* StoicSpendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD608966A33E15FE6CBA3D99 /* StoicSpendTests.swift */; };
 		94FF5F1F3F76911766830532 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CD8C11BBCB58165A4A593 /* AppSettings.swift */; };
+		95766E67360506029809170C /* PendingCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9391B7AB3B6F82300795F61 /* PendingCapture.swift */; };
+		998DBEEFDED82CF9E6737844 /* OverviewWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C102A73A48698BF73AA1FE /* OverviewWidgets.swift */; };
+		998EE825060941479193AFA5 /* WorkbenchHTTPServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA6B846370736057F6315A0 /* WorkbenchHTTPServerTests.swift */; };
+		99F756D5705F7B748D92F6D8 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_50D5236E-C0A0-4AD9-BFF1-17F26C9CB780" /* StoicSpendApp.swift */; };
 		9C0E62E26A6ADEEE91C4CC2E /* FoundationModelsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CB802F63EFF66496582E8B /* FoundationModelsService.swift */; };
-		9EEBF50869719F7E9A7ECBFF /* CircleDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE4786AACB3EDEE4F29E3C /* CircleDashboardView.swift */; };
+		9DB66E6CEB48021E82B72104 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 04B65866729998F993C1B006 /* Localizable.xcstrings */; };
+		9E14B3AC70BAE2C77C0A3272 /* PlayfairDisplay-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20A56E627A29B1A2B15E928A /* PlayfairDisplay-SemiBold.ttf */; };
 		A7F686272383880C2BF9935B /* ModelContainerSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EA082FF746022662BDD6B6 /* ModelContainerSetup.swift */; };
 		A7FCAFDD6E2335F322604467 /* WeeklyReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F1CDE18EA30746FF808A6 /* WeeklyReview.swift */; };
-		B31CC5D0836DB640D85DB97F /* ResilienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF613D01860EBEA70BAA459E /* ResilienceView.swift */; };
-		BD587680CF75AF8FE3ED5683 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0EEE5017DE75A3ABDF65A7 /* TodayView.swift */; };
-		D2272A6DE8E42A96879CC20A /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3C4A7A75EE55070981392 /* PaywallView.swift */; };
+		ABA2429FBDCAC8F55D5A1305 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = "TEMP_8766591E-C63A-4EC1-A26C-1B1BCCD0FEB3" /* Entitlements.plist */; };
+		B14D655868BA57574585A0BA /* QuickAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1410E1CA5DD065D07BAC8F /* QuickAddView.swift */; };
+		B4B0AF3AA6BC4EE69DFA5608 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC248AC208AF0F40A7BE213 /* NotificationService.swift */; };
+		BB1DB39C4ED565D362680AA0 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9CE2D87A22989D27EB0F8 /* ShareViewController.swift */; };
+		C1C9F561A170E00D729DD709 /* PendingCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9391B7AB3B6F82300795F61 /* PendingCapture.swift */; };
+		C9584A772C336DEC5BAFECA6 /* QuickAddWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31849375DAAF000BEE48E18 /* QuickAddWidgets.swift */; };
+		CB662C55CE9BEB4B24998A5A /* VoiceTranscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14F9CB59ABB0682BA3387F5 /* VoiceTranscriber.swift */; };
+		CD2F67F1AE26CD1634E2AC17 /* StoicSpendWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = ECED2767DA35BA2E04CCD57C /* StoicSpendWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D2A55AB9FD17E2B7482B610C /* ExchangeRates.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C245915B32DEE00085E6E26 /* ExchangeRates.json */; };
 		D602EF7A6B913B8093E83554 /* AlreadyHaveItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767B90DB62D80E699795B5C7 /* AlreadyHaveItem.swift */; };
+		D687ADC6258D5B3A92BFB0FC /* EveningReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C9A6B4324CABF80DB1888C /* EveningReviewView.swift */; };
+		D99D5630B51302472F4352A7 /* PendingCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9391B7AB3B6F82300795F61 /* PendingCapture.swift */; };
 		DCF0DD7D38BCC599E2A975E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 317DEA5EA5934EE96C017C38 /* LaunchScreen.storyboard */; };
+		DD3124BF707B678112A55EC7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C7A05F3DB9DF70D169D5A1 /* HomeView.swift */; };
 		DEC635385F86B0D39DD46EB4 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEE01372BE8E232B96AA9C3 /* Expense.swift */; };
-		E642B58BF5CFEBB9762C40D9 /* StoreKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E357D5932E759F40C1796D /* StoreKitService.swift */; };
-		E6E57EC414A03D700BB03B77 /* WeeklyReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A33D7C888B545099D97CFF /* WeeklyReviewView.swift */; };
+		DEDA5EB4B1B6230839992B38 /* BudgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4818E55C0BB7DBF96F46DDD1 /* BudgetModel.swift */; };
+		DFB6747F712859635BBCA654 /* QuickAddV11Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9BCFA2B8DCDF08C06FEE37 /* QuickAddV11Tests.swift */; };
+		E3857E49E8EB477FAC6044C2 /* ReviewReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFA184B845A11B6BA825C60 /* ReviewReminderService.swift */; };
+		EDF015BCBA2D12581DD6BA06 /* ScreenshotParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C9ADBAA2A498B014AA2A0 /* ScreenshotParserTests.swift */; };
+		EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18C44CCC94999C066610E09 /* ShredderView.swift */; };
+		F2E3B2283199840DB8E7B592 /* ShareEntitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0200434845D6E6825C48ABA9 /* ShareEntitlements.plist */; };
+		F4AB575D5504388F4126628F /* BackupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06055E520C178D461648DDB /* BackupServiceTests.swift */; };
+		F73D213CCCDD00C84BDBA047 /* PlayfairDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7D410C809B6868EB994DA27 /* PlayfairDisplay-Medium.ttf */; };
+		F94CBD39CE57ADB79A3B2BF1 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953103E53E5FA7A762EC6F14 /* WidgetSnapshot.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0DE6278C30A1500F1FB32E23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D22D0F5A4F63E0226EDD24B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9380BA6AF448FD4194BB77F2;
+			remoteInfo = StoicSpendShare;
+		};
+		500BF76E27EB85CE085A40DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D22D0F5A4F63E0226EDD24B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63298391689FCC2493016860;
+			remoteInfo = StoicSpend;
+		};
+		6E650AF474B374E14B040910 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D22D0F5A4F63E0226EDD24B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63298391689FCC2493016860;
+			remoteInfo = StoicSpend;
+		};
+		C791E956F7D20D22B15E6BA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D22D0F5A4F63E0226EDD24B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C9D138CA25956865CE60F8B8;
+			remoteInfo = StoicSpendWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6E9921743DFD881A97FD70FC /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CD2F67F1AE26CD1634E2AC17 /* StoicSpendWidgets.appex in Embed Foundation Extensions */,
+				62AD9E5F6567D38C769442E0 /* StoicSpendShare.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0200434845D6E6825C48ABA9 /* ShareEntitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = ShareEntitlements.plist; sourceTree = "<group>"; };
+		0283D550255AF68C9D0227ED /* WorkbenchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkbenchService.swift; sourceTree = "<group>"; };
 		04B65866729998F993C1B006 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		0F2F40729E03F298FEC189C9 /* StoicQuotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StoicQuotes.json; sourceTree = "<group>"; };
-		11BE3CB7E3AA4C8D9CC4A540 /* CircleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewModel.swift; sourceTree = "<group>"; };
-		19C3C4A7A75EE55070981392 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		04C102A73A48698BF73AA1FE /* OverviewWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewWidgets.swift; sourceTree = "<group>"; };
+		08DDDD00433F60B80E5FF8AC /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
+		0A492A252300A408DCAF6DCE /* ReferralService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralService.swift; sourceTree = "<group>"; };
+		1A9BCFA2B8DCDF08C06FEE37 /* QuickAddV11Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAddV11Tests.swift; sourceTree = "<group>"; };
 		1C245915B32DEE00085E6E26 /* ExchangeRates.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ExchangeRates.json; sourceTree = "<group>"; };
+		20A56E627A29B1A2B15E928A /* PlayfairDisplay-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-SemiBold.ttf"; sourceTree = "<group>"; };
+		20C7A05F3DB9DF70D169D5A1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2548A07849A4530BFCF3743C /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		317DEA5EA5934EE96C017C38 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3528D9E0F5DF8D7D79E550E1 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		375CAEC011637C538A27541B /* OccamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccamView.swift; sourceTree = "<group>"; };
+		3B7C1912C4F8EBF29FBBB62E /* BackupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupService.swift; sourceTree = "<group>"; };
+		3BC248AC208AF0F40A7BE213 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		3C42D09516D9EF6575F6A01A /* PlayfairDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		41DE076DAAD9A229BD7B3A7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4818E55C0BB7DBF96F46DDD1 /* BudgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetModel.swift; sourceTree = "<group>"; };
+		51C9A6B4324CABF80DB1888C /* EveningReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveningReviewView.swift; sourceTree = "<group>"; };
+		58079AB2D426816AFA3ED255 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		58110540E85E3B5355894468 /* QuickAddIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAddIntent.swift; sourceTree = "<group>"; };
+		5AE75059BAE69A37EF2B7A5D /* StoicSpendTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = StoicSpendTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		67CB802F63EFF66496582E8B /* FoundationModelsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsService.swift; sourceTree = "<group>"; };
+		68BB44ED3C8885E1F4AA16A8 /* WorkbenchWebUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkbenchWebUI.swift; sourceTree = "<group>"; };
+		6B7711613A0E690722A6616E /* SubscriptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionServiceTests.swift; sourceTree = "<group>"; };
 		6BD1642DAB08B237C47848E2 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		6EC910D265D9DD3B6F5A7D26 /* AddExpenseFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseFlow.swift; sourceTree = "<group>"; };
-		751EEDAEA0610C257A3E7B9B /* SubscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewModel.swift; sourceTree = "<group>"; };
+		72E9CE2D87A22989D27EB0F8 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		767B90DB62D80E699795B5C7 /* AlreadyHaveItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyHaveItem.swift; sourceTree = "<group>"; };
+		76E72DDA6436B46C77D0B192 /* AppIconService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconService.swift; sourceTree = "<group>"; };
 		78EA082FF746022662BDD6B6 /* ModelContainerSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerSetup.swift; sourceTree = "<group>"; };
 		7B9CEA9FB49F2887415D1C0B /* StoicSpend.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = StoicSpend.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E938DDBBF7A90C534593BE8 /* WidgetsEntitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = WidgetsEntitlements.plist; sourceTree = "<group>"; };
+		83301F68C86AC0C95C2A135A /* WorkbenchHTTPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkbenchHTTPServer.swift; sourceTree = "<group>"; };
+		844EC22255AE7405F733CCA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		851F1CDE18EA30746FF808A6 /* WeeklyReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReview.swift; sourceTree = "<group>"; };
-		8A0EEE5017DE75A3ABDF65A7 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		89CF02B9F07D6BDF03A357C1 /* RecentComboStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentComboStore.swift; sourceTree = "<group>"; };
+		8ADC5076A2E933BE033F595F /* LXGWWenKaiLite-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LXGWWenKaiLite-Medium.ttf"; sourceTree = "<group>"; };
+		8E1410E1CA5DD065D07BAC8F /* QuickAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAddView.swift; sourceTree = "<group>"; };
+		8FFA184B845A11B6BA825C60 /* ReviewReminderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewReminderService.swift; sourceTree = "<group>"; };
 		921CD8C11BBCB58165A4A593 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		953103E53E5FA7A762EC6F14 /* WidgetSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSnapshot.swift; sourceTree = "<group>"; };
+		9C9C9ADBAA2A498B014AA2A0 /* ScreenshotParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotParserTests.swift; sourceTree = "<group>"; };
 		9E9C799D9BC3E92F18F31363 /* ControlRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlRing.swift; sourceTree = "<group>"; };
-		A1E357D5932E759F40C1796D /* StoreKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitService.swift; sourceTree = "<group>"; };
+		9F54FF7173067B6D55BB33C1 /* LedgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerView.swift; sourceTree = "<group>"; };
+		A2AEA34219850CD9F7463EF5 /* WidgetSnapshotWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSnapshotWriter.swift; sourceTree = "<group>"; };
+		AE3D0350AAEAEE36E8C691F8 /* ShredAmmo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShredAmmo.swift; sourceTree = "<group>"; };
+		AE9709AD854DA34B76D9DAAA /* StoicSpendUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = StoicSpendUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7D410C809B6868EB994DA27 /* PlayfairDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Medium.ttf"; sourceTree = "<group>"; };
 		B849C1E3666179272AD14148 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
+		BFA6B846370736057F6315A0 /* WorkbenchHTTPServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkbenchHTTPServerTests.swift; sourceTree = "<group>"; };
+		C06055E520C178D461648DDB /* BackupServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupServiceTests.swift; sourceTree = "<group>"; };
 		C12ED79D7EF437A74472335B /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
-		CF613D01860EBEA70BAA459E /* ResilienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResilienceView.swift; sourceTree = "<group>"; };
+		C31849375DAAF000BEE48E18 /* QuickAddWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAddWidgets.swift; sourceTree = "<group>"; };
+		C348716AADBB5B0AC7C59919 /* StoicSpendUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendUITests.swift; sourceTree = "<group>"; };
+		C9391B7AB3B6F82300795F61 /* PendingCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCapture.swift; sourceTree = "<group>"; };
+		CD608966A33E15FE6CBA3D99 /* StoicSpendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendTests.swift; sourceTree = "<group>"; };
+		D0EBB3D5C3AEABC169A5292E /* StoicSpendShare.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = StoicSpendShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D14F9CB59ABB0682BA3387F5 /* VoiceTranscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceTranscriber.swift; sourceTree = "<group>"; };
 		D786C9F7B49F1A5B2E976D35 /* DailyQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuote.swift; sourceTree = "<group>"; };
-		E5F78C733D66C586E5C569CC /* ShareCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareCardView.swift; sourceTree = "<group>"; };
-		E75F2E405058A01232854D1C /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
+		E18C44CCC94999C066610E09 /* ShredderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShredderView.swift; sourceTree = "<group>"; };
 		E909A052071F5ED6AC8F7EB4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		EAB90599795ADB49659E8D1C /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		E92634626ABCB57287FBC297 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		EAEB35780098DAFF381F5115 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		EAEE01372BE8E232B96AA9C3 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
-		F2CDA5338FD06F6315FC5448 /* AlreadyHaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyHaveView.swift; sourceTree = "<group>"; };
-		F2FE4786AACB3EDEE4F29E3C /* CircleDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDashboardView.swift; sourceTree = "<group>"; };
+		ECED2767DA35BA2E04CCD57C /* StoicSpendWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = StoicSpendWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4EB844FB62562753C3EE457 /* LegalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalLinks.swift; sourceTree = "<group>"; };
-		F6A33D7C888B545099D97CFF /* WeeklyReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReviewView.swift; sourceTree = "<group>"; };
 		F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		"TEMP_7CC86EB7-476C-40DE-BF12-BA383C8F265D" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
-		"TEMP_ADAC4B23-D4E1-4F25-84FB-21D7901D97A5" /* Products.storekit */ = {isa = PBXFileReference; path = Products.storekit; sourceTree = "<group>"; };
+		F9B6C6413D67BE64982F6836 /* RazorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorKit.swift; sourceTree = "<group>"; };
+		"TEMP_294A0100-65DC-4A23-8763-00FBA81191A8" /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		"TEMP_50D5236E-C0A0-4AD9-BFF1-17F26C9CB780" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
+		"TEMP_8766591E-C63A-4EC1-A26C-1B1BCCD0FEB3" /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -87,42 +207,69 @@
 			children = (
 				9E9C799D9BC3E92F18F31363 /* ControlRing.swift */,
 				C12ED79D7EF437A74472335B /* DesignTokens.swift */,
+				2548A07849A4530BFCF3743C /* Haptics.swift */,
+				3528D9E0F5DF8D7D79E550E1 /* Theme.swift */,
 				EAEB35780098DAFF381F5115 /* Typography.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
 		};
-		05205E20FCC2ACA5BF5439C0 /* ShareCard */ = {
+		02E936D218D07A02D6E026F6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				E5F78C733D66C586E5C569CC /* ShareCardView.swift */,
+				C9391B7AB3B6F82300795F61 /* PendingCapture.swift */,
+				F9B6C6413D67BE64982F6836 /* RazorKit.swift */,
+				953103E53E5FA7A762EC6F14 /* WidgetSnapshot.swift */,
 			);
-			path = ShareCard;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		0558BB9C473372DB3AB08341 /* Shredder */ = {
+			isa = PBXGroup;
+			children = (
+				E18C44CCC94999C066610E09 /* ShredderView.swift */,
+			);
+			path = Shredder;
+			sourceTree = "<group>";
+		};
+		124F243F7B58ACCC8B7AA67D /* stoicspend */ = {
+			isa = PBXGroup;
+			children = (
+				AEEA88CF3B92E7F1E3526A9A /* StoicSpendTests */,
+				57A7133DCAC3921F5A4B6F64 /* StoicSpendUITests */,
+			);
+			name = stoicspend;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		15796A973B2C7EC774C11099 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8ADC5076A2E933BE033F595F /* LXGWWenKaiLite-Medium.ttf */,
+				3C42D09516D9EF6575F6A01A /* PlayfairDisplay-Bold.ttf */,
+				B7D410C809B6868EB994DA27 /* PlayfairDisplay-Medium.ttf */,
+				20A56E627A29B1A2B15E928A /* PlayfairDisplay-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		242BEC72D061E3BD995DFE86 /* Today */ = {
 			isa = PBXGroup;
 			children = (
-				6EC910D265D9DD3B6F5A7D26 /* AddExpenseFlow.swift */,
-				8A0EEE5017DE75A3ABDF65A7 /* TodayView.swift */,
+				8E1410E1CA5DD065D07BAC8F /* QuickAddView.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
 		};
-		30E3C71EB4F9946BF12884DF /* Circle */ = {
+		4912684168E7D1A7BC23EA5B /* StoicSpendWidgets */ = {
 			isa = PBXGroup;
 			children = (
-				F2FE4786AACB3EDEE4F29E3C /* CircleDashboardView.swift */,
+				844EC22255AE7405F733CCA9 /* Info.plist */,
+				04C102A73A48698BF73AA1FE /* OverviewWidgets.swift */,
+				C31849375DAAF000BEE48E18 /* QuickAddWidgets.swift */,
+				7E938DDBBF7A90C534593BE8 /* WidgetsEntitlements.plist */,
 			);
-			path = Circle;
-			sourceTree = "<group>";
-		};
-		38DB831200F8DC6C1E05181B /* Resilience */ = {
-			isa = PBXGroup;
-			children = (
-				CF613D01860EBEA70BAA459E /* ResilienceView.swift */,
-			);
-			path = Resilience;
+			path = StoicSpendWidgets;
 			sourceTree = "<group>";
 		};
 		4F73045713658A4989892121 /* Onboarding */ = {
@@ -133,6 +280,22 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		520586A815D8FFF99841A7B9 /* Ledger */ = {
+			isa = PBXGroup;
+			children = (
+				9F54FF7173067B6D55BB33C1 /* LedgerView.swift */,
+			);
+			path = Ledger;
+			sourceTree = "<group>";
+		};
+		57A7133DCAC3921F5A4B6F64 /* StoicSpendUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C348716AADBB5B0AC7C59919 /* StoicSpendUITests.swift */,
+			);
+			path = StoicSpendUITests;
+			sourceTree = "<group>";
+		};
 		626733F723CB48921CD53C6D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,27 +304,17 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		7C857F23404F470B4C4317AD /* Paywall */ = {
-			isa = PBXGroup;
-			children = (
-				19C3C4A7A75EE55070981392 /* PaywallView.swift */,
-			);
-			path = Paywall;
-			sourceTree = "<group>";
-		};
 		9FD7D070FAB07DBC92D24B1C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E60ACB0DC3D615167FB9D7DF /* AlreadyHave */,
-				30E3C71EB4F9946BF12884DF /* Circle */,
-				AE860DEBE48B4772CA18D2F9 /* History */,
+				B15CB7D70C54CC88246EA206 /* Home */,
+				520586A815D8FFF99841A7B9 /* Ledger */,
+				D77E8152FF9E812B44A4618E /* Occam */,
 				4F73045713658A4989892121 /* Onboarding */,
-				7C857F23404F470B4C4317AD /* Paywall */,
-				38DB831200F8DC6C1E05181B /* Resilience */,
 				626733F723CB48921CD53C6D /* Settings */,
-				05205E20FCC2ACA5BF5439C0 /* ShareCard */,
+				E349CA6EE816DD1BBC43B509 /* Share */,
+				0558BB9C473372DB3AB08341 /* Shredder */,
 				242BEC72D061E3BD995DFE86 /* Today */,
-				DA7EB4EBD5F9A85CE4A3CA1E /* WeeklyReview */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,6 +323,10 @@
 			isa = PBXGroup;
 			children = (
 				7B9CEA9FB49F2887415D1C0B /* StoicSpend.app */,
+				D0EBB3D5C3AEABC169A5292E /* StoicSpendShare.appex */,
+				5AE75059BAE69A37EF2B7A5D /* StoicSpendTests.xctest */,
+				AE9709AD854DA34B76D9DAAA /* StoicSpendUITests.xctest */,
+				ECED2767DA35BA2E04CCD57C /* StoicSpendWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,18 +338,35 @@
 				C86772CA254EAC590249C342 /* Models */,
 				EEF43067302B8BDBD3CF4B70 /* Resources */,
 				CCE2AF5CA8FC30CC0834F107 /* Services */,
-				CBD8D449A192117F130D3A72 /* ViewModels */,
+				02E936D218D07A02D6E026F6 /* Shared */,
+				124F243F7B58ACCC8B7AA67D /* stoicspend */,
+				DC0DE6076F584F9FBE488612 /* StoicSpendShare */,
+				4912684168E7D1A7BC23EA5B /* StoicSpendWidgets */,
 				9FD7D070FAB07DBC92D24B1C /* Views */,
 				A32BAB2D761D23D3049D5E8C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AE860DEBE48B4772CA18D2F9 /* History */ = {
+		AEEA88CF3B92E7F1E3526A9A /* StoicSpendTests */ = {
 			isa = PBXGroup;
 			children = (
-				EAB90599795ADB49659E8D1C /* HistoryView.swift */,
+				C06055E520C178D461648DDB /* BackupServiceTests.swift */,
+				1A9BCFA2B8DCDF08C06FEE37 /* QuickAddV11Tests.swift */,
+				9C9C9ADBAA2A498B014AA2A0 /* ScreenshotParserTests.swift */,
+				CD608966A33E15FE6CBA3D99 /* StoicSpendTests.swift */,
+				6B7711613A0E690722A6616E /* SubscriptionServiceTests.swift */,
+				BFA6B846370736057F6315A0 /* WorkbenchHTTPServerTests.swift */,
 			);
-			path = History;
+			path = StoicSpendTests;
+			sourceTree = "<group>";
+		};
+		B15CB7D70C54CC88246EA206 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				51C9A6B4324CABF80DB1888C /* EveningReviewView.swift */,
+				20C7A05F3DB9DF70D169D5A1 /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		C86772CA254EAC590249C342 /* Models */ = {
@@ -200,6 +374,7 @@
 			children = (
 				767B90DB62D80E699795B5C7 /* AlreadyHaveItem.swift */,
 				921CD8C11BBCB58165A4A593 /* AppSettings.swift */,
+				4818E55C0BB7DBF96F46DDD1 /* BudgetModel.swift */,
 				D786C9F7B49F1A5B2E976D35 /* DailyQuote.swift */,
 				EAEE01372BE8E232B96AA9C3 /* Expense.swift */,
 				851F1CDE18EA30746FF808A6 /* WeeklyReview.swift */,
@@ -207,64 +382,79 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CBD8D449A192117F130D3A72 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				11BE3CB7E3AA4C8D9CC4A540 /* CircleViewModel.swift */,
-				E75F2E405058A01232854D1C /* ExpenseViewModel.swift */,
-				751EEDAEA0610C257A3E7B9B /* SubscriptionViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		CCE2AF5CA8FC30CC0834F107 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				76E72DDA6436B46C77D0B192 /* AppIconService.swift */,
+				3B7C1912C4F8EBF29FBBB62E /* BackupService.swift */,
 				B849C1E3666179272AD14148 /* CurrencyService.swift */,
 				67CB802F63EFF66496582E8B /* FoundationModelsService.swift */,
 				F4EB844FB62562753C3EE457 /* LegalLinks.swift */,
 				78EA082FF746022662BDD6B6 /* ModelContainerSetup.swift */,
-				A1E357D5932E759F40C1796D /* StoreKitService.swift */,
+				3BC248AC208AF0F40A7BE213 /* NotificationService.swift */,
+				58110540E85E3B5355894468 /* QuickAddIntent.swift */,
+				89CF02B9F07D6BDF03A357C1 /* RecentComboStore.swift */,
+				0A492A252300A408DCAF6DCE /* ReferralService.swift */,
+				8FFA184B845A11B6BA825C60 /* ReviewReminderService.swift */,
+				AE3D0350AAEAEE36E8C691F8 /* ShredAmmo.swift */,
+				08DDDD00433F60B80E5FF8AC /* SubscriptionService.swift */,
+				D14F9CB59ABB0682BA3387F5 /* VoiceTranscriber.swift */,
+				A2AEA34219850CD9F7463EF5 /* WidgetSnapshotWriter.swift */,
+				83301F68C86AC0C95C2A135A /* WorkbenchHTTPServer.swift */,
+				0283D550255AF68C9D0227ED /* WorkbenchService.swift */,
+				68BB44ED3C8885E1F4AA16A8 /* WorkbenchWebUI.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		DA7EB4EBD5F9A85CE4A3CA1E /* WeeklyReview */ = {
+		D77E8152FF9E812B44A4618E /* Occam */ = {
 			isa = PBXGroup;
 			children = (
-				F6A33D7C888B545099D97CFF /* WeeklyReviewView.swift */,
+				375CAEC011637C538A27541B /* OccamView.swift */,
 			);
-			path = WeeklyReview;
+			path = Occam;
 			sourceTree = "<group>";
 		};
-		E60ACB0DC3D615167FB9D7DF /* AlreadyHave */ = {
+		DC0DE6076F584F9FBE488612 /* StoicSpendShare */ = {
 			isa = PBXGroup;
 			children = (
-				F2CDA5338FD06F6315FC5448 /* AlreadyHaveView.swift */,
+				41DE076DAAD9A229BD7B3A7A /* Info.plist */,
+				0200434845D6E6825C48ABA9 /* ShareEntitlements.plist */,
+				72E9CE2D87A22989D27EB0F8 /* ShareViewController.swift */,
 			);
-			path = AlreadyHave;
+			path = StoicSpendShare;
+			sourceTree = "<group>";
+		};
+		E349CA6EE816DD1BBC43B509 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				E92634626ABCB57287FBC297 /* ShareSheet.swift */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		EEF43067302B8BDBD3CF4B70 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				15796A973B2C7EC774C11099 /* Fonts */,
 				F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */,
 				1C245915B32DEE00085E6E26 /* ExchangeRates.json */,
 				317DEA5EA5934EE96C017C38 /* LaunchScreen.storyboard */,
 				04B65866729998F993C1B006 /* Localizable.xcstrings */,
-				0F2F40729E03F298FEC189C9 /* StoicQuotes.json */,
+				58079AB2D426816AFA3ED255 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		"TEMP_A146D95F-E01C-41B2-9209-C3F8DAA8174C" /* StoicSpend */ = {
+		"TEMP_3AF21D2C-7EFE-4EB6-A5C3-DB8FBDEB7FC2" /* StoicSpend */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_ADAC4B23-D4E1-4F25-84FB-21D7901D97A5" /* Products.storekit */,
-				"TEMP_7CC86EB7-476C-40DE-BF12-BA383C8F265D" /* StoicSpendApp.swift */,
-				CBD8D449A192117F130D3A72 /* ViewModels */,
+				"TEMP_8766591E-C63A-4EC1-A26C-1B1BCCD0FEB3" /* Entitlements.plist */,
+				"TEMP_50D5236E-C0A0-4AD9-BFF1-17F26C9CB780" /* StoicSpendApp.swift */,
+				"TEMP_294A0100-65DC-4A23-8763-00FBA81191A8" /* Info.plist */,
 				00DA4726EB3DAD9CB1D10EDA /* DesignSystem */,
 				EEF43067302B8BDBD3CF4B70 /* Resources */,
+				02E936D218D07A02D6E026F6 /* Shared */,
 				C86772CA254EAC590249C342 /* Models */,
 				9FD7D070FAB07DBC92D24B1C /* Views */,
 				CCE2AF5CA8FC30CC0834F107 /* Services */,
@@ -275,16 +465,37 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		29B0B438EA8FFB6099AC890A /* StoicSpendTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7537EAAE9863F60BEFF50AA0 /* Build configuration list for PBXNativeTarget "StoicSpendTests" */;
+			buildPhases = (
+				5E7F2787305C8A701A779FC1 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D23B6825FF55DC5BD334AD51 /* PBXTargetDependency */,
+			);
+			name = StoicSpendTests;
+			packageProductDependencies = (
+			);
+			productName = StoicSpendTests;
+			productReference = 5AE75059BAE69A37EF2B7A5D /* StoicSpendTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		63298391689FCC2493016860 /* StoicSpend */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6274172D162F98F9F0E61B8 /* Build configuration list for PBXNativeTarget "StoicSpend" */;
 			buildPhases = (
 				E196192F79828879168AAC12 /* Sources */,
 				8F9749B2A1FB61B49F749F41 /* Resources */,
+				6E9921743DFD881A97FD70FC /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				90CE6422B083F33653B9866E /* PBXTargetDependency */,
+				3F4A3B8DA5E1D74596E4C004 /* PBXTargetDependency */,
 			);
 			name = StoicSpend;
 			packageProductDependencies = (
@@ -292,6 +503,60 @@
 			productName = StoicSpend;
 			productReference = 7B9CEA9FB49F2887415D1C0B /* StoicSpend.app */;
 			productType = "com.apple.product-type.application";
+		};
+		9380BA6AF448FD4194BB77F2 /* StoicSpendShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D769DC92476814E02CABCAC2 /* Build configuration list for PBXNativeTarget "StoicSpendShare" */;
+			buildPhases = (
+				9EAE72768F867DCBC455E348 /* Sources */,
+				B7E9096E748281B8DFD3A2E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StoicSpendShare;
+			packageProductDependencies = (
+			);
+			productName = StoicSpendShare;
+			productReference = D0EBB3D5C3AEABC169A5292E /* StoicSpendShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		ADB921CCC161237DDDACE66F /* StoicSpendUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44A17BE6C61BF537CB90FCD5 /* Build configuration list for PBXNativeTarget "StoicSpendUITests" */;
+			buildPhases = (
+				0E01B6F47E79F4190D2CEDFA /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5588C14D85BE95ADA9F1A5A2 /* PBXTargetDependency */,
+			);
+			name = StoicSpendUITests;
+			packageProductDependencies = (
+			);
+			productName = StoicSpendUITests;
+			productReference = AE9709AD854DA34B76D9DAAA /* StoicSpendUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		C9D138CA25956865CE60F8B8 /* StoicSpendWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9633F36D94E4966B52649E06 /* Build configuration list for PBXNativeTarget "StoicSpendWidgets" */;
+			buildPhases = (
+				E95B0DE8649396E4F115614D /* Sources */,
+				6B2C6B27500DB247EFF712E3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StoicSpendWidgets;
+			packageProductDependencies = (
+			);
+			productName = StoicSpendWidgets;
+			productReference = ECED2767DA35BA2E04CCD57C /* StoicSpendWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -302,7 +567,24 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					29B0B438EA8FFB6099AC890A = {
+						DevelopmentTeam = ET3J52FQ3C;
+						ProvisioningStyle = Automatic;
+					};
 					63298391689FCC2493016860 = {
+						DevelopmentTeam = ET3J52FQ3C;
+						ProvisioningStyle = Automatic;
+					};
+					9380BA6AF448FD4194BB77F2 = {
+						DevelopmentTeam = ET3J52FQ3C;
+						ProvisioningStyle = Automatic;
+					};
+					ADB921CCC161237DDDACE66F = {
+						DevelopmentTeam = ET3J52FQ3C;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 63298391689FCC2493016860;
+					};
+					C9D138CA25956865CE60F8B8 = {
 						DevelopmentTeam = ET3J52FQ3C;
 						ProvisioningStyle = Automatic;
 					};
@@ -335,87 +617,212 @@
 			projectRoot = "";
 			targets = (
 				63298391689FCC2493016860 /* StoicSpend */,
+				9380BA6AF448FD4194BB77F2 /* StoicSpendShare */,
+				29B0B438EA8FFB6099AC890A /* StoicSpendTests */,
+				ADB921CCC161237DDDACE66F /* StoicSpendUITests */,
+				C9D138CA25956865CE60F8B8 /* StoicSpendWidgets */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6B2C6B27500DB247EFF712E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31A459A7516C55BCEE4AB67A /* WidgetsEntitlements.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8F9749B2A1FB61B49F749F41 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				539D5898B55FD9C80E29DF9B /* Assets.xcassets in Resources */,
+				ABA2429FBDCAC8F55D5A1305 /* Entitlements.plist in Resources */,
 				D2A55AB9FD17E2B7482B610C /* ExchangeRates.json in Resources */,
+				535D2792F92B133247ACAF82 /* LXGWWenKaiLite-Medium.ttf in Resources */,
 				DCF0DD7D38BCC599E2A975E9 /* LaunchScreen.storyboard in Resources */,
 				1429EBF000356D168366280A /* Localizable.xcstrings in Resources */,
-				38DF8CCA0DBDEB08FD350A8C /* Products.storekit in Resources */,
-				0B1DD6E1C0AA072105B631CA /* StoicQuotes.json in Resources */,
+				4FF99A9BB323AD1C786B41B4 /* PlayfairDisplay-Bold.ttf in Resources */,
+				F73D213CCCDD00C84BDBA047 /* PlayfairDisplay-Medium.ttf in Resources */,
+				9E14B3AC70BAE2C77C0A3272 /* PlayfairDisplay-SemiBold.ttf in Resources */,
+				45A634711B7B9AF8AACBA337 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7E9096E748281B8DFD3A2E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DB66E6CEB48021E82B72104 /* Localizable.xcstrings in Resources */,
+				F2E3B2283199840DB8E7B592 /* ShareEntitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0E01B6F47E79F4190D2CEDFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F8B3AE21E8987B2402C94EA /* StoicSpendUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E7F2787305C8A701A779FC1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4AB575D5504388F4126628F /* BackupServiceTests.swift in Sources */,
+				DFB6747F712859635BBCA654 /* QuickAddV11Tests.swift in Sources */,
+				EDF015BCBA2D12581DD6BA06 /* ScreenshotParserTests.swift in Sources */,
+				91EF0FD27F9D7D46B3634F7D /* StoicSpendTests.swift in Sources */,
+				181EDC966027C51824061243 /* SubscriptionServiceTests.swift in Sources */,
+				998EE825060941479193AFA5 /* WorkbenchHTTPServerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9EAE72768F867DCBC455E348 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D99D5630B51302472F4352A7 /* PendingCapture.swift in Sources */,
+				BB1DB39C4ED565D362680AA0 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E196192F79828879168AAC12 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F7B00008C465659360A3CD4 /* AddExpenseFlow.swift in Sources */,
 				D602EF7A6B913B8093E83554 /* AlreadyHaveItem.swift in Sources */,
-				25E2BE9B91030EC7A586E520 /* AlreadyHaveView.swift in Sources */,
+				3AAE15A99BE3AC9E4937791C /* AppIconService.swift in Sources */,
 				94FF5F1F3F76911766830532 /* AppSettings.swift in Sources */,
-				9EEBF50869719F7E9A7ECBFF /* CircleDashboardView.swift in Sources */,
-				4AFBFA7670CD96305132D64D /* CircleViewModel.swift in Sources */,
+				7E7B14F4AE53E4F578464668 /* BackupService.swift in Sources */,
+				DEDA5EB4B1B6230839992B38 /* BudgetModel.swift in Sources */,
 				903CC02E5A30670518F80949 /* ControlRing.swift in Sources */,
 				39DBF1414C7D6520EBCC7D08 /* CurrencyService.swift in Sources */,
 				65F17B8334349C457F9F00DD /* DailyQuote.swift in Sources */,
 				04149743CC3419D7DD8417FB /* DesignTokens.swift in Sources */,
+				D687ADC6258D5B3A92BFB0FC /* EveningReviewView.swift in Sources */,
 				DEC635385F86B0D39DD46EB4 /* Expense.swift in Sources */,
-				4E24C6E6537D1E20B390272B /* ExpenseViewModel.swift in Sources */,
 				9C0E62E26A6ADEEE91C4CC2E /* FoundationModelsService.swift in Sources */,
-				1995594202BC50F3DCB6E892 /* HistoryView.swift in Sources */,
+				1FBD4D06051629BE4ACF0D9E /* Haptics.swift in Sources */,
+				DD3124BF707B678112A55EC7 /* HomeView.swift in Sources */,
+				6AC77E8215065253220C80A6 /* LedgerView.swift in Sources */,
 				6FC6F4E1DE75F845B1F196F3 /* LegalLinks.swift in Sources */,
 				A7F686272383880C2BF9935B /* ModelContainerSetup.swift in Sources */,
+				B4B0AF3AA6BC4EE69DFA5608 /* NotificationService.swift in Sources */,
+				3670D465E5577FC4085693F0 /* OccamView.swift in Sources */,
 				032A77177BC583F4D8E1E592 /* OnboardingView.swift in Sources */,
-				D2272A6DE8E42A96879CC20A /* PaywallView.swift in Sources */,
-				B31CC5D0836DB640D85DB97F /* ResilienceView.swift in Sources */,
+				95766E67360506029809170C /* PendingCapture.swift in Sources */,
+				016044A67508EC0CE662BAA4 /* QuickAddIntent.swift in Sources */,
+				B14D655868BA57574585A0BA /* QuickAddView.swift in Sources */,
+				1EF6AE9AF34724FA0F2CD478 /* RazorKit.swift in Sources */,
+				5BE6BBC5DFEEBBFDDD6150B1 /* RecentComboStore.swift in Sources */,
+				767FA20B0D90B6625FC0FA2B /* ReferralService.swift in Sources */,
+				E3857E49E8EB477FAC6044C2 /* ReviewReminderService.swift in Sources */,
 				36B55F036B80E64CB8B41901 /* SettingsView.swift in Sources */,
-				61787E1B70D79F9EF5224120 /* ShareCardView.swift in Sources */,
-				2085B2F040C66A63E4825B98 /* StoicSpendApp.swift in Sources */,
-				E642B58BF5CFEBB9762C40D9 /* StoreKitService.swift in Sources */,
-				4A90C2DD95D41F93AABD4BC7 /* SubscriptionViewModel.swift in Sources */,
-				BD587680CF75AF8FE3ED5683 /* TodayView.swift in Sources */,
+				15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */,
+				6F34F114AA55973023E4E587 /* ShredAmmo.swift in Sources */,
+				EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */,
+				99F756D5705F7B748D92F6D8 /* StoicSpendApp.swift in Sources */,
+				78F15EE8EAE4240C1351C5D4 /* SubscriptionService.swift in Sources */,
+				34AB22246EB0B8013F9623F4 /* Theme.swift in Sources */,
 				3A8E7533E61F3CC81A64EBC0 /* Typography.swift in Sources */,
+				CB662C55CE9BEB4B24998A5A /* VoiceTranscriber.swift in Sources */,
 				A7FCAFDD6E2335F322604467 /* WeeklyReview.swift in Sources */,
-				E6E57EC414A03D700BB03B77 /* WeeklyReviewView.swift in Sources */,
+				26FF563487FFAFE13A105986 /* WidgetSnapshot.swift in Sources */,
+				17868E48F604CE138CECB4A9 /* WidgetSnapshotWriter.swift in Sources */,
+				64D92CF6B7BD22E1BE26B899 /* WorkbenchHTTPServer.swift in Sources */,
+				68AA10781D425BBAEF7D8D41 /* WorkbenchService.swift in Sources */,
+				09E53E1BA189885E355196C5 /* WorkbenchWebUI.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E95B0DE8649396E4F115614D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				998DBEEFDED82CF9E6737844 /* OverviewWidgets.swift in Sources */,
+				C1C9F561A170E00D729DD709 /* PendingCapture.swift in Sources */,
+				C9584A772C336DEC5BAFECA6 /* QuickAddWidgets.swift in Sources */,
+				5F324A753AD33353AEE89CED /* RazorKit.swift in Sources */,
+				F94CBD39CE57ADB79A3B2BF1 /* WidgetSnapshot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3F4A3B8DA5E1D74596E4C004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9380BA6AF448FD4194BB77F2 /* StoicSpendShare */;
+			targetProxy = 0DE6278C30A1500F1FB32E23 /* PBXContainerItemProxy */;
+		};
+		5588C14D85BE95ADA9F1A5A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63298391689FCC2493016860 /* StoicSpend */;
+			targetProxy = 6E650AF474B374E14B040910 /* PBXContainerItemProxy */;
+		};
+		90CE6422B083F33653B9866E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C9D138CA25956865CE60F8B8 /* StoicSpendWidgets */;
+			targetProxy = C791E956F7D20D22B15E6BA2 /* PBXContainerItemProxy */;
+		};
+		D23B6825FF55DC5BD334AD51 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63298391689FCC2493016860 /* StoicSpend */;
+			targetProxy = 500BF76E27EB85CE085A40DA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0A0B97EF7D5C68FA50B549CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.StoicSpendTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StoicSpend.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StoicSpend";
+			};
+			name = Debug;
+		};
 		1ADF3B2E641369397E9DB181 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-jade AppIcon-gilded AppIcon-celadon AppIcon-dusk AppIcon-amber AppIcon-rose";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Stoic Spend";
-				INFOPLIST_KEY_NSPrivacyAccessedAPITypes = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspand;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend;
 				PRODUCT_NAME = StoicSpend;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -470,7 +877,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -481,32 +888,154 @@
 			};
 			name = Release;
 		};
+		37B2290ABEC29087E97FEA2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = StoicSpendShare/ShareEntitlements.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = StoicSpendShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "StoicSpend 记账";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend.share;
+				PRODUCT_NAME = StoicSpendShare;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		44CD9477F44B63AFA1E66757 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.StoicSpendUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StoicSpend;
+			};
+			name = Release;
+		};
+		5439833D1A088A29B7078FBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = StoicSpendWidgets/WidgetsEntitlements.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = StoicSpendWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StoicSpendWidgets;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend.widgets;
+				PRODUCT_NAME = StoicSpendWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5506CE0642C98A451BB086D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = StoicSpendWidgets/WidgetsEntitlements.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = StoicSpendWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StoicSpendWidgets;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend.widgets;
+				PRODUCT_NAME = StoicSpendWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		7F71580DCEC760AF832D1378 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-jade AppIcon-gilded AppIcon-celadon AppIcon-dusk AppIcon-amber AppIcon-rose";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Stoic Spend";
-				INFOPLIST_KEY_NSPrivacyAccessedAPITypes = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspand;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend;
 				PRODUCT_NAME = StoicSpend;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8A68DF51B689F716575CD67A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.StoicSpendUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StoicSpend;
+			};
+			name = Debug;
+		};
+		918B2CD5D36CDB75859E957E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.StoicSpendTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StoicSpend.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StoicSpend";
 			};
 			name = Release;
 		};
@@ -563,7 +1092,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -575,14 +1104,71 @@
 			};
 			name = Debug;
 		};
+		FAF41A96A6FBE97EF7490660 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = StoicSpendShare/ShareEntitlements.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = StoicSpendShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "StoicSpend 记账";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend.share;
+				PRODUCT_NAME = StoicSpendShare;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		44A17BE6C61BF537CB90FCD5 /* Build configuration list for PBXNativeTarget "StoicSpendUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A68DF51B689F716575CD67A /* Debug */,
+				44CD9477F44B63AFA1E66757 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		6E14311988F349001938C46F /* Build configuration list for PBXProject "StoicSpend" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B62B36E25EC322685CB448EA /* Debug */,
 				3331F453C349FFA5F697F44E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7537EAAE9863F60BEFF50AA0 /* Build configuration list for PBXNativeTarget "StoicSpendTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A0B97EF7D5C68FA50B549CE /* Debug */,
+				918B2CD5D36CDB75859E957E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9633F36D94E4966B52649E06 /* Build configuration list for PBXNativeTarget "StoicSpendWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5506CE0642C98A451BB086D3 /* Debug */,
+				5439833D1A088A29B7078FBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D769DC92476814E02CABCAC2 /* Build configuration list for PBXNativeTarget "StoicSpendShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAF41A96A6FBE97EF7490660 /* Debug */,
+				37B2290ABEC29087E97FEA2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

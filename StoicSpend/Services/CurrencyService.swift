@@ -30,7 +30,26 @@ final class CurrencyService {
         "tr": "TRY"
     ]
 
+    /// 内置汇率表（线程安全：初始化时一次性加载，不再使用 lazy var 跨线程访问）
+    private let builtinRates: [String: Double] = CurrencyService.loadBuiltinRates()
+
     private init() {}
+
+    // MARK: - 内置汇率文件加载（一次性，线程安全）
+
+    private static func loadBuiltinRates() -> [String: Double] {
+        guard let file = loadExchangeRatesFile() else { return ["USD": 1.0] }
+        return file.rates
+    }
+
+    private static func loadExchangeRatesFile() -> ExchangeRatesFile? {
+        guard let url = Bundle.main.url(forResource: "ExchangeRates", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let json = try? JSONDecoder().decode(ExchangeRatesFile.self, from: data) else {
+            return nil
+        }
+        return json
+    }
 
     // MARK: - 当前币种（从 AppSettings 读取，默认按 locale）
 
@@ -69,7 +88,6 @@ final class CurrencyService {
         formatter.numberStyle = .currency
         formatter.currencyCode = currency
         formatter.locale = Locale.current
-        // 负数用括号或减号，避免 AI prompt 中出现奇怪符号
         formatter.maximumFractionDigits = decimalPlaces(for: currency)
         formatter.minimumFractionDigits = decimalPlaces(for: currency)
         return formatter.string(from: NSNumber(value: amount)) ?? ""
@@ -81,9 +99,7 @@ final class CurrencyService {
         formatter.numberStyle = .currency
         formatter.currencyCode = currency
         formatter.locale = Locale.current
-        // 取 "§" 替换数字后的符号部分
         let formatted = formatter.string(from: NSNumber(value: 0)) ?? ""
-        // 去掉数字和空格，保留符号
         return formatted.unicodeScalars.filter { scalar in
             !CharacterSet.decimalDigits.contains(scalar)
                 && scalar != " "
@@ -107,26 +123,6 @@ final class CurrencyService {
 
     // MARK: - 汇率
 
-    /// 内置汇率表（从 ExchangeRates.json 加载，对 USD）
-    private lazy var builtinRates: [String: Double] = {
-        guard let url = Bundle.main.url(forResource: "ExchangeRates", withExtension: "json"),
-              let data = try? Data(contentsOf: url),
-              let json = try? JSONDecoder().decode(ExchangeRatesFile.self, from: data) else {
-            return ["USD": 1.0]
-        }
-        return json.rates
-    }()
-
-    /// 内置汇率更新日期
-    var ratesUpdated: String? {
-        guard let url = Bundle.main.url(forResource: "ExchangeRates", withExtension: "json"),
-              let data = try? Data(contentsOf: url),
-              let json = try? JSONDecoder().decode(ExchangeRatesFile.self, from: data) else {
-            return nil
-        }
-        return json.updated
-    }
-
     /// 获取某币种对 USD 的汇率（用户覆盖优先）
     func rateToUSD(_ currency: String, customRates: [String: Double]) -> Double {
         if let custom = customRates[currency] { return custom }
@@ -144,8 +140,7 @@ final class CurrencyService {
 
     /// 转换金额
     func convert(_ amount: Double, from: String, to: String, customRates: [String: Double]) -> Double {
-        let rate = exchangeRate(from: from, to: to, customRates: customRates)
-        return amount * rate
+        amount * exchangeRate(from: from, to: to, customRates: customRates)
     }
 
     // MARK: - 切换币种（批量转换所有 Expense）
@@ -156,13 +151,23 @@ final class CurrencyService {
     @MainActor
     func switchCurrency(to newCurrency: String, in context: ModelContext) {
         let descriptor = FetchDescriptor<AppSettings>()
-        let settings = (try? context.fetch(descriptor))?.first
-        let oldCurrency = settings?.currentCurrency ?? Self.defaultCurrencyForCurrentLocale()
-        let customRates = settings?.customRates ?? [:]
+        // 保证存在且仅一个 AppSettings，避免重复插入
+        let settingsList = (try? context.fetch(descriptor)) ?? []
+        let settings: AppSettings
+        if let first = settingsList.first {
+            settings = first
+        } else {
+            settings = AppSettings()
+            context.insert(settings)
+        }
+
+        let oldCurrency = settings.currentCurrency.isEmpty
+            ? Self.defaultCurrencyForCurrentLocale()
+            : settings.currentCurrency
+        let customRates = settings.customRates
 
         guard oldCurrency != newCurrency else { return }
 
-        // 转换所有 Expense
         let expenseDescriptor = FetchDescriptor<Expense>()
         if let expenses = try? context.fetch(expenseDescriptor) {
             let rate = exchangeRate(from: oldCurrency, to: newCurrency, customRates: customRates)
@@ -171,14 +176,7 @@ final class CurrencyService {
             }
         }
 
-        // 更新设置
-        if let settings {
-            settings.currentCurrency = newCurrency
-        } else {
-            let new = AppSettings()
-            new.currentCurrency = newCurrency
-            context.insert(new)
-        }
+        settings.currentCurrency = newCurrency
         try? context.save()
     }
 }
