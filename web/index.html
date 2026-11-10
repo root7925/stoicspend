@@ -3,84 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Stoic Spend — a stoic spending journal. Completely free, open source. Support, privacy, and terms.">
+  <meta name="description" content="Stoic Spend — a stoic spending journal. Completely free, open source, forever.">
   <title>Stoic Spend — Support &amp; Legal</title>
   <style>
-    :root { color-scheme: light dark; --fg: #1a1a1a; --muted: #555; --bg: #f5f2ea; --link: #8a6d3b; --gold: #b8860b; }
-    @media (prefers-color-scheme: dark) {
-      :root { --fg: #efe9dc; --muted: #a8a498; --bg: #181712; --link: #d9b96c; --gold: #d9b96c; }
+    body { margin: 0; padding: 24px 8px; background: #ffffff; color: #000000; font-family: "Times New Roman", Times, serif; }
+    a { color: #0000EE; }
+    a:visited { color: #551A8B; }
+    .wrap { max-width: 660px; margin: 0 auto; }
+    /* WordArt 式渐变标题 */
+    .logo { text-align: center; margin-bottom: 2px; }
+    .logo h1 {
+      margin: 0; font-size: 44px; font-style: italic; font-weight: bold; letter-spacing: 2px;
+      background: linear-gradient(180deg, #2e7d32 0%, #7cb342 45%, #b8860b 55%, #ffd54f 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 1px 1px 0 rgba(0,0,0,0.08);
     }
-    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.55; }
-    main { max-width: 40rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
-    h1 { font-size: 1.85rem; margin: 0 0 0.5rem; letter-spacing: -0.02em; }
-    h2 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
-    .muted { color: var(--muted); }
-    a { color: var(--link); }
-    ul { padding-left: 1.2rem; }
-    .tag { display: inline-block; font-size: 0.8rem; font-weight: 600; color: var(--bg); background: var(--gold); padding: 0.2rem 0.55rem; border-radius: 999px; margin-bottom: 0.75rem; }
+    .tagline { text-align: center; font-style: italic; font-size: 15px; color: #444444; margin: 0 0 14px; }
+    /* 跑马灯横幅 */
+    marquee { border: 2px groove #808080; background: #ffffcc; color: #7a0000; font-weight: bold; padding: 3px 0; font-size: 15px; margin-bottom: 14px; }
+    /* 主表格布局 */
+    table.layout { width: 100%; border-collapse: separate; border-spacing: 2px; background: #808080; border: 2px ridge #a9a9a9; }
+    td.cell { background: #ffffff; border: 1px solid #808080; padding: 12px 14px; vertical-align: top; width: 50%; }
+    td.cell.full { width: 100%; }
+    h2 { font-size: 17px; text-align: center; text-decoration: underline; margin: 0 0 8px; }
+    h3 { font-size: 15px; margin: 12px 0 4px; text-align: center; }
+    p, li { font-size: 14px; line-height: 1.5; }
+    .center { text-align: center; }
+    .sidebar { text-align: center; }
+    .sidebar table { width: 100%; border-collapse: collapse; }
+    .sidebar td { border: 1px outset #b0b8d8; background: #dfe3f5; font-weight: bold; font-size: 14px; padding: 4px; }
+    .sidebar td.here { background: #aebadd; }
+    .sidebar td a { text-decoration: none; color: #000080; display: block; }
+    .badge {
+      display: inline-block; width: 84px; padding: 6px 4px; margin-top: 10px; text-align: center;
+      background: radial-gradient(circle at 50% 35%, #fff8b0, #d4a017);
+      border: 2px outset #d4a017; font-size: 10px; font-weight: bold; color: #5a4000; line-height: 1.3;
+    }
+    .counter { font-family: "Courier New", monospace; background: #000; color: #33ff33; padding: 2px 8px; letter-spacing: 2px; font-size: 13px; }
+    .langbtn {
+      font-family: "Times New Roman", Times, serif; font-size: 13px; font-weight: bold;
+      background: #d4d0c8; border: 2px outset #d4d0c8; padding: 2px 10px; cursor: pointer; color: #000;
+    }
+    .langbtn:active { border-style: inset; }
+    .langbtn.here { background: #aebadd; border-style: inset; }
+    .footer { text-align: center; font-size: 12px; color: #555; margin-top: 12px; }
+    .footer a { font-size: 12px; }
+    hr.thin { border: 0; border-top: 1px solid #808080; margin: 10px 0; }
     .lang { display: none; }
     body[data-lang="en"] .lang[data-lang="en"] { display: block; }
     body[data-lang="zh"] .lang[data-lang="zh"] { display: block; }
-    #langToggle { position: fixed; top: 0.9rem; right: 1rem; z-index: 10; font: inherit; font-size: 0.8rem; font-weight: 600; color: var(--fg); background: transparent; border: 1px solid var(--muted); border-radius: 999px; padding: 0.25rem 0.8rem; cursor: pointer; }
-    #langToggle:hover { border-color: var(--gold); color: var(--gold); }
+    .langswitch { text-align: right; margin-bottom: 6px; }
   </style>
   <script>
     function setLang(l) {
       document.body.dataset.lang = l;
-      localStorage.setItem('ss-lang', l);
+      try { localStorage.setItem('ss-lang', l); } catch (e) {}
       document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
-    }
-    function toggleLang() {
-      setLang(document.body.dataset.lang === 'en' ? 'zh' : 'en');
+      var en = document.getElementById('btn-en'), zh = document.getElementById('btn-zh');
+      en.className = 'langbtn' + (l === 'en' ? ' here' : '');
+      zh.className = 'langbtn' + (l === 'zh' ? ' here' : '');
     }
     (function () {
-      var saved = localStorage.getItem('ss-lang');
-      setLang(saved || (navigator.language && navigator.language.startsWith('zh') ? 'zh' : 'en'));
+      var saved = null;
+      try { saved = localStorage.getItem('ss-lang'); } catch (e) {}
+      document.addEventListener('DOMContentLoaded', function () {
+        setLang(saved || (navigator.language && navigator.language.startsWith('zh') ? 'zh' : 'en'));
+      });
     })();
   </script>
 </head>
 <body data-lang="en">
-  <button id="langToggle" onclick="toggleLang()">中文 / EN</button>
-  <main>
-    <span class="tag">Stoic Spend</span>
-
-    <div class="lang" data-lang="en">
-      <h1>Stoic Spend</h1>
-      <p class="muted">A stoic spending journal — control what you can, spend what matters.</p>
-
-      <h2>Free forever</h2>
-      <p>Stoic Spend has <strong>no subscriptions and no in-app purchases</strong>. All features are free today, and we promise it will <strong>stay free forever</strong> — every future update included. The full source code is open:</p>
-      <p><a href="https://github.com/root7925/stoicspend">github.com/root7925/stoicspend</a></p>
-
-      <h2>Support</h2>
-      <p>Email: <a href="mailto:guanerlin9527@gmail.com">guanerlin9527@gmail.com</a></p>
-      <p>Weibo: <a href="https://weibo.com/u/1787492425">Stoic Spend on Weibo</a></p>
-
-      <h2>Legal</h2>
-      <ul>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Use</a></li>
-      </ul>
+  <div class="wrap">
+    <div class="langswitch">
+      <button id="btn-en" class="langbtn" onclick="setLang('en')">ENGLISH</button>
+      <button id="btn-zh" class="langbtn" onclick="setLang('zh')">中文</button>
     </div>
 
-    <div class="lang" data-lang="zh">
-      <h1>Stoic Spend</h1>
-      <p class="muted">斯多葛记账本 — 控制能控制的，把钱花在真正重要的事上。</p>
+    <div class="logo"><h1>🏺 STOIC SPEND 🏺</h1></div>
+    <p class="tagline lang" data-lang="en">A stoic spending journal — control what you can, spend what matters.</p>
+    <p class="tagline lang" data-lang="zh">斯多葛记账本 — 控制能控制的，把钱花在真正重要的事上。</p>
 
-      <h2>永久免费</h2>
-      <p>Stoic Spend <strong>没有任何订阅和内购</strong>。所有功能现在全部免费，我们承诺<strong>以后也会一直免费</strong>——包括未来的每一次更新。完整源代码已开源：</p>
-      <p><a href="https://github.com/root7925/stoicspend">github.com/root7925/stoicspend</a></p>
+    <marquee class="lang" data-lang="en">✦ No subscriptions ✦ No in-app purchases ✦ 100% free FOREVER — every future update included ✦ Open source ✦</marquee>
+    <marquee class="lang" data-lang="zh">✦ 没有订阅 ✦ 没有内购 ✦ 永久 100% 免费——未来的每次更新也一样 ✦ 全部开源 ✦</marquee>
 
-      <h2>联系支持</h2>
-      <p>邮箱：<a href="mailto:guanerlin9527@gmail.com">guanerlin9527@gmail.com</a></p>
-      <p>微博：<a href="https://weibo.com/u/1787492425">@Stoic Spend 官方微博</a></p>
+    <table class="layout">
+      <tr>
+        <td class="cell sidebar">
+          <div class="lang" data-lang="en">
+            <table>
+              <tr><td class="here">Home</td></tr>
+              <tr><td><a href="privacy.html">Privacy Policy</a></td></tr>
+              <tr><td><a href="terms.html">Terms of Use</a></td></tr>
+            </table>
+            <h3>Support</h3>
+            <p class="center"><a href="mailto:guanerlin9527@gmail.com">E-mail the author</a></p>
+            <p class="center"><a href="https://weibo.com/u/1787492425">Follow on Weibo</a></p>
+            <p class="center"><a href="https://github.com/root7925/stoicspend">Source code on GitHub</a></p>
+            <div class="badge">★ 100% FREE<br>FOREVER ★<br>no IAP · no ads</div>
+          </div>
+          <div class="lang" data-lang="zh">
+            <table>
+              <tr><td class="here">主页</td></tr>
+              <tr><td><a href="privacy.html">隐私政策</a></td></tr>
+              <tr><td><a href="terms.html">使用条款</a></td></tr>
+            </table>
+            <h3>联系支持</h3>
+            <p class="center"><a href="mailto:guanerlin9527@gmail.com">发邮件给作者</a></p>
+            <p class="center"><a href="https://weibo.com/u/1787492425">关注微博</a></p>
+            <p class="center"><a href="https://github.com/root7925/stoicspend">GitHub 源代码</a></p>
+            <div class="badge">★ 永久免费 ★<br>无内购 · 无广告</div>
+          </div>
+        </td>
 
-      <h2>法律条款</h2>
-      <ul>
-        <li><a href="privacy.html">隐私政策</a></li>
-        <li><a href="terms.html">使用条款</a></li>
-      </ul>
-    </div>
-  </main>
+        <td class="cell">
+          <div class="lang" data-lang="en">
+            <h2>Free Forever</h2>
+            <p>Stoic Spend has <strong>no subscriptions and no in-app purchases</strong>. All features are free today, and we promise it will <strong>stay free forever</strong> — every future update included.</p>
+            <p class="center">📄 Read the full source: <a href="https://github.com/root7925/stoicspend">github.com/root7925/stoicspend</a></p>
+            <hr class="thin">
+            <h2>About the App</h2>
+            <p>Stoic Spend is a personal spending journal built on stoic principles: mark each expense as <em>chosen, necessity, or impulse</em>, reflect before you buy, and review your week like a stoic would. All data stays <strong>on your device</strong>.</p>
+            <hr class="thin">
+            <h2>Legal</h2>
+            <ul>
+              <li><a href="privacy.html">Privacy Policy</a> — what stays on your device (everything).</li>
+              <li><a href="terms.html">Terms of Use</a> — the simple, honest fine print.</li>
+            </ul>
+            <p class="center" style="margin-top:10px">You are visitor No. <span class="counter">00001996</span></p>
+          </div>
+          <div class="lang" data-lang="zh">
+            <h2>永久免费</h2>
+            <p>Stoic Spend <strong>没有任何订阅和内购</strong>。所有功能现在全部免费，我们承诺<strong>以后也会一直免费</strong>——包括未来的每一次更新。</p>
+            <p class="center">📄 查看完整源代码：<a href="https://github.com/root7925/stoicspend">github.com/root7925/stoicspend</a></p>
+            <hr class="thin">
+            <h2>关于本应用</h2>
+            <p>Stoic Spend 是一款基于斯多葛哲学的记账本：每笔支出标记为<em>主动选择、必需、冲动</em>，购买前先呼吸反思，每周像斯多葛先贤一样复盘。所有数据只存在<strong>你的设备上</strong>。</p>
+            <hr class="thin">
+            <h2>法律条款</h2>
+            <ul>
+              <li><a href="privacy.html">隐私政策</a> —— 什么数据留在你设备上（答案是：全部）。</li>
+              <li><a href="terms.html">使用条款</a> —— 简单、诚实的条款。</li>
+            </ul>
+            <p class="center" style="margin-top:10px">你是第 <span class="counter">00001996</span> 位访客</p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="cell full center" colspan="2">
+          <div class="lang" data-lang="en">© Copyright 2026 <a href="https://github.com/root7925/stoicspend">Stoic Spend</a>. All rights reserved. Released as free, open-source software.</div>
+          <div class="lang" data-lang="zh">© 2026 <a href="https://github.com/root7925/stoicspend">Stoic Spend</a> 版权所有。以自由开源软件发布。</div>
+        </td>
+      </tr>
+    </table>
+
+    <p class="footer lang" data-lang="en">Best viewed with Netscape Navigator 4.0 at 640×480 · This page is Y2K compliant 🗓️</p>
+    <p class="footer lang" data-lang="zh">建议使用 Netscape Navigator 4.0 以 640×480 分辨率浏览 · 本页已通过千年虫（Y2K）合规检测 🗓️</p>
+  </div>
 </body>
 </html>
