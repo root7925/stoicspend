@@ -7311,7 +7311,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "On-Device-KI"
           }
         },
         "en": {
@@ -7323,67 +7323,67 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "IA en el dispositivo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "IA sur l'appareil"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "IA on-device"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "オンデバイスAI"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "온디바이스 AI"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "On-device AI"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "IA no dispositivo"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "Cihaz içi yapay zekâ"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "AI trên thiết bị"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "端侧 AI 引擎"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foundation Models"
+            "value": "端側 AI 引擎"
           }
         }
       }
@@ -19690,67 +19690,67 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "✓ A deliberate choice"
+            "value": "✓ Chosen"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "✓ Eine bewusste Wahl"
+            "value": "✓ Bewusst gewählt"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "✓ Una elección deliberada"
+            "value": "✓ Elegido"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "✓ Una scelta consapevole"
+            "value": "✓ Scelto"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "✓ Un choix réfléchi"
+            "value": "✓ 意識的に選んだ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "✓ 自分で選んだ"
+            "value": "✓ 스스로 선택"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "✓ 스스로 선택"
+            "value": "✓ Choisi"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "✓ Uma escolha deliberada"
+            "value": "✓ Escolhido"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "✓ Een bewuste keuze"
+            "value": "✓ Bewust gekozen"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "✓ Lựa chọn chủ động"
+            "value": "✓ Chủ động chọn"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "✓ Bilinçli bir seçim"
+            "value": "✓ Bilinçli seçim"
           }
         }
       }
@@ -19773,13 +19773,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "· Necessary"
+            "value": "· Essential"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "· Nötig"
+            "value": "· Unvermeidbar"
           }
         },
         "es": {
@@ -19797,19 +19797,19 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "· Nécessaire"
+            "value": "· 必要な出費"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "· 必要な出費"
+            "value": "· 필수 지출"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "· 꼭 쓴 돈"
+            "value": "· Nécessaire"
           }
         },
         "pt-BR": {
@@ -19827,7 +19827,7 @@
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "· Bắt buộc"
+            "value": "· Cần thiết"
           }
         },
         "tr": {
@@ -19856,55 +19856,55 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "△ Impulsive"
+            "value": "△ Impulse"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "△ Unüberlegt"
+            "value": "△ Impuls"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "△ Impulsivo"
+            "value": "△ Impulso"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "△ D'impulso"
+            "value": "△ Impulso"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "△ Impulsif"
+            "value": "△ 衝動買い"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "△ 衝動的だった"
+            "value": "△ 충동 구매"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "△ 충동적이었어요"
+            "value": "△ Impulsion"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "△ Impulsivo"
+            "value": "△ Impulso"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "△ Impulsief"
+            "value": "△ Impuls"
           }
         },
         "vi": {
@@ -26982,13 +26982,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Color Theme"
+            "value": "外观主题"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "配色主題"
+            "value": "外觀主題"
           }
         },
         "en": {
@@ -27018,19 +27018,19 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Thème de couleur"
+            "value": "カラーテーマ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "カラーテーマ"
+            "value": "색 테마"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "색상 테마"
+            "value": "Thème de couleur"
           }
         },
         "pt-BR": {
@@ -27048,7 +27048,7 @@
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chủ đề màu"
+            "value": "Giao diện màu"
           }
         },
         "tr": {
@@ -34560,6 +34560,1085 @@
           "stringUnit": {
             "state": "translated",
             "value": "Weibo'da takip et"
+          }
+        }
+      }
+    },
+    "已同步": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synced"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已同步"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已同步"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchronisiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizado"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizzato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同期済み"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "동기화됨"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchronisé"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizado"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gesynchroniseerd"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đã đồng bộ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senkronize edildi"
+          }
+        }
+      }
+    },
+    "Monthly Budget": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monthly Budget"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "月度预算"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每月預算"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monatsbudget"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Presupuesto mensual"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budget mensile"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "月間予算"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "월간 예산"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budget mensuel"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orçamento mensal"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maandbudget"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ngân sách tháng"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık bütçe"
+          }
+        }
+      }
+    },
+    "Free": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Free"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "免费"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "免費"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kostenlos"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gratis"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gratis"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無料"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "무료"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gratuit"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grátis"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gratis"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miễn phí"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ücretsiz"
+          }
+        }
+      }
+    },
+    "Tracks your controllable (chosen) spending for the current month.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tracks your controllable (chosen) spending for the current month."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "追踪本月可控（主动选择）的支出。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "追蹤本月可控（主動選擇）的支出。"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeigt deine bewusst gewählten Ausgaben des laufenden Monats."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sigue tu gasto controlado (elegido) del mes actual."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monitorizza le spese controllate (scelte) del mese corrente."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今月の自分で選んだ支出を追跡します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이번 달 스스로 선택한 지출을 추적합니다."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suit le montant maîtrisé (choisi) du mois en cours."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acompanha seus gastos controlados (escolhidos) do mês atual."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Houdt je bewust gekozen uitgaven van deze maand bij."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Theo dõi khoản chi chủ động lựa chọn trong tháng này."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ay bilinçli seçtiğin harcamaları takip eder."
+          }
+        }
+      }
+    },
+    "iCloud Sync": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud Sync"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud 同步"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud 同步"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud-Sync"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronización iCloud"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizzazione iCloud"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud同期"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud 동기화"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchronisation iCloud"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronização iCloud"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud-synchronisatie"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đồng bộ iCloud"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iCloud senkronizasyonu"
+          }
+        }
+      }
+    },
+    "Optional": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可选"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可選"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opcional"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opzionale"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "任意"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "선택 사항"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optionnel"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opcional"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optioneel"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tùy chọn"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İsteğe bağlı"
+          }
+        }
+      }
+    },
+    "Sync across devices": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync across devices"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在设备间同步"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在裝置間同步"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geräteübergreifend synchronisieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincroniza entre dispositivos"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizza tra dispositivi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デバイス間で同期"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기기 간 동기화"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Synchroniser entre appareils"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronize entre dispositivos"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sync tussen apparaten"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Đồng bộ giữa các thiết bị"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cihazlar arasında senkronize et"
+          }
+        }
+      }
+    },
+    "Data stays only in your Apple account — no own servers.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data stays only in your Apple account — no own servers."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数据只存进你的 Apple 账号，我们没有自己的服务器。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "資料只存進你的 Apple 帳號，我們沒有自己的伺服器。"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Daten bleiben in deinem Apple-Konto — keine eigenen Server."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los datos solo están en tu cuenta de Apple; sin servidores propios."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I dati restano solo nel tuo account Apple: nessun server proprio."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "データはあなたのAppleアカウントにだけ保存され、独自サーバーはありません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "데이터는 Apple 계정에만 저장되며 자체 서버가 없습니다."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les données restent dans votre compte Apple — aucun serveur propre."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Os dados ficam apenas na sua conta Apple — sem servidores próprios."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data blijft alleen in je Apple-account — geen eigen servers."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dữ liệu chỉ nằm trong tài khoản Apple của bạn — không máy chủ riêng."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veriler yalnızca Apple hesabında — kendi sunucumuz yok."
+          }
+        }
+      }
+    },
+    "Off by default. Changes apply on next launch.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off by default. Changes apply on next launch."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "默认关闭。更改在下次启动时生效。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "預設關閉。變更在下次啟動時生效。"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standardmäßig aus. Änderungen gelten beim nächsten Start."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desactivado por defecto. Los cambios se aplican al reiniciar."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disattivato per impostazione predefinita. Le modifiche valgono al prossimo avvio."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デフォルトはオフ。変更は次回起動時に反映されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기본값은 꺼짐입니다. 변경 사항은 다음 실행 시 적용됩니다."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désactivé par défaut. Les changements s'appliquent au prochain lancement."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desativado por padrão. As alterações valem na próxima abertura."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standaard uit. Wijzigingen gelden bij de volgende start."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mặc định tắt. Thay đổi áp dụng từ lần mở tiếp theo."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varsayılan olarak kapalı. Değişiklikler sonraki açılışta geçerli olur."
+          }
+        }
+      }
+    },
+    "Evening Review": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Evening Review"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "晚间回顾"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "晚間回顧"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abendrückblick"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repaso nocturno"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ripasso serale"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "夜ふりかえり"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "저녁 복기"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bilan du soir"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisão noturna"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avondreview"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ôn lại buổi tối"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akşam değerlendirmesi"
+          }
+        }
+      }
+    },
+    "Some money you spend feels right.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some money you spend feels right."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有的钱花得很值。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有的錢花得很值。"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manches Geld fühlt sich richtig an."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hay dinero que se gasta y se siente bien."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certi soldi spesi sembrano giusti."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使って気持ちいいお金もある。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "쓰고 나서도 개운한 돈이 있다."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certaines dépenses semblent justes."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tem dinheiro que vale a pena gastar."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sommige uitgaven voelen goed."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Có đồng tiền tiêu thấy thoải mái."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bazı harcamalar doğru hissettirir."
+          }
+        }
+      }
+    },
+    "Some you regret the moment it's gone.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some you regret the moment it's gone."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有的钱一花出去就后悔。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "有的錢一花出去就後悔。"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manches bereust du sofort."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Y dinero que lamentas en cuanto se va."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E soldi di cui ti pentiti subito."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "なくなるのがわかった瞬間に後悔するお金もある。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사라지는 순간 후회되는 돈도 있다."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D'autres, on les regrette aussitôt dépensées."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E dinheiro que você lamenta na hora."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Andere spijten meteen."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Có khoản tiêu xong lập tức hối hận."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bazıları ise harcandığı ana pişman ettirir."
+          }
+        }
+      }
+    },
+    "72h": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72h"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72 小时"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72 小時"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72 Std."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72 h"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72 h"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72時間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72시간"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72 h"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72 h"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72 u"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72 giờ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "72 sa"
           }
         }
       }
