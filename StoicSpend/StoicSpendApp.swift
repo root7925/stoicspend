@@ -7,6 +7,8 @@ struct StoicSpendApp: App {
 
     init() {
         container = ModelContainerSetup.shared
+        // FR-24 — Watch 快记：启动时挂接 WatchConnectivity，接收手表快记落库
+        WatchSyncService.shared.activate(container: container)
     }
 
     var body: some Scene {
@@ -35,7 +37,15 @@ struct RootView: View {
             }
         }
         .preferredColorScheme(appearanceScheme)
-        .task { applyUITestHooksIfNeeded() }
+        .task {
+            applyUITestHooksIfNeeded()
+            AppStoreShotSupport.seedDemoDataIfNeeded(context: modelContext)
+            // App Store 截图：直接弹出快记页（绕过深链系统确认框）
+            if AppStoreShotSupport.wantsQuickAdd {
+                try? await Task.sleep(nanoseconds: 1_200_000_000)
+                NotificationCenter.default.post(name: .widgetOpenQuickAdd, object: nil)
+            }
+        }
         // FR-13 — Widget/控制中心深链：stoicspend://quickadd → 直达快记页
         .onOpenURL { url in
             guard url.scheme == "stoicspend" else { return }
@@ -52,7 +62,7 @@ struct RootView: View {
     /// UI 测试启动钩子：UITEST_FRESH 清空数据 / UITEST_SKIP_ONBOARDING 跳过引导
     private func applyUITestHooksIfNeeded() {
         let args = ProcessInfo.processInfo.arguments
-        guard args.contains("UITEST") else { return }
+        guard args.contains("UITEST") || AppStoreShotSupport.isEnabled else { return }
 
         var settingsObj: AppSettings
         if let existing = settings.first {
@@ -61,6 +71,11 @@ struct RootView: View {
             let created = AppSettings()
             modelContext.insert(created)
             settingsObj = created
+        }
+
+        // App Store 截图：跳过引导直达主界面
+        if AppStoreShotSupport.isEnabled {
+            settingsObj.hasCompletedOnboarding = true
         }
 
         if args.contains("UITEST_FRESH") {
@@ -123,8 +138,11 @@ struct MainTabView: View {
         .tint(DesignTokens.bronze)
         .environmentObject(theme)
         .id(theme.current)
-        // 启动时同步 App 图标（若开启了图标跟随主题）
-        .onAppear { AppIconService.syncIcon(for: theme.current) }
+        // App Store 截图：-appstoreTab N 直达指定 Tab（仅 DEBUG 生效）
+        .onAppear {
+            AppIconService.syncIcon(for: theme.current)
+            if let tab = AppStoreShotSupport.preferredTab { selectedTab = tab }
+        }
         // FR-13 — 深链跳首页
         .onReceive(NotificationCenter.default.publisher(for: .widgetOpenQuickAdd)) { _ in
             selectedTab = 0
