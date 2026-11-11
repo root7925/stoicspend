@@ -31,6 +31,8 @@ fastlane/test_output
 Agent.md
 Process.md
 .trae/
+# App Store 提审材料（内部资料，不入公开仓库）
+AppStoreSubmission/
 
 # 内部产品文档（本地保留，不入公开仓库）
 StoicSpend_*.md
