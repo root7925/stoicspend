@@ -18,9 +18,9 @@
 		15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92634626ABCB57287FBC297 /* ShareSheet.swift */; };
 		17868E48F604CE138CECB4A9 /* WidgetSnapshotWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEA34219850CD9F7463EF5 /* WidgetSnapshotWriter.swift */; };
 		181EDC966027C51824061243 /* SubscriptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7711613A0E690722A6616E /* SubscriptionServiceTests.swift */; };
+		1B92CA31B44A2C5C16DFEDE5 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_88AEF27A-79E4-4F37-94D0-ABDBF043E221" /* StoicSpendApp.swift */; };
 		1EF6AE9AF34724FA0F2CD478 /* RazorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B6C6413D67BE64982F6836 /* RazorKit.swift */; };
 		1FBD4D06051629BE4ACF0D9E /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548A07849A4530BFCF3743C /* Haptics.swift */; };
-		217EBE7601E4EC488BAD9D16 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_D631AFAC-B09A-4FF2-9F42-F06AF5CE7038" /* StoicSpendApp.swift */; };
 		21FA5C84B63F1E4EFB76CD5A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A056A16621F43AE2397DEE6A /* PrivacyInfo.xcprivacy */; };
 		229225AB806930D1859D2C9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB02D68B3EA9B141E3F6830 /* Assets.xcassets */; };
 		26FF563487FFAFE13A105986 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953103E53E5FA7A762EC6F14 /* WidgetSnapshot.swift */; };
@@ -234,7 +234,7 @@
 		F4EB844FB62562753C3EE457 /* LegalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalLinks.swift; sourceTree = "<group>"; };
 		F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B6C6413D67BE64982F6836 /* RazorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorKit.swift; sourceTree = "<group>"; };
-		"TEMP_D631AFAC-B09A-4FF2-9F42-F06AF5CE7038" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
+		"TEMP_88AEF27A-79E4-4F37-94D0-ABDBF043E221" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -497,10 +497,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		"TEMP_C274D55E-380D-4DB5-A3DD-0BDA41D65762" /* StoicSpend */ = {
+		"TEMP_4F148372-1639-477D-9FF1-5A855C1BC4A6" /* StoicSpend */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_D631AFAC-B09A-4FF2-9F42-F06AF5CE7038" /* StoicSpendApp.swift */,
+				"TEMP_88AEF27A-79E4-4F37-94D0-ABDBF043E221" /* StoicSpendApp.swift */,
 				00DA4726EB3DAD9CB1D10EDA /* DesignSystem */,
 				EEF43067302B8BDBD3CF4B70 /* Resources */,
 				02E936D218D07A02D6E026F6 /* Shared */,
@@ -824,7 +824,7 @@
 				15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */,
 				6F34F114AA55973023E4E587 /* ShredAmmo.swift in Sources */,
 				EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */,
-				217EBE7601E4EC488BAD9D16 /* StoicSpendApp.swift in Sources */,
+				1B92CA31B44A2C5C16DFEDE5 /* StoicSpendApp.swift in Sources */,
 				78F15EE8EAE4240C1351C5D4 /* SubscriptionService.swift in Sources */,
 				34AB22246EB0B8013F9623F4 /* Theme.swift in Sources */,
 				3A8E7533E61F3CC81A64EBC0 /* Typography.swift in Sources */,
@@ -912,7 +912,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
@@ -1120,7 +1120,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
