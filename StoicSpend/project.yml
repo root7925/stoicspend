@@ -38,9 +38,13 @@ targets:
         excludes:
           - "StoicSpend.xcodeproj"
           - "project.yml"
-          - "StoicSpendWidgets"
-          - "StoicSpendShare"
-          - "StoicSpendWatch"
+          - "StoicSpendWidgets/**"
+          - "StoicSpendShare/**"
+          - "StoicSpendWatch/**"
+          - "web/**"
+          - "Shared/PrivacyInfo.xcprivacy"
+          - "Entitlements.plist"
+          - "Info.plist"
     dependencies:
       # FR-13 — 控制中心/锁屏快记入口（Widget 扩展，随主 App 嵌入）
       - target: StoicSpendWidgets
@@ -126,6 +130,8 @@ targets:
     deploymentTarget: "18.0"
     sources:
       - path: StoicSpendWidgets
+        excludes:
+          - "WidgetsEntitlements.plist"
       - path: Shared
     info:
       path: StoicSpendWidgets/Info.plist
@@ -149,7 +155,12 @@ targets:
     deploymentTarget: "18.0"
     sources:
       - path: StoicSpendShare
+        excludes:
+          - "ShareEntitlements.plist"
       - path: Shared/PendingCapture.swift
+      - path: Shared/PrivacyInfo.xcprivacy
+        type: file
+        buildPhase: resources
       - path: Resources/Localizable.xcstrings
         type: file
         buildPhase: resources
@@ -182,6 +193,9 @@ targets:
       - path: StoicSpendWatch
       - path: Shared/Categories.swift
       - path: Shared/WatchCapture.swift
+      - path: Shared/PrivacyInfo.xcprivacy
+        type: file
+        buildPhase: resources
       - path: Resources/Localizable.xcstrings
     settings:
       base:
