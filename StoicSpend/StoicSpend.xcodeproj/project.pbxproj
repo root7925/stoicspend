@@ -19,6 +19,7 @@
 		181EDC966027C51824061243 /* SubscriptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7711613A0E690722A6616E /* SubscriptionServiceTests.swift */; };
 		1EF6AE9AF34724FA0F2CD478 /* RazorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B6C6413D67BE64982F6836 /* RazorKit.swift */; };
 		1FBD4D06051629BE4ACF0D9E /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548A07849A4530BFCF3743C /* Haptics.swift */; };
+		229225AB806930D1859D2C9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB02D68B3EA9B141E3F6830 /* Assets.xcassets */; };
 		26FF563487FFAFE13A105986 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953103E53E5FA7A762EC6F14 /* WidgetSnapshot.swift */; };
 		31A459A7516C55BCEE4AB67A /* WidgetsEntitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E938DDBBF7A90C534593BE8 /* WidgetsEntitlements.plist */; };
 		34AB22246EB0B8013F9623F4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3528D9E0F5DF8D7D79E550E1 /* Theme.swift */; };
@@ -36,7 +37,6 @@
 		56EC6F86AC28680AEAE69E93 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 04B65866729998F993C1B006 /* Localizable.xcstrings */; };
 		5BE6BBC5DFEEBBFDDD6150B1 /* RecentComboStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CF02B9F07D6BDF03A357C1 /* RecentComboStore.swift */; };
 		5F324A753AD33353AEE89CED /* RazorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B6C6413D67BE64982F6836 /* RazorKit.swift */; };
-		6165888B7EB21A5CC17BCCBC /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = "TEMP_697FBED2-706F-4E49-9975-616E7E2725F1" /* Entitlements.plist */; };
 		62AD9E5F6567D38C769442E0 /* StoicSpendShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0EBB3D5C3AEABC169A5292E /* StoicSpendShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64D92CF6B7BD22E1BE26B899 /* WorkbenchHTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83301F68C86AC0C95C2A135A /* WorkbenchHTTPServer.swift */; };
 		65F17B8334349C457F9F00DD /* DailyQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786C9F7B49F1A5B2E976D35 /* DailyQuote.swift */; };
@@ -45,6 +45,7 @@
 		6F34F114AA55973023E4E587 /* ShredAmmo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3D0350AAEAEE36E8C691F8 /* ShredAmmo.swift */; };
 		6FC6F4E1DE75F845B1F196F3 /* LegalLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EB844FB62562753C3EE457 /* LegalLinks.swift */; };
 		767FA20B0D90B6625FC0FA2B /* ReferralService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A492A252300A408DCAF6DCE /* ReferralService.swift */; };
+		780EA0D817F2385E2111AD59 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = "TEMP_430FE4DB-7199-4EE5-BFA7-7BB55E56ED31" /* Entitlements.plist */; };
 		78F15EE8EAE4240C1351C5D4 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DDDD00433F60B80E5FF8AC /* SubscriptionService.swift */; };
 		7E7B14F4AE53E4F578464668 /* BackupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C1912C4F8EBF29FBBB62E /* BackupService.swift */; };
 		88EF333A12B06FD090FDDDAA /* WatchCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0405F32C64601CFF92A2EAE6 /* WatchCaptureTests.swift */; };
@@ -60,12 +61,12 @@
 		A7F686272383880C2BF9935B /* ModelContainerSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EA082FF746022662BDD6B6 /* ModelContainerSetup.swift */; };
 		A7FCAFDD6E2335F322604467 /* WeeklyReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F1CDE18EA30746FF808A6 /* WeeklyReview.swift */; };
 		A8F3403510822DB503D149D1 /* WatchCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FADFC906186662F3FCE391 /* WatchCapture.swift */; };
-		AA00C06C5D7762C397BD133E /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_78880144-3C83-478A-B82E-7A4F1E41CD9D" /* StoicSpendApp.swift */; };
 		B14D655868BA57574585A0BA /* QuickAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1410E1CA5DD065D07BAC8F /* QuickAddView.swift */; };
 		B31B23FB71568910156520D4 /* StoicSpendWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9682B1637BCE6E11B268831A /* StoicSpendWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B4B0AF3AA6BC4EE69DFA5608 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC248AC208AF0F40A7BE213 /* NotificationService.swift */; };
 		BB1DB39C4ED565D362680AA0 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9CE2D87A22989D27EB0F8 /* ShareViewController.swift */; };
 		BBA74CA1088E15ECB37A7F14 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C4FD025C599713B6B729ED /* Categories.swift */; };
+		BE3536D05D8F5BABD36D8BCD /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_529C5859-D60E-4A8B-8D55-869815963DB1" /* StoicSpendApp.swift */; };
 		C1C9F561A170E00D729DD709 /* PendingCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9391B7AB3B6F82300795F61 /* PendingCapture.swift */; };
 		C9584A772C336DEC5BAFECA6 /* QuickAddWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31849375DAAF000BEE48E18 /* QuickAddWidgets.swift */; };
 		CA4AF90D37E7650684149FE6 /* WatchCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FADFC906186662F3FCE391 /* WatchCapture.swift */; };
@@ -174,6 +175,7 @@
 		317DEA5EA5934EE96C017C38 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3528D9E0F5DF8D7D79E550E1 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		375CAEC011637C538A27541B /* OccamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccamView.swift; sourceTree = "<group>"; };
+		3AB02D68B3EA9B141E3F6830 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B7C1912C4F8EBF29FBBB62E /* BackupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupService.swift; sourceTree = "<group>"; };
 		3BC248AC208AF0F40A7BE213 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		3C42D09516D9EF6575F6A01A /* PlayfairDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Bold.ttf"; sourceTree = "<group>"; };
@@ -233,9 +235,9 @@
 		F4EB844FB62562753C3EE457 /* LegalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalLinks.swift; sourceTree = "<group>"; };
 		F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B6C6413D67BE64982F6836 /* RazorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorKit.swift; sourceTree = "<group>"; };
-		"TEMP_697FBED2-706F-4E49-9975-616E7E2725F1" /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.plist; sourceTree = "<group>"; };
-		"TEMP_78880144-3C83-478A-B82E-7A4F1E41CD9D" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
-		"TEMP_CC501B38-0365-492B-B922-B2C694E16FF8" /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		"TEMP_3C09505C-66D3-40D5-81AE-E9697B19FF8C" /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		"TEMP_430FE4DB-7199-4EE5-BFA7-7BB55E56ED31" /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.plist; sourceTree = "<group>"; };
+		"TEMP_529C5859-D60E-4A8B-8D55-869815963DB1" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -346,6 +348,7 @@
 		9B5177EEE272853A15775607 /* StoicSpendWatch */ = {
 			isa = PBXGroup;
 			children = (
+				3AB02D68B3EA9B141E3F6830 /* Assets.xcassets */,
 				0F0CD7BD6325BC20F33B71B1 /* WatchQuickAddApp.swift */,
 			);
 			path = StoicSpendWatch;
@@ -498,12 +501,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		"TEMP_7FAFBAB9-69CA-4CB0-89D4-846C21415AEB" /* StoicSpend */ = {
+		"TEMP_26CFC448-BFE6-41CA-8112-D9A067DF2924" /* StoicSpend */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_697FBED2-706F-4E49-9975-616E7E2725F1" /* Entitlements.plist */,
-				"TEMP_78880144-3C83-478A-B82E-7A4F1E41CD9D" /* StoicSpendApp.swift */,
-				"TEMP_CC501B38-0365-492B-B922-B2C694E16FF8" /* Info.plist */,
+				"TEMP_430FE4DB-7199-4EE5-BFA7-7BB55E56ED31" /* Entitlements.plist */,
+				"TEMP_529C5859-D60E-4A8B-8D55-869815963DB1" /* StoicSpendApp.swift */,
+				"TEMP_3C09505C-66D3-40D5-81AE-E9697B19FF8C" /* Info.plist */,
 				00DA4726EB3DAD9CB1D10EDA /* DesignSystem */,
 				EEF43067302B8BDBD3CF4B70 /* Resources */,
 				02E936D218D07A02D6E026F6 /* Shared */,
@@ -716,7 +719,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				539D5898B55FD9C80E29DF9B /* Assets.xcassets in Resources */,
-				6165888B7EB21A5CC17BCCBC /* Entitlements.plist in Resources */,
+				780EA0D817F2385E2111AD59 /* Entitlements.plist in Resources */,
 				D2A55AB9FD17E2B7482B610C /* ExchangeRates.json in Resources */,
 				535D2792F92B133247ACAF82 /* LXGWWenKaiLite-Medium.ttf in Resources */,
 				DCF0DD7D38BCC599E2A975E9 /* LaunchScreen.storyboard in Resources */,
@@ -741,6 +744,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				229225AB806930D1859D2C9C /* Assets.xcassets in Resources */,
 				56EC6F86AC28680AEAE69E93 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -826,7 +830,7 @@
 				15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */,
 				6F34F114AA55973023E4E587 /* ShredAmmo.swift in Sources */,
 				EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */,
-				AA00C06C5D7762C397BD133E /* StoicSpendApp.swift in Sources */,
+				BE3536D05D8F5BABD36D8BCD /* StoicSpendApp.swift in Sources */,
 				78F15EE8EAE4240C1351C5D4 /* SubscriptionService.swift in Sources */,
 				34AB22246EB0B8013F9623F4 /* Theme.swift in Sources */,
 				3A8E7533E61F3CC81A64EBC0 /* Typography.swift in Sources */,
@@ -943,6 +947,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Stoic Spend";
+				INFOPLIST_KEY_CFBundleIconName = AppIcon;
 				INFOPLIST_KEY_WKApplication = YES;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.zhenglin.stoicspend;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
@@ -1100,6 +1105,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Stoic Spend";
+				INFOPLIST_KEY_CFBundleIconName = AppIcon;
 				INFOPLIST_KEY_WKApplication = YES;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.zhenglin.stoicspend;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
