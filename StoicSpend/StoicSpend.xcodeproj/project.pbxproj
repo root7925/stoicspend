@@ -18,7 +18,6 @@
 		15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92634626ABCB57287FBC297 /* ShareSheet.swift */; };
 		17868E48F604CE138CECB4A9 /* WidgetSnapshotWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEA34219850CD9F7463EF5 /* WidgetSnapshotWriter.swift */; };
 		181EDC966027C51824061243 /* SubscriptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7711613A0E690722A6616E /* SubscriptionServiceTests.swift */; };
-		1B92CA31B44A2C5C16DFEDE5 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_88AEF27A-79E4-4F37-94D0-ABDBF043E221" /* StoicSpendApp.swift */; };
 		1EF6AE9AF34724FA0F2CD478 /* RazorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B6C6413D67BE64982F6836 /* RazorKit.swift */; };
 		1FBD4D06051629BE4ACF0D9E /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548A07849A4530BFCF3743C /* Haptics.swift */; };
 		21FA5C84B63F1E4EFB76CD5A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A056A16621F43AE2397DEE6A /* PrivacyInfo.xcprivacy */; };
@@ -89,6 +88,7 @@
 		F73D213CCCDD00C84BDBA047 /* PlayfairDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7D410C809B6868EB994DA27 /* PlayfairDisplay-Medium.ttf */; };
 		F94CBD39CE57ADB79A3B2BF1 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953103E53E5FA7A762EC6F14 /* WidgetSnapshot.swift */; };
 		F9F5B48A1B7AD6E399A11C41 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C4FD025C599713B6B729ED /* Categories.swift */; };
+		FB586EA64D03E414AEFC6C53 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_C60BC50E-5E1D-4111-A4BD-D7D6183DD5EE" /* StoicSpendApp.swift */; };
 		FE9E4B8182160AB7EF836393 /* WatchCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FADFC906186662F3FCE391 /* WatchCapture.swift */; };
 		FEB9F57AD79F77D950A92DCA /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C4FD025C599713B6B729ED /* Categories.swift */; };
 /* End PBXBuildFile section */
@@ -234,7 +234,7 @@
 		F4EB844FB62562753C3EE457 /* LegalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalLinks.swift; sourceTree = "<group>"; };
 		F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B6C6413D67BE64982F6836 /* RazorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorKit.swift; sourceTree = "<group>"; };
-		"TEMP_88AEF27A-79E4-4F37-94D0-ABDBF043E221" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
+		"TEMP_C60BC50E-5E1D-4111-A4BD-D7D6183DD5EE" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -497,10 +497,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		"TEMP_4F148372-1639-477D-9FF1-5A855C1BC4A6" /* StoicSpend */ = {
+		"TEMP_C77A2E5A-6F47-4A7C-AECB-3998B7D11972" /* StoicSpend */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_88AEF27A-79E4-4F37-94D0-ABDBF043E221" /* StoicSpendApp.swift */,
+				"TEMP_C60BC50E-5E1D-4111-A4BD-D7D6183DD5EE" /* StoicSpendApp.swift */,
 				00DA4726EB3DAD9CB1D10EDA /* DesignSystem */,
 				EEF43067302B8BDBD3CF4B70 /* Resources */,
 				02E936D218D07A02D6E026F6 /* Shared */,
@@ -824,7 +824,7 @@
 				15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */,
 				6F34F114AA55973023E4E587 /* ShredAmmo.swift in Sources */,
 				EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */,
-				1B92CA31B44A2C5C16DFEDE5 /* StoicSpendApp.swift in Sources */,
+				FB586EA64D03E414AEFC6C53 /* StoicSpendApp.swift in Sources */,
 				78F15EE8EAE4240C1351C5D4 /* SubscriptionService.swift in Sources */,
 				34AB22246EB0B8013F9623F4 /* Theme.swift in Sources */,
 				3A8E7533E61F3CC81A64EBC0 /* Typography.swift in Sources */,
@@ -939,12 +939,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Stoic Spend";
 				INFOPLIST_KEY_CFBundleIconName = AppIcon;
 				INFOPLIST_KEY_WKApplication = YES;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.zhenglin.stoicspend;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend.watchkitapp;
 				PRODUCT_NAME = StoicSpendWatch;
 				SDKROOT = watchos;
@@ -1015,6 +1017,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = StoicSpendShare/ShareEntitlements.plist;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = StoicSpendShare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "StoicSpend 记账";
@@ -1024,6 +1027,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend.share;
 				PRODUCT_NAME = StoicSpendShare;
 				SDKROOT = iphoneos;
@@ -1055,6 +1059,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = StoicSpendWidgets/WidgetsEntitlements.plist;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = StoicSpendWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = StoicSpendWidgets;
@@ -1064,6 +1069,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend.widgets;
 				PRODUCT_NAME = StoicSpendWidgets;
 				SDKROOT = iphoneos;
@@ -1076,6 +1082,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = StoicSpendWidgets/WidgetsEntitlements.plist;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = StoicSpendWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = StoicSpendWidgets;
@@ -1085,6 +1092,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend.widgets;
 				PRODUCT_NAME = StoicSpendWidgets;
 				SDKROOT = iphoneos;
@@ -1097,12 +1105,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Stoic Spend";
 				INFOPLIST_KEY_CFBundleIconName = AppIcon;
 				INFOPLIST_KEY_WKApplication = YES;
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.zhenglin.stoicspend;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend.watchkitapp;
 				PRODUCT_NAME = StoicSpendWatch;
 				SDKROOT = watchos;
@@ -1249,6 +1259,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = StoicSpendShare/ShareEntitlements.plist;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = StoicSpendShare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "StoicSpend 记账";
@@ -1258,6 +1269,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhenglin.stoicspend.share;
 				PRODUCT_NAME = StoicSpendShare;
 				SDKROOT = iphoneos;
