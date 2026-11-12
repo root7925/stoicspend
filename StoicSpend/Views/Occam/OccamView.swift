@@ -120,10 +120,10 @@ private struct OccamBladeSection: View {
                 } label: {
                     Text("开始三问")
                         .sansBody(14, weight: .semibold)
-                        .foregroundStyle(DesignTokens.paper)
+                        .foregroundStyle(itemName.isEmpty ? DesignTokens.ash : DesignTokens.paper)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
-                        .background(theme.current.accentColor)
+                        .background(itemName.isEmpty ? DesignTokens.card : theme.current.accentColor)
                         .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.md))
                 }
                 .disabled(itemName.isEmpty)
@@ -147,10 +147,10 @@ private struct OccamBladeSection: View {
                 } label: {
                     Text(loading ? "剃刀落下…" : "落下剃刀")
                         .sansBody(14, weight: .semibold)
-                        .foregroundStyle(DesignTokens.paper)
+                        .foregroundStyle((loading || answers.contains { $0.isEmpty }) ? DesignTokens.ash : DesignTokens.paper)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
-                        .background(theme.current.accentColor)
+                        .background((loading || answers.contains { $0.isEmpty }) ? DesignTokens.card : theme.current.accentColor)
                         .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.md))
                 }
                 .disabled(loading || answers.contains { $0.isEmpty })

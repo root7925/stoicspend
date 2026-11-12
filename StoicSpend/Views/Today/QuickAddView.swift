@@ -510,10 +510,10 @@ struct QuickAddView: View {
                 } label: {
                     Text("填入")
                         .sansBody(13, weight: .semibold)
-                        .foregroundStyle(DesignTokens.paper)
+                        .foregroundStyle(voiceParsedAmount == nil ? DesignTokens.ash : DesignTokens.paper)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 7)
-                        .background(theme.current.accentColor)
+                        .background(voiceParsedAmount == nil ? DesignTokens.card : theme.current.accentColor)
                         .clipShape(Capsule())
                 }
                 .disabled(voiceParsedAmount == nil)
