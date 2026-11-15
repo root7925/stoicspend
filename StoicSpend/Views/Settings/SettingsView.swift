@@ -76,6 +76,8 @@ struct SettingsView: View {
             // 让 navigation bar 不透明，避免内容滚动时穿透标题
             .toolbarBackground(DesignTokens.paper, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
+            .scrollDismissesKeyboard(.interactively)
+            .dismissKeyboardToolbar()
         }
         .sheet(isPresented: $showCurrencyPicker) {
             currencyPickerSheet

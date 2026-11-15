@@ -53,6 +53,7 @@ struct ShredderView: View {
             }
         }
         .background(DesignTokens.paper)
+        .dismissKeyboardToolbar()
         .onAppear {
             if prefillAmount > 0 {
                 amountText = String(format: "%.0f", prefillAmount)

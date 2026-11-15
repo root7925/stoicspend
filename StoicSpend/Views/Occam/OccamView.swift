@@ -25,6 +25,8 @@ struct OccamView: View {
             .padding(.bottom, DesignTokens.Spacing.xl)
         }
         .background(DesignTokens.paper)
+        .scrollDismissesKeyboard(.interactively)
+        .dismissKeyboardToolbar()
         .sheet(isPresented: $showShredder) {
             ShredderView()
         }

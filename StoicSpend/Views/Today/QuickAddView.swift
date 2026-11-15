@@ -412,6 +412,7 @@ struct QuickAddView: View {
         }
         .padding(.horizontal, DesignTokens.Spacing.md)
         .background(DesignTokens.paper)
+        .dismissKeyboardToolbar()
     }
 
     /// FR-18 算式操作行 + FR-26 语音入口

@@ -302,6 +302,8 @@ struct LedgerView: View {
                 }
                 .listStyle(.plain)
                 .scrollContentBackground(.hidden)
+                .scrollDismissesKeyboard(.interactively)
+                .dismissKeyboardToolbar()
             }
         }
     }

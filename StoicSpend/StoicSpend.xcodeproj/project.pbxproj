@@ -13,6 +13,7 @@
 		085DDB753C2777A3E1664B44 /* AppStoreShotSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801B0C6B0F2E8CA0BF5DECAA /* AppStoreShotSupport.swift */; };
 		09E53E1BA189885E355196C5 /* WorkbenchWebUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BB44ED3C8885E1F4AA16A8 /* WorkbenchWebUI.swift */; };
 		0DCCE37D7398F25F4EABA91B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A056A16621F43AE2397DEE6A /* PrivacyInfo.xcprivacy */; };
+		0DEEEC81F87DB1A9985C5E28 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_986E4EF4-7BDA-48A3-9C26-0E3E279907D7" /* StoicSpendApp.swift */; };
 		0F8B3AE21E8987B2402C94EA /* StoicSpendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C348716AADBB5B0AC7C59919 /* StoicSpendUITests.swift */; };
 		1429EBF000356D168366280A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 04B65866729998F993C1B006 /* Localizable.xcstrings */; };
 		15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92634626ABCB57287FBC297 /* ShareSheet.swift */; };
@@ -36,6 +37,7 @@
 		535D2792F92B133247ACAF82 /* LXGWWenKaiLite-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8ADC5076A2E933BE033F595F /* LXGWWenKaiLite-Medium.ttf */; };
 		539D5898B55FD9C80E29DF9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */; };
 		56EC6F86AC28680AEAE69E93 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 04B65866729998F993C1B006 /* Localizable.xcstrings */; };
+		56F0A4E65D9A963374876A5A /* KeyboardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F8C9F0C3621AD533D73D1 /* KeyboardHelpers.swift */; };
 		5BE6BBC5DFEEBBFDDD6150B1 /* RecentComboStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CF02B9F07D6BDF03A357C1 /* RecentComboStore.swift */; };
 		5F324A753AD33353AEE89CED /* RazorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B6C6413D67BE64982F6836 /* RazorKit.swift */; };
 		62AD9E5F6567D38C769442E0 /* StoicSpendShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0EBB3D5C3AEABC169A5292E /* StoicSpendShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -88,7 +90,6 @@
 		F73D213CCCDD00C84BDBA047 /* PlayfairDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7D410C809B6868EB994DA27 /* PlayfairDisplay-Medium.ttf */; };
 		F94CBD39CE57ADB79A3B2BF1 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953103E53E5FA7A762EC6F14 /* WidgetSnapshot.swift */; };
 		F9F5B48A1B7AD6E399A11C41 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C4FD025C599713B6B729ED /* Categories.swift */; };
-		FB586EA64D03E414AEFC6C53 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_C60BC50E-5E1D-4111-A4BD-D7D6183DD5EE" /* StoicSpendApp.swift */; };
 		FE9E4B8182160AB7EF836393 /* WatchCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FADFC906186662F3FCE391 /* WatchCapture.swift */; };
 		FEB9F57AD79F77D950A92DCA /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C4FD025C599713B6B729ED /* Categories.swift */; };
 /* End PBXBuildFile section */
@@ -231,10 +232,11 @@
 		EAEB35780098DAFF381F5115 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		EAEE01372BE8E232B96AA9C3 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		ECED2767DA35BA2E04CCD57C /* StoicSpendWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = StoicSpendWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F10F8C9F0C3621AD533D73D1 /* KeyboardHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelpers.swift; sourceTree = "<group>"; };
 		F4EB844FB62562753C3EE457 /* LegalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalLinks.swift; sourceTree = "<group>"; };
 		F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B6C6413D67BE64982F6836 /* RazorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorKit.swift; sourceTree = "<group>"; };
-		"TEMP_C60BC50E-5E1D-4111-A4BD-D7D6183DD5EE" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
+		"TEMP_986E4EF4-7BDA-48A3-9C26-0E3E279907D7" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -244,6 +246,7 @@
 				9E9C799D9BC3E92F18F31363 /* ControlRing.swift */,
 				C12ED79D7EF437A74472335B /* DesignTokens.swift */,
 				2548A07849A4530BFCF3743C /* Haptics.swift */,
+				F10F8C9F0C3621AD533D73D1 /* KeyboardHelpers.swift */,
 				3528D9E0F5DF8D7D79E550E1 /* Theme.swift */,
 				EAEB35780098DAFF381F5115 /* Typography.swift */,
 			);
@@ -497,10 +500,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		"TEMP_C77A2E5A-6F47-4A7C-AECB-3998B7D11972" /* StoicSpend */ = {
+		"TEMP_63944423-24D1-4769-BF2D-0B09AD1C8BC4" /* StoicSpend */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_C60BC50E-5E1D-4111-A4BD-D7D6183DD5EE" /* StoicSpendApp.swift */,
+				"TEMP_986E4EF4-7BDA-48A3-9C26-0E3E279907D7" /* StoicSpendApp.swift */,
 				00DA4726EB3DAD9CB1D10EDA /* DesignSystem */,
 				EEF43067302B8BDBD3CF4B70 /* Resources */,
 				02E936D218D07A02D6E026F6 /* Shared */,
@@ -807,6 +810,7 @@
 				9C0E62E26A6ADEEE91C4CC2E /* FoundationModelsService.swift in Sources */,
 				1FBD4D06051629BE4ACF0D9E /* Haptics.swift in Sources */,
 				DD3124BF707B678112A55EC7 /* HomeView.swift in Sources */,
+				56F0A4E65D9A963374876A5A /* KeyboardHelpers.swift in Sources */,
 				6AC77E8215065253220C80A6 /* LedgerView.swift in Sources */,
 				6FC6F4E1DE75F845B1F196F3 /* LegalLinks.swift in Sources */,
 				A7F686272383880C2BF9935B /* ModelContainerSetup.swift in Sources */,
@@ -824,7 +828,7 @@
 				15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */,
 				6F34F114AA55973023E4E587 /* ShredAmmo.swift in Sources */,
 				EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */,
-				FB586EA64D03E414AEFC6C53 /* StoicSpendApp.swift in Sources */,
+				0DEEEC81F87DB1A9985C5E28 /* StoicSpendApp.swift in Sources */,
 				78F15EE8EAE4240C1351C5D4 /* SubscriptionService.swift in Sources */,
 				34AB22246EB0B8013F9623F4 /* Theme.swift in Sources */,
 				3A8E7533E61F3CC81A64EBC0 /* Typography.swift in Sources */,
