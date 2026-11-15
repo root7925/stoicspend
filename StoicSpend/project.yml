@@ -59,7 +59,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.zhenglin.stoicspend
         PRODUCT_NAME: StoicSpend
         MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "2"
+        CURRENT_PROJECT_VERSION: "4"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: "Stoic Spend"
         INFOPLIST_KEY_UILaunchStoryboardName: LaunchScreen
@@ -148,7 +148,7 @@ targets:
         GENERATE_INFOPLIST_FILE: NO
         SKIP_INSTALL: YES
         MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "2"
+        CURRENT_PROJECT_VERSION: "4"
         INFOPLIST_KEY_CFBundleDisplayName: StoicSpendWidgets
         CODE_SIGN_ENTITLEMENTS: StoicSpendWidgets/WidgetsEntitlements.plist
 
@@ -188,7 +188,7 @@ targets:
         GENERATE_INFOPLIST_FILE: NO
         SKIP_INSTALL: YES
         MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "2"
+        CURRENT_PROJECT_VERSION: "4"
         INFOPLIST_KEY_CFBundleDisplayName: StoicSpend 记账
         CODE_SIGN_ENTITLEMENTS: StoicSpendShare/ShareEntitlements.plist
 
@@ -211,7 +211,7 @@ targets:
         PRODUCT_NAME: StoicSpendWatch
         GENERATE_INFOPLIST_FILE: YES
         MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: "2"
+        CURRENT_PROJECT_VERSION: "4"
         INFOPLIST_KEY_WKApplication: YES
         INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp: YES
         INFOPLIST_KEY_WKCompanionAppBundleIdentifier: com.zhenglin.stoicspend
