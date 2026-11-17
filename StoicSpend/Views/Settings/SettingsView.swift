@@ -50,6 +50,9 @@ struct SettingsView: View {
                     // 3. 冷静期设置（免费）
                     cooldownSection
 
+                    // 3.5 自定义分类（FR-29）
+                    categorySection
+
                     // 4. 数据管理（导出 + 删除）
                     dataSection
 
@@ -659,6 +662,38 @@ struct SettingsView: View {
     }
 
     // MARK: - 冷静期设置（付费解锁）
+
+    // MARK: - FR-29 自定义分类
+
+    private var categorySection: some View {
+        VStack(alignment: .leading, spacing: DesignTokens.Spacing.md) {
+            sectionHeader("Categories")
+            NavigationLink {
+                CategoryManagerView()
+            } label: {
+                HStack(spacing: DesignTokens.Spacing.sm) {
+                    Image(systemName: "square.grid.2x2")
+                        .foregroundStyle(DesignTokens.bronze)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("自定义分类")
+                            .sansBody(15, weight: .medium)
+                            .foregroundStyle(DesignTokens.ink)
+                        Text("最多 6 个，随你的生活而定")
+                            .sansBody(13)
+                            .foregroundStyle(DesignTokens.ash)
+                    }
+                    Spacer()
+                    Text("(\(CategoryStore.load().count)/\(CategoryStore.maxCount))")
+                        .sansBody(12)
+                        .foregroundStyle(DesignTokens.ash)
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(DesignTokens.ash)
+                }
+            }
+            .buttonStyle(.plain)
+        }
+    }
 
     private var cooldownSection: some View {
         var cooldownEnabled = Binding(

@@ -34,7 +34,15 @@ struct LedgerView: View {
     @State private var showMonthPanel = false
     @State private var natureFilter: NatureFilter = .all
     @State private var editingExpense: Expense?
-    @State private var expandedCategory: ExpenseCategory?
+    @State private var expandedCategory: String?
+
+    /// 帐本分组行（内置或自定义统一）
+    struct LedgerCategoryGroup: Identifiable {
+        let key: String
+        let emoji: String
+        let name: String
+        var id: String { key }
+    }
     @State private var searchText = ""
     @State private var pendingDelete: Expense?
     @State private var subscriptionsExpanded = false
@@ -80,13 +88,22 @@ struct LedgerView: View {
         }
     }
 
-    /// 分类分区：九分类月汇总（金额降序）
-    private var categoryTotals: [(category: ExpenseCategory, total: Double)] {
-        ExpenseCategory.allCases.map { c in
-            (c, monthExpenses.filter { $0.category == c }.reduce(0) { $0 + $1.amount })
+    /// 分类分区：内置 9 类 + 自定义分类（FR-29）月汇总（金额降序，只显示有账目的）
+    private var categoryTotals: [(group: LedgerCategoryGroup, total: Double)] {
+        let byKey = Dictionary(grouping: monthExpenses) { $0.categoryGroupKey }
+        var rows: [(LedgerCategoryGroup, Double)] = []
+        for c in ExpenseCategory.allCases {
+            guard let items = byKey[c.rawValue], !items.isEmpty else { continue }
+            rows.append((LedgerCategoryGroup(key: c.rawValue, emoji: c.emoji, name: c.localizedName),
+                         items.reduce(0) { $0 + $1.amount }))
         }
-        .filter { $0.total > 0 }
-        .sorted { $0.total > $1.total }
+        for cat in CategoryStore.load() {
+            let key = CategoryStore.storageKey(for: cat.id)
+            guard let items = byKey[key], !items.isEmpty else { continue }
+            rows.append((LedgerCategoryGroup(key: key, emoji: cat.emoji, name: cat.name),
+                         items.reduce(0) { $0 + $1.amount }))
+        }
+        return rows.sorted { $0.1 > $1.1 }
     }
 
     private var monthTotal: Double { monthExpenses.reduce(0) { $0 + $1.amount } }
@@ -517,8 +534,8 @@ struct LedgerView: View {
                 } else {
                     summaryCard
 
-                    ForEach(categoryTotals, id: \.category) { item in
-                        categoryBar(item.category, total: item.total)
+                    ForEach(categoryTotals, id: \.group.key) { item in
+                        categoryBar(item.group, total: item.total)
                     }
                 }
             }
@@ -540,7 +557,7 @@ struct LedgerView: View {
             Divider().frame(height: 30).overlay(DesignTokens.stoneDim)
             summaryItem(
                 label: "最大分类",
-                value: categoryTotals.first?.category.localizedName ?? "—",
+                value: categoryTotals.first?.group.name ?? "—",
                 color: DesignTokens.ash
             )
         }
@@ -561,14 +578,14 @@ struct LedgerView: View {
         .frame(maxWidth: .infinity)
     }
 
-    private func categoryBar(_ category: ExpenseCategory, total: Double) -> some View {
+    private func categoryBar(_ group: LedgerCategoryGroup, total: Double) -> some View {
         VStack(spacing: 0) {
             Button {
-                expandedCategory = expandedCategory == category ? nil : category
+                expandedCategory = expandedCategory == group.key ? nil : group.key
             } label: {
                 VStack(spacing: 6) {
                     HStack {
-                        Text("\(category.emoji) \(category.localizedName)")
+                        Text("\(group.emoji) \(group.name)")
                             .sansBody(14)
                             .foregroundStyle(DesignTokens.ink)
                         Spacer()
@@ -582,7 +599,7 @@ struct LedgerView: View {
                             RoundedRectangle(cornerRadius: 3)
                                 .fill(theme.current.accentDimColor)
                             RoundedRectangle(cornerRadius: 3)
-                                .fill(theme.current.accentColor.opacity(categoryTotals.first?.category == category ? 1.0 : 0.55))
+                                .fill(theme.current.accentColor.opacity(categoryTotals.first?.group.key == group.key ? 1.0 : 0.55))
                                 .frame(width: max(4, geo.size.width * total / max(monthTotal, 0.01)))
                         }
                     }
@@ -593,8 +610,8 @@ struct LedgerView: View {
                 .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.md))
             }
 
-            if expandedCategory == category {
-                CategoryDetailList(items: monthExpenses.filter { $0.category == category }, currency: currency, theme: theme.current)
+            if expandedCategory == group.key {
+                CategoryDetailList(items: monthExpenses.filter { $0.categoryGroupKey == group.key }, currency: currency, theme: theme.current)
                     .padding(.top, 4)
             }
         }

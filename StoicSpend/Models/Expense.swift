@@ -74,6 +74,9 @@ final class Expense {
     // 九分法分类（带默认值，兼容 CloudKit 旧数据）
     var category: ExpenseCategory = ExpenseCategory.food
 
+    // FR-29 自定义分类（可空；"custom:<uuid>"，覆盖 category 的显示与统计）
+    var categoryRawOverride: String?
+
     // 记账时情绪（可选）
     var emotion: ExpenseEmotion?
 
@@ -102,6 +105,47 @@ final class Expense {
         self.category = category
         self.emotion = emotion
         self.createdAt = .now
+    }
+}
+
+// MARK: - FR-29 自定义分类统一显示出口（内置 / 自定义）
+
+extension Expense {
+    /// 自定义类别 id（未关联时为 nil → 走内置 9 类）
+    var customCategoryID: UUID? {
+        get { categoryRawOverride.flatMap(CategoryStore.uuid(fromKey:)) }
+        set { categoryRawOverride = newValue.map { CategoryStore.storageKey(for: $0) } }
+    }
+
+    /// 是否走自定义类别（类别已被删除时视为否，回落内置）
+    var isCustomCategory: Bool {
+        guard let id = customCategoryID else { return false }
+        return CategoryStore.find(id: id) != nil
+    }
+
+    /// 统一显示 emoji：自定义优先，回退内置
+    var categoryEmoji: String {
+        if let id = customCategoryID, let cat = CategoryStore.find(id: id) {
+            return cat.emoji
+        }
+        return category.emoji
+    }
+
+    /// 统一显示名：自定义优先（用户原文，不翻译），回退内置本地化名
+    var categoryDisplayName: String {
+        if let id = customCategoryID, let cat = CategoryStore.find(id: id) {
+            return cat.name
+        }
+        return category.localizedName
+    }
+
+    /// 分组 key：内置用 rawValue，自定义用 "custom:<id>"（帐本/工作台/备份通用）
+    /// 类别已被删除时回落内置 rawValue，避免孤儿分组
+    var categoryGroupKey: String {
+        if let id = customCategoryID, CategoryStore.find(id: id) != nil {
+            return CategoryStore.storageKey(for: id)
+        }
+        return category.rawValue
     }
 }
 

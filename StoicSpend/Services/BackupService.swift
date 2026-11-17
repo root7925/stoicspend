@@ -33,6 +33,7 @@ enum BackupService {
         var values: [String]
         var emotionalTrigger: String?
         var category: String
+        var customCategoryKey: String?   // FR-29 自定义分类（"custom:<uuid>"，旧备份无此字段）
         var emotion: String?
         var review: String?
         var createdAt: Date
@@ -123,7 +124,7 @@ enum BackupService {
                 formatter.string(from: e.date),
                 String(format: "%.2f", e.amount),
                 nature,
-                e.category.localizedName,
+                e.categoryDisplayName,
                 emotion,
                 escape(e.note),
                 review,
@@ -372,6 +373,7 @@ enum BackupService {
             id: e.id, amount: e.amount, date: e.date, note: e.note,
             nature: e.nature?.rawValue, values: e.values.map(\.rawValue),
             emotionalTrigger: e.emotionalTrigger, category: e.category.rawValue,
+            customCategoryKey: e.categoryGroupKey.hasPrefix("custom:") ? e.categoryGroupKey : nil,
             emotion: e.emotion?.rawValue, review: e.review?.rawValue, createdAt: e.createdAt
         )
     }
@@ -386,6 +388,7 @@ enum BackupService {
             emotion: item.emotion.flatMap(ExpenseEmotion.init(rawValue:))
         )
         e.id = item.id
+        e.customCategoryID = item.customCategoryKey.flatMap(CategoryStore.uuid(fromKey:))
         e.review = item.review.flatMap(ReviewResult.init(rawValue:))
         e.createdAt = item.createdAt
         return e

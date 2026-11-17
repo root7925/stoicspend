@@ -286,9 +286,13 @@ final class WorkbenchCore {
     }
 
     private func handleMeta() -> HTTPResponse {
-        let categories = ExpenseCategory.allCases.map {
+        var categories = ExpenseCategory.allCases.map {
             KeyValue(key: $0.rawValue, name: $0.localizedName)
         }
+        // FR-29 自定义分类并入网页工作台
+        categories.append(contentsOf: CategoryStore.load().map {
+            KeyValue(key: CategoryStore.storageKey(for: $0.id), name: "\($0.emoji) \($0.name)")
+        })
         let natures: [KeyValue] = [
             // 与 App 内/CSV 导出一致的中文名称
             KeyValue(key: ExpenseNature.chosen.rawValue, name: "主动选择"),
@@ -335,13 +339,19 @@ final class WorkbenchCore {
             let expenses = (try? context.fetch(descriptor)) ?? []
             let total = expenses.reduce(0) { $0 + $1.amount }
             let controllable = expenses.filter { $0.isControllable }.reduce(0) { $0 + $1.amount }
-            let categories = ExpenseCategory.allCases.map { cat -> CategoryAmount in
-                CategoryAmount(
-                    key: cat.rawValue,
-                    name: cat.localizedName,
-                    amount: expenses.filter { $0.category == cat }.reduce(0) { $0 + $1.amount }
-                )
+            var categories = ExpenseCategory.allCases.compactMap { cat -> CategoryAmount? in
+                let amount = expenses.filter { $0.categoryGroupKey == cat.rawValue }.reduce(0) { $0 + $1.amount }
+                guard amount > 0 else { return nil }
+                return CategoryAmount(key: cat.rawValue, name: cat.localizedName, amount: amount)
             }
+            // FR-29 自定义分类
+            for cat in CategoryStore.load() {
+                let key = CategoryStore.storageKey(for: cat.id)
+                let amount = expenses.filter { $0.categoryGroupKey == key }.reduce(0) { $0 + $1.amount }
+                guard amount > 0 else { continue }
+                categories.append(CategoryAmount(key: key, name: "\(cat.emoji) \(cat.name)", amount: amount))
+            }
+            categories.sort { $0.amount > $1.amount }
             return jsonBody(SummaryResponse(
                 month: interval.label,
                 total: total,
@@ -399,7 +409,11 @@ final class WorkbenchCore {
             if let amount = body.amount, amount >= 0 { expense.amount = amount }
             if let note = body.note { expense.note = note }
             if let nature = body.nature { expense.nature = ExpenseNature(rawValue: nature) }
-            if let category = body.category, let cat = ExpenseCategory(rawValue: category) { expense.category = cat }
+            if let category = body.category {
+                // FR-29：key 可能是内置 rawValue 或 custom:<uuid>
+                expense.category = ExpenseCategory(rawValue: category) ?? .other
+                expense.customCategoryID = CategoryStore.uuid(fromKey: category)
+            }
             do {
                 try context.save()
             } catch {

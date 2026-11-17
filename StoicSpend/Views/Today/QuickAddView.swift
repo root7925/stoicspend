@@ -20,7 +20,7 @@ struct QuickAddView: View {
 
     @State private var amountText = ""      // 支持算式：12+8÷2
     @State private var nature: ExpenseNature
-    @State private var category: ExpenseCategory
+    @State private var categoryKey: String   // 内置 rawValue 或 "custom:<uuid>"（FR-29）
     @State private var emotion: ExpenseEmotion?
     @State private var zeroFlash = false
     @State private var dotInserted = false  // 长按 0 插入小数点后吞掉随后的 tap
@@ -45,7 +45,7 @@ struct QuickAddView: View {
         if let e = editing {
             _amountText = State(initialValue: Self.format(e.amount))
             _nature = State(initialValue: e.nature ?? .chosen)
-            _category = State(initialValue: e.category)
+            _categoryKey = State(initialValue: e.categoryGroupKey)
             _emotion = State(initialValue: e.emotion)
             _note = State(initialValue: e.note)
         } else if let cap = capture {
@@ -53,15 +53,22 @@ struct QuickAddView: View {
             let natureRaw = UserDefaults.standard.string(forKey: "lastNatureRaw") ?? ExpenseNature.chosen.rawValue
             _nature = State(initialValue: ExpenseNature(rawValue: natureRaw) ?? .chosen)
             let categoryRaw = UserDefaults.standard.string(forKey: "lastCategoryRaw") ?? ExpenseCategory.food.rawValue
-            _category = State(initialValue: ExpenseCategory(rawValue: categoryRaw) ?? .food)
+            _categoryKey = State(initialValue: Self.validKey(categoryRaw))
             _amountText = State(initialValue: cap.amount.map(Self.format) ?? "")
             _note = State(initialValue: cap.merchant ?? "")
         } else {
             let natureRaw = UserDefaults.standard.string(forKey: "lastNatureRaw") ?? ExpenseNature.chosen.rawValue
             _nature = State(initialValue: ExpenseNature(rawValue: natureRaw) ?? .chosen)
             let categoryRaw = UserDefaults.standard.string(forKey: "lastCategoryRaw") ?? ExpenseCategory.food.rawValue
-            _category = State(initialValue: ExpenseCategory(rawValue: categoryRaw) ?? .food)
+            _categoryKey = State(initialValue: Self.validKey(categoryRaw))
         }
+    }
+
+    /// 上次 key 有效性校验：自定义类别可能已被删除，失效则回落饮食
+    private static func validKey(_ key: String) -> String {
+        if let raw = ExpenseCategory(rawValue: key) { return raw.rawValue }
+        if let id = CategoryStore.uuid(fromKey: key), CategoryStore.find(id: id) != nil { return key }
+        return ExpenseCategory.food.rawValue
     }
 
     private static func format(_ value: Double) -> String {
@@ -235,7 +242,7 @@ struct QuickAddView: View {
                         Haptics.selectionChanged()
                         withAnimation(.easeOut(duration: 0.18)) {
                             if let n = combo.nature { nature = n }
-                            if let c = combo.category { category = c }
+                            if let c = combo.category { categoryKey = c.rawValue }
                         }
                     } label: {
                         Text(combo.label)
@@ -320,8 +327,14 @@ struct QuickAddView: View {
 
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: DesignTokens.Spacing.sm), count: 3), spacing: DesignTokens.Spacing.sm) {
                 ForEach(ExpenseCategory.allCases) { c in
-                    chipButton(label: "\(c.emoji) \(c.localizedName)", selected: category == c) {
-                        category = c
+                    chipButton(label: "\(c.emoji) \(c.localizedName)", selected: categoryKey == c.rawValue) {
+                        categoryKey = c.rawValue
+                    }
+                }
+                // FR-29 自定义分类（≤6 个，排在内置之后）
+                ForEach(CategoryStore.load()) { custom in
+                    chipButton(label: "\(custom.emoji) \(custom.name)", selected: categoryKey == "custom:\(custom.id.uuidString)") {
+                        categoryKey = "custom:\(custom.id.uuidString)"
                     }
                 }
             }
@@ -557,7 +570,7 @@ struct QuickAddView: View {
         withAnimation(.easeOut(duration: 0.18)) {
             amountText = formatAmount(a)
             if let c = voiceParsedCategory {
-                category = c
+                categoryKey = c.rawValue
             }
         }
         note = voiceDraft   // 全文作备注，可在备注栏再改
@@ -696,7 +709,8 @@ struct QuickAddView: View {
         if let e = editing {
             e.amount = amountValue
             e.nature = nature
-            e.category = category
+            e.category = ExpenseCategory(rawValue: categoryKey) ?? .other
+            e.customCategoryID = CategoryStore.uuid(fromKey: categoryKey)
             e.emotion = emotion
             e.note = note.trimmingCharacters(in: .whitespacesAndNewlines)
         } else {
@@ -704,9 +718,10 @@ struct QuickAddView: View {
                 amount: amountValue,
                 note: note.trimmingCharacters(in: .whitespacesAndNewlines),
                 nature: nature,
-                category: category,
+                category: ExpenseCategory(rawValue: categoryKey) ?? .other,
                 emotion: emotion
             )
+            expense.customCategoryID = CategoryStore.uuid(fromKey: categoryKey)
             modelContext.insert(expense)
 
             // FR-16 — 首页「已记下 · 撤销」通道
@@ -718,8 +733,10 @@ struct QuickAddView: View {
 
         // 记忆本次选择 + 常用组合
         lastNatureRaw = nature.rawValue
-        lastCategoryRaw = category.rawValue
-        RecentComboStore.record(nature: nature, category: category)
+        lastCategoryRaw = categoryKey
+        if let c = ExpenseCategory(rawValue: categoryKey) {
+            RecentComboStore.record(nature: nature, category: c)
+        }
 
         dismiss()
     }
