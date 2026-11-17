@@ -29,6 +29,7 @@
 		369340E59EB750EC9C4B40BE /* WatchSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C231B6656CAB56A033A2AED /* WatchSyncService.swift */; };
 		36B55F036B80E64CB8B41901 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E909A052071F5ED6AC8F7EB4 /* SettingsView.swift */; };
 		39DBF1414C7D6520EBCC7D08 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B849C1E3666179272AD14148 /* CurrencyService.swift */; };
+		3A4A309C79BBF5D6294CF460 /* BillImportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580BC9A85BCF48F8818EA346 /* BillImportTests.swift */; };
 		3A8E7533E61F3CC81A64EBC0 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEB35780098DAFF381F5115 /* Typography.swift */; };
 		3AAE15A99BE3AC9E4937791C /* AppIconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E72DDA6436B46C77D0B192 /* AppIconService.swift */; };
 		441522833C5F410C0883169C /* WatchQuickAddApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0CD7BD6325BC20F33B71B1 /* WatchQuickAddApp.swift */; };
@@ -53,6 +54,7 @@
 		7CE46017FF44304278BCFB44 /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2AE5E3FFE70AA4BED255E /* CategoryStore.swift */; };
 		7E7B14F4AE53E4F578464668 /* BackupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C1912C4F8EBF29FBBB62E /* BackupService.swift */; };
 		88EF333A12B06FD090FDDDAA /* WatchCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0405F32C64601CFF92A2EAE6 /* WatchCaptureTests.swift */; };
+		8C8DC855CFA785F055650CAF /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_C23E6B67-87FA-4143-B497-7FB44923EA3D" /* StoicSpendApp.swift */; };
 		903CC02E5A30670518F80949 /* ControlRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C799D9BC3E92F18F31363 /* ControlRing.swift */; };
 		91EF0FD27F9D7D46B3634F7D /* StoicSpendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD608966A33E15FE6CBA3D99 /* StoicSpendTests.swift */; };
 		94FF5F1F3F76911766830532 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CD8C11BBCB58165A4A593 /* AppSettings.swift */; };
@@ -91,7 +93,6 @@
 		EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18C44CCC94999C066610E09 /* ShredderView.swift */; };
 		F4A59C506BFACC28441E23E2 /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2AE5E3FFE70AA4BED255E /* CategoryStore.swift */; };
 		F4AB575D5504388F4126628F /* BackupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06055E520C178D461648DDB /* BackupServiceTests.swift */; };
-		F5617BB5C9BD3362AF3A3304 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_445200D6-8D77-4947-BBEE-6BBE010CB95C" /* StoicSpendApp.swift */; };
 		F73D213CCCDD00C84BDBA047 /* PlayfairDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7D410C809B6868EB994DA27 /* PlayfairDisplay-Medium.ttf */; };
 		F94CBD39CE57ADB79A3B2BF1 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953103E53E5FA7A762EC6F14 /* WidgetSnapshot.swift */; };
 		F9F5B48A1B7AD6E399A11C41 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C4FD025C599713B6B729ED /* Categories.swift */; };
@@ -188,6 +189,7 @@
 		4818E55C0BB7DBF96F46DDD1 /* BudgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetModel.swift; sourceTree = "<group>"; };
 		51C9A6B4324CABF80DB1888C /* EveningReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveningReviewView.swift; sourceTree = "<group>"; };
 		58079AB2D426816AFA3ED255 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		580BC9A85BCF48F8818EA346 /* BillImportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillImportTests.swift; sourceTree = "<group>"; };
 		58110540E85E3B5355894468 /* QuickAddIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAddIntent.swift; sourceTree = "<group>"; };
 		5AE75059BAE69A37EF2B7A5D /* StoicSpendTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = StoicSpendTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		67CB802F63EFF66496582E8B /* FoundationModelsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsService.swift; sourceTree = "<group>"; };
@@ -245,7 +247,7 @@
 		F4EB844FB62562753C3EE457 /* LegalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalLinks.swift; sourceTree = "<group>"; };
 		F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B6C6413D67BE64982F6836 /* RazorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorKit.swift; sourceTree = "<group>"; };
-		"TEMP_445200D6-8D77-4947-BBEE-6BBE010CB95C" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
+		"TEMP_C23E6B67-87FA-4143-B497-7FB44923EA3D" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -414,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				C06055E520C178D461648DDB /* BackupServiceTests.swift */,
+				580BC9A85BCF48F8818EA346 /* BillImportTests.swift */,
 				7B25D349CFF43502988A2429 /* CategoryStoreTests.swift */,
 				7C2D31E9C50776147D965276 /* FlowTypeTests.swift */,
 				1A9BCFA2B8DCDF08C06FEE37 /* QuickAddV11Tests.swift */,
@@ -513,10 +516,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		"TEMP_CB6D4045-E989-4A84-A873-337A682F28D9" /* StoicSpend */ = {
+		"TEMP_1C3E8F8E-A807-4555-969D-AF3DE2FE55F7" /* StoicSpend */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_445200D6-8D77-4947-BBEE-6BBE010CB95C" /* StoicSpendApp.swift */,
+				"TEMP_C23E6B67-87FA-4143-B497-7FB44923EA3D" /* StoicSpendApp.swift */,
 				00DA4726EB3DAD9CB1D10EDA /* DesignSystem */,
 				EEF43067302B8BDBD3CF4B70 /* Resources */,
 				02E936D218D07A02D6E026F6 /* Shared */,
@@ -775,6 +778,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4AB575D5504388F4126628F /* BackupServiceTests.swift in Sources */,
+				3A4A309C79BBF5D6294CF460 /* BillImportTests.swift in Sources */,
 				211545D1447D4CD37E05413D /* CategoryStoreTests.swift in Sources */,
 				606A0563A68C605A4D055453 /* FlowTypeTests.swift in Sources */,
 				DFB6747F712859635BBCA654 /* QuickAddV11Tests.swift in Sources */,
@@ -845,7 +849,7 @@
 				15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */,
 				6F34F114AA55973023E4E587 /* ShredAmmo.swift in Sources */,
 				EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */,
-				F5617BB5C9BD3362AF3A3304 /* StoicSpendApp.swift in Sources */,
+				8C8DC855CFA785F055650CAF /* StoicSpendApp.swift in Sources */,
 				78F15EE8EAE4240C1351C5D4 /* SubscriptionService.swift in Sources */,
 				34AB22246EB0B8013F9623F4 /* Theme.swift in Sources */,
 				3A8E7533E61F3CC81A64EBC0 /* Typography.swift in Sources */,

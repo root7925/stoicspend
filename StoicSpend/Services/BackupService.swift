@@ -263,23 +263,58 @@ enum BackupService {
 
     struct CSVImportResult {
         var records: [CSVRecord] = []
-        var skippedRows: Int = 0
+        var skippedRows: Int = 0            // 无法解析（缺金额/日期）
         var sampleNotes: [String] = []
+        // FR-30 细分口径（预览页展示）
+        var totalRows: Int = 0
+        var incomeCount: Int = 0
+        var refundCount: Int = 0
+        var transferCount: Int = 0
+        var duplicateRows: Int = 0
+        var headerRow: Int? = nil           // 探测到的表头行号（1-based，调试与 UI 展示）
     }
 
-    /// 表头映射 — 兼容随手记/鲨鱼记账/自导出格式
+    /// 表头同义词映射（FR-30 兼容微信/支付宝账单）— key 经 normalizeHeader 归一（去空格/引号，全角括号转半角，小写）
     private static let headerMap: [String: String] = [
         // 日期
-        "日期": "date", "时间": "date", "交易时间": "date", "记账时间": "date", "date": "date", "time": "date",
+        "日期": "date", "时间": "date", "交易时间": "date", "交易日期": "date", "记账时间": "date",
+        "交易创建时间": "date", "付款时间": "date",
+        "date": "date", "time": "date",
         // 金额
-        "金额": "amount", "支出金额": "amount", "金额(元)": "amount", "金额(￥)": "amount", "amount": "amount",
-        // 备注
-        "备注": "note", "笔记": "note", "事项": "note", "描述": "note", "note": "note", "description": "note",
+        "金额": "amount", "支出金额": "amount", "收入金额": "amount",
+        "金额(元)": "amount", "金额(￥)": "amount", "amount": "amount",
+        // 备注/商品（商品优先；交易对方为独立兜底列）
+        "商品": "note", "商品说明": "note", "商品名称": "note",
+        "备注": "note", "笔记": "note", "事项": "note", "描述": "note",
+        "note": "note", "description": "note", "交易对方": "cp",
         // 分类
         "分类": "category", "类别": "category", "一级分类": "category", "category": "category",
-        // 类型（收入/支出）
-        "类型": "type", "收支": "type", "type": "type",
+        // 类型（收/支）
+        "类型": "type", "收支": "type", "收/支": "type", "type": "type",
+        // FR-30 状态与单号
+        "当前状态": "status", "交易状态": "status", "status": "status",
+        "交易单号": "refid", "交易号": "refid", "交易流水号": "refid",
+        "订单号": "refid", "商家订单号": "refid", "refid": "refid",
     ]
+
+    /// 表头归一化：去空白/引号，全角括号转半角，小写
+    private static func normalizeHeader(_ s: String) -> String {
+        s.trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: "\u{3000}", with: "")
+            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: "\"", with: "")
+            .replacingOccurrences(of: "（", with: "(")
+            .replacingOccurrences(of: "）", with: ")")
+            .lowercased()
+    }
+
+    /// 「收/支」列 → 资金流类型（FR-31 口径：收入落库不统计，不计收支视作转账）
+    private static func flowType(fromTypeCell raw: String) -> FlowType {
+        let s = raw.trimmingCharacters(in: .whitespaces)
+        if s.contains("收入") || s.lowercased() == "income" { return .income }
+        if s.contains("不计收支") || s == "/" || s.isEmpty || s.lowercased() == "other" { return .transfer }
+        return .expense
+    }
 
     /// 支持的日期格式（按顺序尝试）
     private static let dateFormats = [
@@ -289,60 +324,112 @@ enum BackupService {
         "MM-dd HH:mm", "M/d HH:mm",
     ]
 
-    /// 解析 CSV — 返回可导入记录 + 跳过行数 + 样例备注（供预览）
-    static func parseCSV(_ data: Data) -> CSVImportResult {
+    /// 解析 CSV（FR-30）— 前 40 行探测表头；金额清洗；退款不丢弃；交易单号/日期金额备注去重
+    /// - Parameter existing: 当前已有账目（用于跨文件去重；快记页/工作台不传则跳过跨文件判重）
+    static func parseCSV(_ data: Data, existing: [Expense] = []) -> CSVImportResult {
         var result = CSVImportResult()
 
-        // 去 BOM；优先 UTF-8，回退 GB18030（随手记/鲨鱼记账导出常见编码）
+        // 去 BOM；优先 UTF-8，回退 GB18030（支付宝导出常见 GBK 编码）
         let gb18030 = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue)))
         var text = String(data: data, encoding: .utf8) ?? String(data: data, encoding: gb18030) ?? ""
         if text.hasPrefix("\u{FEFF}") { text.removeFirst() }
 
-        guard let rows = splitCSVRows(text), rows.count > 1 else { return result }
+        guard let rows = splitCSVRows(text) else { return result }
 
-        // 表头 → 字段索引
-        let headers = rows[0].map { headerMap[$0.trimmingCharacters(in: .whitespaces)] ?? "" }
+        // FR-30 前 40 行内探测表头（微信账单前有 4~16 行说明文字）：映射后同时含日期与金额即认定
+        var headerIdx: Int? = nil
+        var headers: [String] = []
+        for (i, row) in rows.prefix(40).enumerated() {
+            let mapped = row.map { headerMap[normalizeHeader($0)] ?? "" }
+            if mapped.contains("date"), mapped.contains("amount") {
+                headerIdx = i
+                headers = mapped
+                break
+            }
+        }
+        guard let headerIdx, rows.count > headerIdx + 1 else { return result }
+        result.headerRow = headerIdx + 1
+
         let dateIdx = headers.firstIndex(of: "date")
         let amountIdx = headers.firstIndex(of: "amount")
         guard let dateIdx, let amountIdx else { return result }
         let noteIdx = headers.firstIndex(of: "note")
+        let cpIdx = headers.firstIndex(of: "cp")           // 交易对方（备注为空时兜底）
         let categoryIdx = headers.firstIndex(of: "category")
-        let typeIdx = headers.firstIndex(of: "type")
+        // 「收/支」比「类型」优先（支付宝两者都有，类型列是 交易收款/交易付款）
+        let typeIdx = headers.lastIndex(of: "type")
+        let statusIdx = headers.firstIndex(of: "status")
+        let refIdIdx = headers.firstIndex(of: "refid")
+
+        // FR-30 去重基准：历史交易单号 + 历史「日期+金额+备注」
+        var knownRefIds = Set(existing.compactMap { $0.refId }.filter { !$0.isEmpty })
+        var knownKeys = Set(existing.map { dedupKey(date: $0.date, amount: $0.amount, note: $0.note) })
 
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
 
-        for row in rows.dropFirst() where row.count > max(dateIdx, amountIdx) {
-            // 类型列标记为收入则跳过
-            if let typeIdx, typeIdx < row.count {
-                let t = row[typeIdx].trimmingCharacters(in: .whitespaces)
-                if t.contains("收入") || t.lowercased() == "income" {
-                    result.skippedRows += 1
+        for row in rows[(headerIdx + 1)...] {
+            let trimmed = row.map { $0.trimmingCharacters(in: .whitespaces) }
+            guard trimmed.contains(where: { !$0.isEmpty }) else { continue }   // 空行不计
+            result.totalRows += 1
+
+            guard row.count > max(dateIdx, amountIdx),
+                  let amount = parseAmount(row[amountIdx]),
+                  let date = parseDate(row[dateIdx], formatter: formatter) else {
+                result.skippedRows += 1
+                continue
+            }
+
+            var note = noteIdx.flatMap { $0 < row.count ? row[$0].trimmingCharacters(in: .whitespaces) : "" } ?? ""
+            if note.isEmpty, let cpIdx, cpIdx < row.count {
+                note = row[cpIdx].trimmingCharacters(in: .whitespaces)   // 无商品列时用交易对方
+            }
+            let category = categoryIdx.flatMap { $0 < row.count ? mapCategory(row[$0]) : nil }
+            let refId = refIdIdx.flatMap { $0 < row.count ? row[$0].trimmingCharacters(in: .whitespaces) : "" } ?? ""
+            var flow: FlowType = typeIdx.flatMap { $0 < row.count ? flowType(fromTypeCell: row[$0]) : nil } ?? .expense
+            if let statusIdx, statusIdx < row.count, row[statusIdx].contains("退款") {
+                flow = .refund   // 已退款/已全额退款 → 负冲抵，不静默丢弃
+            }
+
+            // 去重：交易单号优先，无单号按「日期+金额+备注」
+            let key = dedupKey(date: date, amount: amount, note: note)
+            if !refId.isEmpty {
+                if knownRefIds.contains(refId) || knownKeys.contains(key) {
+                    result.duplicateRows += 1
                     continue
                 }
-            }
-
-            guard let amount = parseAmount(row[amountIdx]) else {
-                result.skippedRows += 1
+                knownRefIds.insert(refId)
+            } else if knownKeys.contains(key) {
+                result.duplicateRows += 1
                 continue
             }
-            guard let date = parseDate(row[dateIdx], formatter: formatter) else {
-                result.skippedRows += 1
-                continue
+            knownKeys.insert(key)
+
+            switch flow {
+            case .income: result.incomeCount += 1
+            case .refund: result.refundCount += 1
+            case .transfer: result.transferCount += 1
+            case .expense: break
             }
 
-            let note = noteIdx.flatMap { $0 < row.count ? row[$0].trimmingCharacters(in: .whitespaces) : "" } ?? ""
-            let category = categoryIdx.flatMap { $0 < row.count ? mapCategory(row[$0]) : nil }
-
-            result.records.append(CSVRecord(date: date, amount: amount, note: note, category: category))
+            result.records.append(CSVRecord(
+                date: date, amount: amount, note: note, category: category,
+                flowType: flow, refId: refId.isEmpty ? nil : refId
+            ))
         }
 
         result.sampleNotes = Array(result.records.prefix(3).map { record in
             let nf = DateFormatter()
             nf.dateFormat = "MM-dd"
-            return "\(nf.string(from: record.date)) \(String(format: "%.2f", record.amount)) \(record.note)"
+            let tag = record.flowType == .expense ? "" : "[\(record.flowType.localizedName)] "
+            return "\(nf.string(from: record.date)) \(String(format: "%.2f", record.amount)) \(tag)\(record.note)"
         })
         return result
+    }
+
+    /// 去重 key：「日期+金额+备注」（无交易单号时的判重依据）
+    private static func dedupKey(date: Date, amount: Double, note: String) -> String {
+        "\(Int(date.timeIntervalSince1970))|\(String(format: "%.2f", amount))|\(note)"
     }
 
     /// 将 CSV 记录追加写入（调用方需先 makeSnapshot）
@@ -436,14 +523,21 @@ enum BackupService {
     }
 
     private static func parseAmount(_ s: String) -> Double? {
-        let cleaned = s
+        var cleaned = s
             .trimmingCharacters(in: .whitespaces)
+            .replacingOccurrences(of: "\"", with: "")
             .replacingOccurrences(of: ",", with: "")
             .replacingOccurrences(of: "¥", with: "")
             .replacingOccurrences(of: "￥", with: "")
             .replacingOccurrences(of: "$", with: "")
             .replacingOccurrences(of: "€", with: "")
             .replacingOccurrences(of: "£", with: "")
+        // FR-30 正负号清洗（含会计式尾随负号），金额取绝对值；收/支由类型列决定
+        if cleaned.hasPrefix("-") || cleaned.hasSuffix("-") {
+            cleaned = cleaned.replacingOccurrences(of: "-", with: "")
+        }
+        cleaned = cleaned.replacingOccurrences(of: "+", with: "")
+            .trimmingCharacters(in: .whitespaces)
         return Double(cleaned)
     }
 

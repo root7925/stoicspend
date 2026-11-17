@@ -63,12 +63,14 @@ final class BackupServiceTests: XCTestCase {
             + "2026-11-07 19:00,88.00,支出,数码,机械键盘\n"
             + "2026-11-06 10:00,999.00,收入,其他,工资\n"
         let result = BackupService.parseCSV(Data(csv.utf8))
-        XCTAssertEqual(result.records.count, 2, "收入行应被跳过")
-        XCTAssertEqual(result.skippedRows, 1)
+        // FR-31 新口径：收入行不再跳过，落库为 .income（不进统计）
+        XCTAssertEqual(result.records.count, 3)
         XCTAssertEqual(result.records[0].amount, 25.5, accuracy: 1e-9)
         XCTAssertEqual(result.records[0].note, "火锅")
         XCTAssertEqual(result.records[0].category, .food, "餐饮应映射到九分法 cat.food")
         XCTAssertEqual(result.records[1].category, .gadget, "数码应映射到九分法 cat.gadget")
+        XCTAssertEqual(result.records[2].flowType, .income, "收入行落库为 income")
+        XCTAssertEqual(result.skippedRows, 0)
         XCTAssertFalse(result.sampleNotes.isEmpty, "应生成预览样例")
     }
 

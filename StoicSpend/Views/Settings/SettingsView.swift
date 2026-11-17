@@ -1006,7 +1006,8 @@ struct SettingsView: View {
                     Text("Import Preview")
                         .serifTitle(20, weight: .semibold)
                         .foregroundStyle(DesignTokens.ink)
-                    Text("\(csvPreview?.records.count ?? 0) records will be added. \(csvPreview?.skippedRows ?? 0) rows will be skipped.")
+                    // FR-30 细分口径：识别/收入/退款/转账/重复/无法解析
+                    Text("识别 \(csvPreview?.records.count ?? 0) 条（收入 \(csvPreview?.incomeCount ?? 0) · 退款 \(csvPreview?.refundCount ?? 0) · 转账 \(csvPreview?.transferCount ?? 0)），重复 \(csvPreview?.duplicateRows ?? 0) 条，无法解析 \(csvPreview?.skippedRows ?? 0) 行")
                         .sansBody(14)
                         .foregroundStyle(DesignTokens.ash)
                 }
@@ -1070,7 +1071,7 @@ struct SettingsView: View {
                 importMessage = String(format: String(localized: "Restored %d expenses from backup."), count)
                 showImportMessage = true
             } else {
-                let parsed = BackupService.parseCSV(data)
+                let parsed = BackupService.parseCSV(data, existing: expenses)
                 if parsed.records.isEmpty {
                     importMessage = String(localized: "No importable records found. Check the file header and format.")
                     showImportMessage = true
