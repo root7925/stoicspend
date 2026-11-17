@@ -22,6 +22,7 @@ struct SettingsView: View {
     // FR-10 导入 / 撤销
     @State private var showFileImporter = false
     @State private var csvPreview: BackupService.CSVImportResult?
+    @State private var selectedRows: Set<UUID> = []   // FR-32 预览多选
     @State private var showCSVPreview = false
     @State private var importMessage: String?
     @State private var showImportMessage = false
@@ -692,6 +693,32 @@ struct SettingsView: View {
                 }
             }
             .buttonStyle(.plain)
+
+            // FR-32 分类纠错规则管理
+            NavigationLink {
+                CategoryRulesView()
+            } label: {
+                HStack(spacing: DesignTokens.Spacing.sm) {
+                    Image(systemName: "brain")
+                        .foregroundStyle(DesignTokens.bronze)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("分类规则")
+                            .sansBody(15, weight: .medium)
+                            .foregroundStyle(DesignTokens.ink)
+                        Text("你纠正过的分类，下次自动套用")
+                            .sansBody(13)
+                            .foregroundStyle(DesignTokens.ash)
+                    }
+                    Spacer()
+                    Text("(\(CategoryRuleStore.load().count))")
+                        .sansBody(12)
+                        .foregroundStyle(DesignTokens.ash)
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(DesignTokens.ash)
+                }
+            }
+            .buttonStyle(.plain)
         }
     }
 
@@ -998,10 +1025,10 @@ struct SettingsView: View {
 
     // MARK: - 导入（CSV / JSON）
 
-    /// CSV 导入预览 sheet — 条数 + 样例 + 确认
+    /// CSV 导入预览 sheet — 细分口径 + 行列表（FR-32 多选批量改分类）+ 确认
     private var csvPreviewSheet: some View {
         NavigationStack {
-            VStack(alignment: .leading, spacing: DesignTokens.Spacing.lg) {
+            VStack(alignment: .leading, spacing: DesignTokens.Spacing.md) {
                 VStack(alignment: .leading, spacing: DesignTokens.Spacing.sm) {
                     Text("Import Preview")
                         .serifTitle(20, weight: .semibold)
@@ -1010,33 +1037,34 @@ struct SettingsView: View {
                     Text("识别 \(csvPreview?.records.count ?? 0) 条（收入 \(csvPreview?.incomeCount ?? 0) · 退款 \(csvPreview?.refundCount ?? 0) · 转账 \(csvPreview?.transferCount ?? 0)），重复 \(csvPreview?.duplicateRows ?? 0) 条，无法解析 \(csvPreview?.skippedRows ?? 0) 行")
                         .sansBody(14)
                         .foregroundStyle(DesignTokens.ash)
+                    if (csvPreview?.recordsRuleHits ?? 0) > 0 {
+                        Text("其中 \(csvPreview?.recordsRuleHits ?? 0) 条已按你的习惯归类")
+                            .sansBody(12)
+                            .foregroundStyle(DesignTokens.bronze)
+                    }
                 }
 
-                if let samples = csvPreview?.sampleNotes, !samples.isEmpty {
-                    VStack(alignment: .leading, spacing: DesignTokens.Spacing.sm) {
-                        Text("Sample rows")
-                            .sansBody(13, weight: .semibold)
-                            .foregroundStyle(DesignTokens.ash)
-                        ForEach(samples, id: \.self) { s in
-                            Text(s)
-                                .monoData(13)
-                                .foregroundStyle(DesignTokens.ink)
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 0) {
+                        let records = csvPreview?.records ?? []
+                        ForEach(Array(records.enumerated()), id: \.element.id) { index, record in
+                            previewRow(record)
+                            if index < records.count - 1 {
+                                Divider().overlay(DesignTokens.ash.opacity(0.15))
+                            }
                         }
                     }
-                    .padding(DesignTokens.Spacing.md)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(DesignTokens.paper)
-                    .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.sm))
+                    .background(DesignTokens.card)
+                    .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.md))
                 }
 
                 Text("A snapshot of your current data will be taken automatically — you can undo after importing.")
                     .sansBody(12)
                     .foregroundStyle(DesignTokens.ash)
-
-                Spacer()
             }
-            .padding(DesignTokens.Spacing.md)
+            .padding(.horizontal, DesignTokens.Spacing.md)
             .background(DesignTokens.paper)
+            .safeAreaInset(edge: .bottom) { batchBar }
             .navigationTitle("Import CSV")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -1051,7 +1079,138 @@ struct SettingsView: View {
                 }
             }
         }
-        .presentationDetents([.medium])
+        .presentationDetents([.large])
+    }
+
+    /// 预览行：多选框 + 备注 + 分类标签 + 金额
+    private func previewRow(_ record: BackupService.CSVRecord) -> some View {
+        let selected = selectedRows.contains(record.id)
+        return HStack(spacing: DesignTokens.Spacing.sm) {
+            Image(systemName: selected ? "checkmark.circle.fill" : "circle")
+                .font(.system(size: 18))
+                .foregroundStyle(selected ? DesignTokens.bronze : DesignTokens.ash)
+                .onTapGesture {
+                    Haptics.selectionChanged()
+                    if selected { selectedRows.remove(record.id) } else { selectedRows.insert(record.id) }
+                }
+            VStack(alignment: .leading, spacing: 3) {
+                Text(verbatim: record.note.isEmpty ? "—" : record.note)
+                    .sansBody(13, weight: .medium)
+                    .foregroundStyle(DesignTokens.ink)
+                    .lineLimit(1)
+                HStack(spacing: 6) {
+                    Text(verbatim: previewCategoryLabel(record))
+                        .sansBody(11)
+                        .foregroundStyle(DesignTokens.ash)
+                    if record.ruleApplied {
+                        Text("已按你的习惯归类")
+                            .sansBody(10, weight: .medium)
+                            .foregroundStyle(DesignTokens.bronze)
+                    }
+                    if record.flowType != .expense {
+                        Text(verbatim: record.flowType.localizedName)
+                            .sansBody(10)
+                            .foregroundStyle(DesignTokens.ash)
+                    }
+                }
+            }
+            Spacer()
+            Text(verbatim: String(format: "%.2f", record.amount))
+                .sansBody(13, weight: .medium)
+                .foregroundStyle(DesignTokens.ink)
+        }
+        .padding(.horizontal, DesignTokens.Spacing.md)
+        .padding(.vertical, 9)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            Haptics.selectionChanged()
+            if selected { selectedRows.remove(record.id) } else { selectedRows.insert(record.id) }
+        }
+    }
+
+    private func previewCategoryLabel(_ record: BackupService.CSVRecord) -> String {
+        if let cat = record.category {
+            return "\(cat.emoji) \(cat.localizedName)"
+        }
+        if let key = record.ruleCategoryKey, let id = CategoryStore.uuid(fromKey: key),
+           let c = CategoryStore.find(id: id) {
+            return "\(c.emoji) \(c.name)"
+        }
+        return NSLocalizedString("未分类", comment: "")
+    }
+
+    /// FR-32 批量操作条：全选 / 归入分类（写入纠错记忆）
+    private var batchBar: some View {
+        HStack(spacing: DesignTokens.Spacing.sm) {
+            Button {
+                Haptics.selectionChanged()
+                if selectedRows.count == csvPreview?.records.count {
+                    selectedRows.removeAll()
+                } else {
+                    selectedRows = Set(csvPreview?.records.map(\.id) ?? [])
+                }
+            } label: {
+                Text(selectedRows.isEmpty ? "全选" : "取消全选")
+                    .sansBody(13)
+                    .foregroundStyle(DesignTokens.ash)
+            }
+
+            Spacer()
+
+            Menu {
+                ForEach(ExpenseCategory.allCases) { c in
+                    Button("\(c.emoji) \(c.localizedName)") { assignCategory(builtin: c.rawValue) }
+                }
+                ForEach(CategoryStore.load()) { custom in
+                    Button("\(custom.emoji) \(custom.name)") { assignCategory(customID: custom.id) }
+                }
+            } label: {
+                Text(selectedRows.isEmpty ? "归入分类" : "归入分类 (\(selectedRows.count))")
+                    .sansBody(14, weight: .semibold)
+                    .foregroundStyle(selectedRows.isEmpty ? DesignTokens.ash : DesignTokens.paper)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(selectedRows.isEmpty ? DesignTokens.card : DesignTokens.bronze)
+                    .clipShape(Capsule())
+            }
+            .disabled(selectedRows.isEmpty)
+        }
+        .padding(.horizontal, DesignTokens.Spacing.md)
+        .padding(.vertical, DesignTokens.Spacing.sm)
+        .background(DesignTokens.paper)
+    }
+
+    /// 批量改分类：更新预览记录 + 写入纠错规则（商家优先，备注兜底）
+    private func assignCategory(builtin raw: String? = nil, customID: UUID? = nil) {
+        guard var records = csvPreview?.records else { return }
+        let key: String
+        let cat: ExpenseCategory?
+        if let raw {
+            key = raw
+            cat = ExpenseCategory(rawValue: raw)
+        } else if let customID {
+            key = CategoryStore.storageKey(for: customID)
+            cat = nil
+        } else {
+            return
+        }
+
+        var keywords: Set<String> = []
+        for i in records.indices where selectedRows.contains(records[i].id) {
+            records[i].category = cat
+            records[i].ruleCategoryKey = cat == nil ? key : nil
+            records[i].ruleApplied = true
+            let kwSource = records[i].merchant ?? records[i].note
+            if !kwSource.isEmpty {
+                keywords.insert(kwSource)
+            }
+        }
+        for kw in keywords {
+            CategoryRuleStore.add(keyword: kw, categoryKey: key)
+        }
+        csvPreview?.records = records
+        selectedRows.removeAll()
+        Haptics.saveSuccess()
     }
 
     private func handleImportResult(_ result: Result<URL, Error>) {
@@ -1093,6 +1252,7 @@ struct SettingsView: View {
             let count = try BackupService.insertCSVRecords(records, in: modelContext)
             hasUndoSnapshot = true
             showCSVPreview = false
+            selectedRows.removeAll()
             importMessage = String(format: String(localized: "Imported %d records."), count)
             showImportMessage = true
         } catch {

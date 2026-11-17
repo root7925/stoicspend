@@ -40,6 +40,7 @@
 		56EC6F86AC28680AEAE69E93 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 04B65866729998F993C1B006 /* Localizable.xcstrings */; };
 		56F0A4E65D9A963374876A5A /* KeyboardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F8C9F0C3621AD533D73D1 /* KeyboardHelpers.swift */; };
 		5BE6BBC5DFEEBBFDDD6150B1 /* RecentComboStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CF02B9F07D6BDF03A357C1 /* RecentComboStore.swift */; };
+		5EB6F0B2525CE897158A7904 /* CategoryRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199679176284E8009B9F0BB /* CategoryRulesView.swift */; };
 		5F324A753AD33353AEE89CED /* RazorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B6C6413D67BE64982F6836 /* RazorKit.swift */; };
 		606A0563A68C605A4D055453 /* FlowTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D31E9C50776147D965276 /* FlowTypeTests.swift */; };
 		62AD9E5F6567D38C769442E0 /* StoicSpendShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0EBB3D5C3AEABC169A5292E /* StoicSpendShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -54,7 +55,6 @@
 		7CE46017FF44304278BCFB44 /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2AE5E3FFE70AA4BED255E /* CategoryStore.swift */; };
 		7E7B14F4AE53E4F578464668 /* BackupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7C1912C4F8EBF29FBBB62E /* BackupService.swift */; };
 		88EF333A12B06FD090FDDDAA /* WatchCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0405F32C64601CFF92A2EAE6 /* WatchCaptureTests.swift */; };
-		8C8DC855CFA785F055650CAF /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_C23E6B67-87FA-4143-B497-7FB44923EA3D" /* StoicSpendApp.swift */; };
 		903CC02E5A30670518F80949 /* ControlRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C799D9BC3E92F18F31363 /* ControlRing.swift */; };
 		91EF0FD27F9D7D46B3634F7D /* StoicSpendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD608966A33E15FE6CBA3D99 /* StoicSpendTests.swift */; };
 		94FF5F1F3F76911766830532 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CD8C11BBCB58165A4A593 /* AppSettings.swift */; };
@@ -67,7 +67,9 @@
 		A7F686272383880C2BF9935B /* ModelContainerSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EA082FF746022662BDD6B6 /* ModelContainerSetup.swift */; };
 		A7FCAFDD6E2335F322604467 /* WeeklyReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F1CDE18EA30746FF808A6 /* WeeklyReview.swift */; };
 		A8F3403510822DB503D149D1 /* WatchCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FADFC906186662F3FCE391 /* WatchCapture.swift */; };
+		A8FA35553937BB89BCC8042E /* CategoryRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C96A1923DB0BA889FEE7DB /* CategoryRuleTests.swift */; };
 		B14D655868BA57574585A0BA /* QuickAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1410E1CA5DD065D07BAC8F /* QuickAddView.swift */; };
+		B24D7D90CE3407CD95AA5AB0 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_7FF843F8-405B-468F-965E-E2D09D1142BF" /* StoicSpendApp.swift */; };
 		B31B23FB71568910156520D4 /* StoicSpendWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9682B1637BCE6E11B268831A /* StoicSpendWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B4B0AF3AA6BC4EE69DFA5608 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC248AC208AF0F40A7BE213 /* NotificationService.swift */; };
 		BB1DB39C4ED565D362680AA0 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9CE2D87A22989D27EB0F8 /* ShareViewController.swift */; };
@@ -91,6 +93,7 @@
 		EBA0F9E639A7D97F353A890C /* CategoryManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC98884E678C23BE26C119AD /* CategoryManagerView.swift */; };
 		EDF015BCBA2D12581DD6BA06 /* ScreenshotParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C9ADBAA2A498B014AA2A0 /* ScreenshotParserTests.swift */; };
 		EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18C44CCC94999C066610E09 /* ShredderView.swift */; };
+		F3E5BC089328F0936B5C3C96 /* CategoryRuleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA1EC627229DE82FD9A2B4 /* CategoryRuleStore.swift */; };
 		F4A59C506BFACC28441E23E2 /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2AE5E3FFE70AA4BED255E /* CategoryStore.swift */; };
 		F4AB575D5504388F4126628F /* BackupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06055E520C178D461648DDB /* BackupServiceTests.swift */; };
 		F73D213CCCDD00C84BDBA047 /* PlayfairDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7D410C809B6868EB994DA27 /* PlayfairDisplay-Medium.ttf */; };
@@ -98,6 +101,7 @@
 		F9F5B48A1B7AD6E399A11C41 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C4FD025C599713B6B729ED /* Categories.swift */; };
 		FE9E4B8182160AB7EF836393 /* WatchCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FADFC906186662F3FCE391 /* WatchCapture.swift */; };
 		FEB9F57AD79F77D950A92DCA /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C4FD025C599713B6B729ED /* Categories.swift */; };
+		FFBCE3A6FCC4514D3E6BA5A1 /* CategoryRuleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA1EC627229DE82FD9A2B4 /* CategoryRuleStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +182,7 @@
 		20A56E627A29B1A2B15E928A /* PlayfairDisplay-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-SemiBold.ttf"; sourceTree = "<group>"; };
 		20C7A05F3DB9DF70D169D5A1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2548A07849A4530BFCF3743C /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		2DAA1EC627229DE82FD9A2B4 /* CategoryRuleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRuleStore.swift; sourceTree = "<group>"; };
 		317DEA5EA5934EE96C017C38 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3528D9E0F5DF8D7D79E550E1 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		375CAEC011637C538A27541B /* OccamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccamView.swift; sourceTree = "<group>"; };
@@ -206,6 +211,7 @@
 		801B0C6B0F2E8CA0BF5DECAA /* AppStoreShotSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreShotSupport.swift; sourceTree = "<group>"; };
 		83301F68C86AC0C95C2A135A /* WorkbenchHTTPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkbenchHTTPServer.swift; sourceTree = "<group>"; };
 		844EC22255AE7405F733CCA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		84C96A1923DB0BA889FEE7DB /* CategoryRuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRuleTests.swift; sourceTree = "<group>"; };
 		851F1CDE18EA30746FF808A6 /* WeeklyReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyReview.swift; sourceTree = "<group>"; };
 		89CF02B9F07D6BDF03A357C1 /* RecentComboStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentComboStore.swift; sourceTree = "<group>"; };
 		8ADC5076A2E933BE033F595F /* LXGWWenKaiLite-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LXGWWenKaiLite-Medium.ttf"; sourceTree = "<group>"; };
@@ -236,6 +242,7 @@
 		CD608966A33E15FE6CBA3D99 /* StoicSpendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendTests.swift; sourceTree = "<group>"; };
 		D0EBB3D5C3AEABC169A5292E /* StoicSpendShare.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = StoicSpendShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D14F9CB59ABB0682BA3387F5 /* VoiceTranscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceTranscriber.swift; sourceTree = "<group>"; };
+		D199679176284E8009B9F0BB /* CategoryRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRulesView.swift; sourceTree = "<group>"; };
 		D786C9F7B49F1A5B2E976D35 /* DailyQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuote.swift; sourceTree = "<group>"; };
 		E18C44CCC94999C066610E09 /* ShredderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShredderView.swift; sourceTree = "<group>"; };
 		E909A052071F5ED6AC8F7EB4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -247,7 +254,7 @@
 		F4EB844FB62562753C3EE457 /* LegalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalLinks.swift; sourceTree = "<group>"; };
 		F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B6C6413D67BE64982F6836 /* RazorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorKit.swift; sourceTree = "<group>"; };
-		"TEMP_C23E6B67-87FA-4143-B497-7FB44923EA3D" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
+		"TEMP_7FF843F8-405B-468F-965E-E2D09D1142BF" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -268,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				A9C4FD025C599713B6B729ED /* Categories.swift */,
+				2DAA1EC627229DE82FD9A2B4 /* CategoryRuleStore.swift */,
 				94B2AE5E3FFE70AA4BED255E /* CategoryStore.swift */,
 				C9391B7AB3B6F82300795F61 /* PendingCapture.swift */,
 				A056A16621F43AE2397DEE6A /* PrivacyInfo.xcprivacy */,
@@ -353,6 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				AC98884E678C23BE26C119AD /* CategoryManagerView.swift */,
+				D199679176284E8009B9F0BB /* CategoryRulesView.swift */,
 				E909A052071F5ED6AC8F7EB4 /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -417,6 +426,7 @@
 			children = (
 				C06055E520C178D461648DDB /* BackupServiceTests.swift */,
 				580BC9A85BCF48F8818EA346 /* BillImportTests.swift */,
+				84C96A1923DB0BA889FEE7DB /* CategoryRuleTests.swift */,
 				7B25D349CFF43502988A2429 /* CategoryStoreTests.swift */,
 				7C2D31E9C50776147D965276 /* FlowTypeTests.swift */,
 				1A9BCFA2B8DCDF08C06FEE37 /* QuickAddV11Tests.swift */,
@@ -516,10 +526,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		"TEMP_1C3E8F8E-A807-4555-969D-AF3DE2FE55F7" /* StoicSpend */ = {
+		"TEMP_D6D54394-282F-487E-B5DF-E6736FF2198D" /* StoicSpend */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_C23E6B67-87FA-4143-B497-7FB44923EA3D" /* StoicSpendApp.swift */,
+				"TEMP_7FF843F8-405B-468F-965E-E2D09D1142BF" /* StoicSpendApp.swift */,
 				00DA4726EB3DAD9CB1D10EDA /* DesignSystem */,
 				EEF43067302B8BDBD3CF4B70 /* Resources */,
 				02E936D218D07A02D6E026F6 /* Shared */,
@@ -779,6 +789,7 @@
 			files = (
 				F4AB575D5504388F4126628F /* BackupServiceTests.swift in Sources */,
 				3A4A309C79BBF5D6294CF460 /* BillImportTests.swift in Sources */,
+				A8FA35553937BB89BCC8042E /* CategoryRuleTests.swift in Sources */,
 				211545D1447D4CD37E05413D /* CategoryStoreTests.swift in Sources */,
 				606A0563A68C605A4D055453 /* FlowTypeTests.swift in Sources */,
 				DFB6747F712859635BBCA654 /* QuickAddV11Tests.swift in Sources */,
@@ -821,6 +832,8 @@
 				DEDA5EB4B1B6230839992B38 /* BudgetModel.swift in Sources */,
 				BBA74CA1088E15ECB37A7F14 /* Categories.swift in Sources */,
 				EBA0F9E639A7D97F353A890C /* CategoryManagerView.swift in Sources */,
+				F3E5BC089328F0936B5C3C96 /* CategoryRuleStore.swift in Sources */,
+				5EB6F0B2525CE897158A7904 /* CategoryRulesView.swift in Sources */,
 				7CE46017FF44304278BCFB44 /* CategoryStore.swift in Sources */,
 				903CC02E5A30670518F80949 /* ControlRing.swift in Sources */,
 				39DBF1414C7D6520EBCC7D08 /* CurrencyService.swift in Sources */,
@@ -849,7 +862,7 @@
 				15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */,
 				6F34F114AA55973023E4E587 /* ShredAmmo.swift in Sources */,
 				EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */,
-				8C8DC855CFA785F055650CAF /* StoicSpendApp.swift in Sources */,
+				B24D7D90CE3407CD95AA5AB0 /* StoicSpendApp.swift in Sources */,
 				78F15EE8EAE4240C1351C5D4 /* SubscriptionService.swift in Sources */,
 				34AB22246EB0B8013F9623F4 /* Theme.swift in Sources */,
 				3A8E7533E61F3CC81A64EBC0 /* Typography.swift in Sources */,
@@ -870,6 +883,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F5B48A1B7AD6E399A11C41 /* Categories.swift in Sources */,
+				FFBCE3A6FCC4514D3E6BA5A1 /* CategoryRuleStore.swift in Sources */,
 				F4A59C506BFACC28441E23E2 /* CategoryStore.swift in Sources */,
 				998DBEEFDED82CF9E6737844 /* OverviewWidgets.swift in Sources */,
 				C1C9F561A170E00D729DD709 /* PendingCapture.swift in Sources */,

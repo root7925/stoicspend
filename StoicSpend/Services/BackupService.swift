@@ -252,13 +252,17 @@ enum BackupService {
 
     // MARK: - CSV 导入（仅追加）
 
-    struct CSVRecord {
+    struct CSVRecord: Identifiable {
+        let id = UUID()
         var date: Date
         var amount: Double
         var note: String
         var category: ExpenseCategory?
         var flowType: FlowType = .expense   // FR-31「收/支」列映射
         var refId: String?                  // FR-30 交易单号（去重）
+        var merchant: String?               // FR-32 交易对方（纠错规则关键词来源）
+        var ruleCategoryKey: String?        // FR-32 命中纠错规则的自定义分类 key
+        var ruleApplied: Bool = false       // FR-32 已按用户习惯归类（预览页标记）
     }
 
     struct CSVImportResult {
@@ -272,6 +276,7 @@ enum BackupService {
         var transferCount: Int = 0
         var duplicateRows: Int = 0
         var headerRow: Int? = nil           // 探测到的表头行号（1-based，调试与 UI 展示）
+        var recordsRuleHits: Int = 0        // FR-32 按你的习惯归类的条数
     }
 
     /// 表头同义词映射（FR-30 兼容微信/支付宝账单）— key 经 normalizeHeader 归一（去空格/引号，全角括号转半角，小写）
@@ -384,7 +389,25 @@ enum BackupService {
             if note.isEmpty, let cpIdx, cpIdx < row.count {
                 note = row[cpIdx].trimmingCharacters(in: .whitespaces)   // 无商品列时用交易对方
             }
-            let category = categoryIdx.flatMap { $0 < row.count ? mapCategory(row[$0]) : nil }
+            let merchant = cpIdx.flatMap { $0 < row.count ? row[$0].trimmingCharacters(in: .whitespaces) : "" } ?? ""
+            var category = categoryIdx.flatMap { $0 < row.count ? mapCategory(row[$0]) : nil }
+
+            // FR-32 分类纠错记忆：用户规则优先于自动映射
+            var ruleCategoryKey: String?
+            var ruleApplied = false
+            let keywordSource = merchant.isEmpty ? note : merchant
+            if let hit = CategoryRuleStore.match(note: keywordSource) {
+                if let raw = ExpenseCategory(rawValue: hit.categoryKey) {
+                    ruleApplied = true
+                    result.recordsRuleHits += 1
+                    category = raw
+                } else if CategoryStore.uuid(fromKey: hit.categoryKey) != nil {
+                    ruleCategoryKey = hit.categoryKey
+                    ruleApplied = true
+                    category = nil
+                    result.recordsRuleHits += 1
+                }
+            }
             let refId = refIdIdx.flatMap { $0 < row.count ? row[$0].trimmingCharacters(in: .whitespaces) : "" } ?? ""
             var flow: FlowType = typeIdx.flatMap { $0 < row.count ? flowType(fromTypeCell: row[$0]) : nil } ?? .expense
             if let statusIdx, statusIdx < row.count, row[statusIdx].contains("退款") {
@@ -414,7 +437,9 @@ enum BackupService {
 
             result.records.append(CSVRecord(
                 date: date, amount: amount, note: note, category: category,
-                flowType: flow, refId: refId.isEmpty ? nil : refId
+                flowType: flow, refId: refId.isEmpty ? nil : refId,
+                merchant: merchant.isEmpty ? nil : merchant,
+                ruleCategoryKey: ruleCategoryKey, ruleApplied: ruleApplied
             ))
         }
 
@@ -439,6 +464,10 @@ enum BackupService {
             let e = Expense(amount: r.amount, date: r.date, note: r.note, category: r.category ?? .other)
             e.flowType = r.flowType
             e.refId = r.refId
+            // FR-32 命中/批量指定的自定义分类
+            if let key = r.ruleCategoryKey, let id = CategoryStore.uuid(fromKey: key) {
+                e.customCategoryID = id
+            }
             context.insert(e)
         }
         try context.save()

@@ -24,6 +24,7 @@ struct QuickAddView: View {
     @State private var categoryKey: String   // 内置 rawValue 或 "custom:<uuid>"（FR-29）
     @State private var emotion: ExpenseEmotion?
     @State private var flowType: FlowType = .expense   // FR-31 默认支出，补充 sheet 里切换
+    @State private var categoryTouched = false         // FR-32 用户是否手动选过分类（未选时允许规则套用）
     @State private var zeroFlash = false
     @State private var dotInserted = false  // 长按 0 插入小数点后吞掉随后的 tap
     @State private var showExtra = false    // 补充三问 sheet（性质/情绪/备注）
@@ -54,6 +55,7 @@ struct QuickAddView: View {
             _emotion = State(initialValue: e.emotion)
             _note = State(initialValue: e.note)
             _flowType = State(initialValue: e.flowType)
+            _categoryTouched = State(initialValue: true)   // 编辑模式保持原分类
         } else if let cap = capture {
             // 性质/分类走默认上次值，识别失败时金额留空手动输入
             let natureRaw = UserDefaults.standard.string(forKey: "lastNatureRaw") ?? ExpenseNature.chosen.rawValue
@@ -321,6 +323,15 @@ struct QuickAddView: View {
                 emotionSection
                 noteField
 
+                // FR-32 规则命中提示（未手动选分类时保存将套用）
+                if !categoryTouched, !note.isEmpty,
+                   let hit = CategoryRuleStore.match(note: note),
+                   let name = CategoryRuleStore.displayName(for: hit) {
+                    Text("保存时将按你的习惯归入「\(name)」")
+                        .sansBody(11)
+                        .foregroundStyle(theme.current.accentColor)
+                }
+
                 Button {
                     showExtra = false
                 } label: {
@@ -395,6 +406,7 @@ struct QuickAddView: View {
         let selected = categoryKey == item.key
         return Button {
             Haptics.selectionChanged()
+            categoryTouched = true
             withAnimation(.easeOut(duration: 0.18)) {
                 categoryKey = item.key
             }
@@ -822,11 +834,18 @@ struct QuickAddView: View {
             return
         }
 
+        // FR-32 分类纠错记忆：未手动选分类且备注命中规则 → 按习惯归类
+        var effectiveKey = categoryKey
+        if !categoryTouched, !note.isEmpty,
+           let hit = CategoryRuleStore.match(note: note) {
+            effectiveKey = hit.categoryKey
+        }
+
         if let e = editing {
             e.amount = amountValue
             e.nature = nature
-            e.category = ExpenseCategory(rawValue: categoryKey) ?? .other
-            e.customCategoryID = CategoryStore.uuid(fromKey: categoryKey)
+            e.category = ExpenseCategory(rawValue: effectiveKey) ?? .other
+            e.customCategoryID = CategoryStore.uuid(fromKey: effectiveKey)
             e.emotion = emotion
             e.note = note.trimmingCharacters(in: .whitespacesAndNewlines)
             e.flowType = flowType
@@ -835,10 +854,10 @@ struct QuickAddView: View {
                 amount: amountValue,
                 note: note.trimmingCharacters(in: .whitespacesAndNewlines),
                 nature: nature,
-                category: ExpenseCategory(rawValue: categoryKey) ?? .other,
+                category: ExpenseCategory(rawValue: effectiveKey) ?? .other,
                 emotion: emotion
             )
-            expense.customCategoryID = CategoryStore.uuid(fromKey: categoryKey)
+            expense.customCategoryID = CategoryStore.uuid(fromKey: effectiveKey)
             expense.flowType = flowType
             modelContext.insert(expense)
 
@@ -852,8 +871,8 @@ struct QuickAddView: View {
         // 记忆本次选择 + 常用组合（FR-31：仅消费进组合与最近分类记忆）
         if flowType == .expense {
             lastNatureRaw = nature.rawValue
-            lastCategoryRaw = categoryKey
-            if let c = ExpenseCategory(rawValue: categoryKey) {
+            lastCategoryRaw = effectiveKey
+            if let c = ExpenseCategory(rawValue: effectiveKey) {
                 RecentComboStore.record(nature: nature, category: c)
             }
         }
