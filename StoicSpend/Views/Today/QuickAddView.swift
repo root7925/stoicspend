@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import UniformTypeIdentifiers
 
 extension Notification.Name {
     /// FR-16 — 新记录已保存（带 pendingUndoID），首页展示「已记下 · 撤销」
@@ -24,7 +25,10 @@ struct QuickAddView: View {
     @State private var emotion: ExpenseEmotion?
     @State private var zeroFlash = false
     @State private var dotInserted = false  // 长按 0 插入小数点后吞掉随后的 tap
-    @State private var showNature = false   // 性质默认折叠（弱化，不强制点）
+    @State private var showExtra = false    // 补充三问 sheet（性质/情绪/备注）
+    @State private var showManager = false  // 自定义分类管理页
+    @State private var items: [CategoryItem] = []   // 宫格显示顺序（长按拖动可重排）
+    @State private var draggingKey: String? // 正在拖动的类别 key
     @State private var recentCombos: [RecentCombo] = RecentComboStore.load()
     @State private var note = ""            // 备注（语音记账全文落在这里）
     @State private var showVoiceCard = false
@@ -132,14 +136,12 @@ struct QuickAddView: View {
                     if !recentCombos.isEmpty {
                         comboSection
                     }
-                    natureSection
-                    categorySection
-                    emotionSection
-                    noteField
+                    categoryGrid
                 }
                 .padding(.horizontal, DesignTokens.Spacing.md)
                 .padding(.top, DesignTokens.Spacing.lg)
             }
+            .scrollBounceBehavior(.basedOnSize)   // 装得下就不滚动（一屏宫格）
 
             saveBar
         }
@@ -153,6 +155,11 @@ struct QuickAddView: View {
         .onDisappear {
             transcriber.stop()
         }
+        .onAppear { reloadCategories() }
+        .sheet(isPresented: $showExtra) { extraSheet }
+        .sheet(isPresented: $showManager, onDismiss: reloadCategories) {
+            CategoryManagerView()
+        }
     }
 
     // MARK: - 金额显示（FR-15 数字滚动 / 长按清零）
@@ -160,11 +167,11 @@ struct QuickAddView: View {
     private var amountDisplay: some View {
         HStack(spacing: 4) {
             Text("¥")
-                .font(Typography.serif(48, weight: .medium))
+                .font(Typography.serif(26, weight: .medium))
                 .foregroundStyle(amountText.isEmpty ? DesignTokens.ash : theme.current.accentColor)
             Text(amountText.isEmpty ? "0" : amountText)
-                .font(Typography.serif(96, weight: .semibold))
-                .tracking(-2)
+                .font(Typography.serif(64, weight: .semibold))
+                .tracking(-1.5)
                 .foregroundStyle(amountText.isEmpty
                     ? (zeroFlash ? DesignTokens.gold : DesignTokens.stoneDim)
                     : DesignTokens.ink)
@@ -262,82 +269,157 @@ struct QuickAddView: View {
         }
     }
 
-    // MARK: - 性质三选一（默认折叠为一行，弱化不强制点）
+    // MARK: - 性质三选一（在「补充」sheet 内）
 
-    private var natureSection: some View {
-        VStack(alignment: .leading, spacing: DesignTokens.Spacing.sm) {
-            Button {
-                Haptics.selectionChanged()
-                withAnimation(.easeOut(duration: 0.18)) {
-                    showNature.toggle()
-                }
-            } label: {
-                HStack(spacing: 6) {
-                    Text(Self.natureLabel(nature))
-                        .sansBody(13, weight: .medium)
-                        .foregroundStyle(theme.current.accentColor)
-                    Text(showNature ? "▾" : "▸")
-                        .sansBody(12)
-                        .foregroundStyle(DesignTokens.ash)
-                    Spacer()
-                }
-            }
+    private func natureChip(_ n: ExpenseNature, label: String) -> some View {
+        chipButton(label: label, selected: nature == n) {
+            nature = n
+        }
+    }
 
-            if showNature {
+    // MARK: - 补充三问 sheet（性质 / 情绪 / 备注 — 可选，不挡主流程）
+
+    private var extraSheet: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: DesignTokens.Spacing.lg) {
+                Text("补充三问（可不填）")
+                    .serifTitle(15)
+                    .foregroundStyle(DesignTokens.ink)
+
                 VStack(alignment: .leading, spacing: DesignTokens.Spacing.sm) {
                     Text("这笔钱花得怎么样？")
                         .sansBody(13)
                         .foregroundStyle(DesignTokens.ash)
-
                     HStack(spacing: DesignTokens.Spacing.sm) {
                         natureChip(.chosen, label: "✓ 主动选择")
                         natureChip(.necessity, label: "· 必须花")
                         natureChip(.impulse, label: "△ 冲动了")
                     }
                 }
-                .transition(.opacity)
+
+                emotionSection
+                noteField
+
+                Button {
+                    showExtra = false
+                } label: {
+                    Text("收起")
+                        .sansBody(15, weight: .semibold)
+                        .foregroundStyle(DesignTokens.paper)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 14)
+                        .background(theme.current.accentColor)
+                        .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.md))
+                }
             }
+            .padding(DesignTokens.Spacing.lg)
         }
+        .background(DesignTokens.paper)
+        .presentationDetents([.medium, .large])
+        .scrollDismissesKeyboard(.interactively)
+        .dismissKeyboardToolbar()
     }
 
-    private static func natureLabel(_ n: ExpenseNature) -> String {
-        switch n {
-        case .chosen: return "✓ 主动选择"
-        case .necessity: return "· 必须花"
-        case .impulse: return "△ 冲动了"
-        }
+    // MARK: - 分类宫格（一屏 4 列常驻；长按拖动重排，落点自动让位并持久化）
+
+    /// 宫格单元（内置 / 自定义统一形态）
+    struct CategoryItem: Identifiable, Equatable {
+        let key: String
+        let emoji: String
+        let name: String
+        var id: String { key }
     }
 
-    private func natureChip(_ n: ExpenseNature, label: String) -> some View {
-        chipButton(label: label, selected: nature == n) {
-            nature = n
-            withAnimation(.easeOut(duration: 0.18)) {
-                showNature = false   // 选完自动收起
+    private func reloadCategories() {
+        items = CategoryStore.orderedKeys().map { key in
+            if let raw = ExpenseCategory(rawValue: key) {
+                return CategoryItem(key: key, emoji: raw.emoji, name: raw.localizedName)
             }
+            if let id = CategoryStore.uuid(fromKey: key), let cat = CategoryStore.find(id: id) {
+                return CategoryItem(key: key, emoji: cat.emoji, name: cat.name)
+            }
+            return CategoryItem(key: key, emoji: "◇", name: key)
         }
     }
 
-    // MARK: - 分类九选一（3×3 宫格，切换 180ms 形变）
-
-    private var categorySection: some View {
-        VStack(alignment: .leading, spacing: DesignTokens.Spacing.sm) {
-            Text("花在哪方面？")
-                .sansBody(13)
+    private var categoryGrid: some View {
+        VStack(spacing: DesignTokens.Spacing.xs) {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: DesignTokens.Spacing.sm), count: 4), spacing: DesignTokens.Spacing.sm) {
+                ForEach(items) { item in
+                    gridChip(item)
+                        .onDrag {
+                            draggingKey = item.key
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
+                                if draggingKey == item.key { draggingKey = nil }  // 拖动取消兜底
+                            }
+                            return NSItemProvider(object: item.key as NSString)
+                        }
+                        .onDrop(of: [.text], delegate: CategoryDropDelegate(
+                            item: item,
+                            items: $items,
+                            draggingKey: $draggingKey
+                        ) {
+                            CategoryStore.saveOrder(items.map(\.key))
+                        })
+                }
+                manageChip
+            }
+            Text("长按可拖动排序")
+                .sansBody(11)
                 .foregroundStyle(DesignTokens.ash)
+        }
+    }
 
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: DesignTokens.Spacing.sm), count: 3), spacing: DesignTokens.Spacing.sm) {
-                ForEach(ExpenseCategory.allCases) { c in
-                    chipButton(label: "\(c.emoji) \(c.localizedName)", selected: categoryKey == c.rawValue) {
-                        categoryKey = c.rawValue
-                    }
-                }
-                // FR-29 自定义分类（≤6 个，排在内置之后）
-                ForEach(CategoryStore.load()) { custom in
-                    chipButton(label: "\(custom.emoji) \(custom.name)", selected: categoryKey == "custom:\(custom.id.uuidString)") {
-                        categoryKey = "custom:\(custom.id.uuidString)"
-                    }
-                }
+    private func gridChip(_ item: CategoryItem) -> some View {
+        let selected = categoryKey == item.key
+        return Button {
+            Haptics.selectionChanged()
+            withAnimation(.easeOut(duration: 0.18)) {
+                categoryKey = item.key
             }
+        } label: {
+            VStack(spacing: 3) {
+                Text(verbatim: item.emoji)
+                    .font(.system(size: 20))
+                Text(verbatim: item.name)
+                    .sansBody(11, weight: selected ? .semibold : .regular)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+            }
+            .foregroundStyle(selected ? theme.current.accentColor : DesignTokens.ink)
+            .frame(maxWidth: .infinity)
+            .frame(height: 52)
+            .background(selected ? theme.current.accentDimColor : DesignTokens.card)
+            .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.md))
+            .overlay(
+                RoundedRectangle(cornerRadius: DesignTokens.Radius.md).strokeBorder(
+                    selected ? theme.current.accentColor : DesignTokens.stoneDim,
+                    lineWidth: selected ? 1.5 : 1
+                )
+            )
+            .opacity(draggingKey == item.key ? 0.4 : 1)
+        }
+    }
+
+    /// 管理入口 — 打开自定义分类页
+    private var manageChip: some View {
+        Button {
+            Haptics.selectionChanged()
+            showManager = true
+        } label: {
+            VStack(spacing: 3) {
+                Text("＋").font(.system(size: 16))
+                Text("管理").sansBody(11)
+            }
+            .foregroundStyle(DesignTokens.ash)
+            .frame(maxWidth: .infinity)
+            .frame(height: 52)
+            .background(DesignTokens.card.opacity(0.5))
+            .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.md))
+            .overlay(
+                RoundedRectangle(cornerRadius: DesignTokens.Radius.md)
+                    .strokeBorder(DesignTokens.stoneDim, style: StrokeStyle(lineWidth: 1, dash: [4]))
+            )
         }
     }
 
@@ -405,8 +487,22 @@ struct QuickAddView: View {
             amountDisplay
             expressionRow
             keypad
-            HStack {
-                Spacer()
+            HStack(spacing: DesignTokens.Spacing.sm) {
+                Button {
+                    Haptics.selectionChanged()
+                    showExtra = true
+                } label: {
+                    VStack(spacing: 2) {
+                        Text("＋").font(.system(size: 17, weight: .medium))
+                        Text("补充").sansBody(10)
+                    }
+                    .foregroundStyle(DesignTokens.ash)
+                    .frame(width: 60, height: 52)
+                    .background(DesignTokens.card)
+                    .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.sm))
+                }
+                .accessibilityIdentifier("quickadd.extra")
+
                 Button {
                     save()
                 } label: {
@@ -414,13 +510,12 @@ struct QuickAddView: View {
                         .sansBody(18, weight: .semibold)
                         .foregroundStyle(DesignTokens.paper)
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
+                        .padding(.vertical, 14)
                         .background(theme.current.accentColor)
                         .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.md))
                 }
-                .frame(width: UIScreen.main.bounds.width * 0.72)
                 .accessibilityIdentifier("quickadd.save")
-                .padding(.bottom, DesignTokens.Spacing.lg)
+                .padding(.bottom, DesignTokens.Spacing.md)
             }
         }
         .padding(.horizontal, DesignTokens.Spacing.md)
@@ -614,7 +709,7 @@ struct QuickAddView: View {
                 .font(.system(size: 22, weight: .medium, design: .serif))
                 .foregroundStyle(DesignTokens.ink)
                 .frame(maxWidth: .infinity)
-                .frame(height: 52)
+                .frame(height: 46)
                 .background(DesignTokens.card)
                 .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.sm))
         }
@@ -765,5 +860,33 @@ struct QuickAddView: View {
                     )
                 )
         }
+    }
+}
+
+// MARK: - 宫格拖动排序 Delegate — 进入目标格自动让位（弹簧动画），落点持久化顺序
+
+private struct CategoryDropDelegate: DropDelegate {
+    let item: QuickAddView.CategoryItem
+    @Binding var items: [QuickAddView.CategoryItem]
+    @Binding var draggingKey: String?
+    let onDropEnd: () -> Void
+
+    func dropEntered(info: DropInfo) {
+        guard let dragging = draggingKey, dragging != item.key,
+              let from = items.firstIndex(where: { $0.key == dragging }),
+              let to = items.firstIndex(where: { $0.key == item.key }) else { return }
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+            items.move(fromOffsets: IndexSet(integer: from), toOffset: to > from ? to + 1 : to)
+        }
+    }
+
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        DropProposal(operation: .move)
+    }
+
+    func performDrop(info: DropInfo) -> Bool {
+        draggingKey = nil
+        onDropEnd()
+        return true
     }
 }

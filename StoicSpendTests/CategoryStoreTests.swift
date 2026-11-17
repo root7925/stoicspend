@@ -8,10 +8,12 @@ final class CategoryStoreTests: XCTestCase {
     override func setUp() {
         super.setUp()
         UserDefaults.standard.removeObject(forKey: CategoryStore.storageKey)
+        UserDefaults.standard.removeObject(forKey: CategoryStore.orderKey)
     }
 
     override func tearDown() {
         UserDefaults.standard.removeObject(forKey: CategoryStore.storageKey)
+        UserDefaults.standard.removeObject(forKey: CategoryStore.orderKey)
         super.tearDown()
     }
 
@@ -63,5 +65,24 @@ final class CategoryStoreTests: XCTestCase {
         XCTAssertNil(e.customCategoryID)
         XCTAssertEqual(e.categoryGroupKey, ExpenseCategory.transport.rawValue)
         XCTAssertEqual(e.categoryEmoji, "🚕")
+    }
+
+    func testOrderPersistenceAndResolve() {
+        // 默认顺序包含全部内置 9 类
+        let all = CategoryStore.orderedKeys()
+        XCTAssertEqual(all.count, ExpenseCategory.allCases.count)
+
+        // 重排后持久化往返
+        let reordered = Array(all.reversed())
+        CategoryStore.saveOrder(reordered)
+        XCTAssertEqual(CategoryStore.orderedKeys(), reordered)
+
+        // 失效 key 被过滤，缺失 key 自动补齐
+        CategoryStore.saveOrder(["cat.food", "custom:00000000-0000-0000-0000-000000000000", "bad-key"])
+        let resolved = CategoryStore.orderedKeys()
+        XCTAssertFalse(resolved.contains("bad-key"))
+        XCTAssertFalse(resolved.contains("custom:00000000-0000-0000-0000-000000000000"))
+        XCTAssertEqual(resolved.count, ExpenseCategory.allCases.count)
+        XCTAssertEqual(resolved.first, "cat.food")
     }
 }

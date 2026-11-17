@@ -67,5 +67,25 @@ enum CategoryStore {
         guard key.hasPrefix("custom:") else { return nil }
         return UUID(uuidString: String(key.dropFirst(7)))
     }
+
+    // MARK: - 快记宫格显示顺序（长按拖动重排）
+
+    static let orderKey = "category.order"
+
+    /// 宫格 key 顺序：持久化顺序优先，失效 key 过滤，缺失 key 追加（内置在前、自定义在后）
+    static func orderedKeys() -> [String] {
+        let saved = UserDefaults.standard.stringArray(forKey: orderKey) ?? []
+        var keys = saved.filter {
+            ExpenseCategory(rawValue: $0) != nil
+                || (uuid(fromKey: $0).flatMap { find(id: $0) } != nil)
+        }
+        let all = ExpenseCategory.allCases.map(\.rawValue) + load().map { storageKey(for: $0.id) }
+        for k in all where !keys.contains(k) { keys.append(k) }
+        return keys
+    }
+
+    static func saveOrder(_ keys: [String]) {
+        UserDefaults.standard.set(keys, forKey: orderKey)
+    }
 }
 
