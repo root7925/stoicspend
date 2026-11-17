@@ -89,6 +89,25 @@ struct RootView: View {
         if args.contains("UITEST_SKIP_ONBOARDING") {
             settingsObj.hasCompletedOnboarding = true
         }
+
+        // 迁移/导入实测钩子：UITEST_IMPORT_PATH=<csv 绝对路径> → 解析并落库，结果写 Documents/import_result.txt
+        if let idx = args.firstIndex(of: "UITEST_IMPORT_PATH"), args.count > idx + 1 {
+            let path = args[idx + 1]
+            var report = ""
+            if let data = FileManager.default.contents(atPath: path) {
+                let existing = (try? modelContext.fetch(FetchDescriptor<Expense>())) ?? []
+                let result = BackupService.parseCSV(data, existing: existing)
+                let inserted = (try? BackupService.insertCSVRecords(result.records, in: modelContext)) ?? -1
+                report = "header=\(result.headerRow ?? -1) total=\(result.totalRows) inserted=\(inserted) "
+                    + "income=\(result.incomeCount) refund=\(result.refundCount) transfer=\(result.transferCount) "
+                    + "dup=\(result.duplicateRows) skipped=\(result.skippedRows) ruleHits=\(result.recordsRuleHits) "
+                    + "existingBefore=\(existing.count)"
+            } else {
+                report = "file not found: \(path)"
+            }
+            let url = URL.documentsDirectory.appendingPathComponent("import_result.txt")
+            try? report.data(using: .utf8)?.write(to: url)
+        }
         try? modelContext.save()
     }
 
