@@ -58,13 +58,13 @@ struct LedgerView: View {
         return months.sorted()
     }
 
-    /// 月份统计（笔数 + 合计），供全部月份面板使用
+    /// 月份统计（笔数 + 合计），供全部月份面板使用（FR-31：仅统计口径）
     private var monthStats: [Date: (count: Int, total: Double)] {
         var stats: [Date: (Int, Double)] = [:]
-        for e in expenses {
+        for e in expenses where e.isStatistical {
             let m = calendar.monthStart(e.date)
             let old = stats[m] ?? (0, 0)
-            stats[m] = (old.0 + 1, old.1 + e.amount)
+            stats[m] = (old.0 + 1, old.1 + e.statAmount)
         }
         return stats
     }
@@ -84,35 +84,36 @@ struct LedgerView: View {
         let groups = Dictionary(grouping: filteredMonthExpenses) { calendar.startOfDay(for: $0.date) }
         return groups.keys.sorted(by: >).map { day in
             let items = groups[day]!.sorted { $0.date > $1.date }
-            return (day, items, items.reduce(0) { $0 + $1.amount })
+            return (day, items, items.reduce(0) { $0 + $1.statAmount })
         }
     }
 
     /// 分类分区：内置 9 类 + 自定义分类（FR-29）月汇总（金额降序，只显示有账目的）
     private var categoryTotals: [(group: LedgerCategoryGroup, total: Double)] {
-        let byKey = Dictionary(grouping: monthExpenses) { $0.categoryGroupKey }
+        let byKey = Dictionary(grouping: monthExpenses.filter { $0.isStatistical }) { $0.categoryGroupKey }
         var rows: [(LedgerCategoryGroup, Double)] = []
         for c in ExpenseCategory.allCases {
             guard let items = byKey[c.rawValue], !items.isEmpty else { continue }
             rows.append((LedgerCategoryGroup(key: c.rawValue, emoji: c.emoji, name: c.localizedName),
-                         items.reduce(0) { $0 + $1.amount }))
+                         items.reduce(0) { $0 + $1.statAmount }))
         }
         for cat in CategoryStore.load() {
             let key = CategoryStore.storageKey(for: cat.id)
             guard let items = byKey[key], !items.isEmpty else { continue }
             rows.append((LedgerCategoryGroup(key: key, emoji: cat.emoji, name: cat.name),
-                         items.reduce(0) { $0 + $1.amount }))
+                         items.reduce(0) { $0 + $1.statAmount }))
         }
         return rows.sorted { $0.1 > $1.1 }
     }
 
-    private var monthTotal: Double { monthExpenses.reduce(0) { $0 + $1.amount } }
+    private var monthTotal: Double { monthExpenses.reduce(0) { $0 + $1.statAmount } }
 
     /// 月控制比
     private var monthControlRatio: Double? {
-        guard monthExpenses.count >= 3 else { return nil }
+        let stat = monthExpenses.filter { $0.isStatistical }
+        guard stat.count >= 3 else { return nil }
         guard monthTotal > 0 else { return nil }
-        let chosen = monthExpenses.filter { $0.nature == .chosen }.reduce(0) { $0 + $1.amount }
+        let chosen = stat.filter { $0.nature == .chosen }.reduce(0) { $0 + $1.statAmount }
         return chosen / monthTotal
     }
 
@@ -124,14 +125,14 @@ struct LedgerView: View {
 
     private func monthTotal(_ month: Date) -> Double {
         expenses.filter { calendar.isDate($0.date, equalTo: month, toGranularity: .month) }
-            .reduce(0) { $0 + $1.amount }
+            .reduce(0) { $0 + $1.statAmount }
     }
 
     private func monthControlRatio(_ month: Date) -> Double? {
-        let items = expenses.filter { calendar.isDate($0.date, equalTo: month, toGranularity: .month) }
-        let total = items.reduce(0) { $0 + $1.amount }
+        let items = expenses.filter { calendar.isDate($0.date, equalTo: month, toGranularity: .month) && $0.isStatistical }
+        let total = items.reduce(0) { $0 + $1.statAmount }
         guard items.count >= 3, total > 0 else { return nil }
-        return items.filter { $0.nature == .chosen }.reduce(0) { $0 + $1.amount } / total
+        return items.filter { $0.nature == .chosen }.reduce(0) { $0 + $1.statAmount } / total
     }
 
     /// 检索结果（备注 / 分类名 / 性质）
@@ -342,7 +343,7 @@ struct LedgerView: View {
             let expectedTotal = active
                 .filter { ($0.nextDate ?? .distantFuture) < monthEnd }
                 .reduce(0.0) { $0 + $1.monthlyAmount }
-            let monthSpent = monthExpenses.reduce(0.0) { $0 + $1.amount }
+            let monthSpent = monthExpenses.reduce(0.0) { $0 + $1.statAmount }
 
             VStack(alignment: .leading, spacing: DesignTokens.Spacing.sm) {
                 // FR-22 本月预期行
@@ -466,9 +467,21 @@ struct LedgerView: View {
                 Text(rowTitle(expense))
                     .sansBody(14, weight: .medium)
                     .foregroundStyle(DesignTokens.ink)
-                Text(natureLabel(expense.nature))
-                    .sansBody(11)
-                    .foregroundStyle(natureColor(expense.nature))
+                HStack(spacing: 6) {
+                    Text(natureLabel(expense.nature))
+                        .sansBody(11)
+                        .foregroundStyle(natureColor(expense.nature))
+                    // FR-31 收入/转账/退款标签
+                    if let tag = expense.flowTag {
+                        Text(verbatim: tag)
+                            .sansBody(10, weight: .medium)
+                            .foregroundStyle(DesignTokens.ash)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(DesignTokens.ash.opacity(0.15))
+                            .clipShape(Capsule())
+                    }
+                }
             }
             Spacer()
             Text(expense.formatted(currency: currency))

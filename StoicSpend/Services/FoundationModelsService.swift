@@ -448,29 +448,31 @@ private struct SpendingPattern {
     let topTrigger: String?
 
     init(analyzing expenses: [Expense]) {
-        self.expenseCount = expenses.count
-        self.totalSpending = expenses.reduce(0) { $0 + $1.amount }
+        // FR-31 统计口径：仅消费，退款负冲抵；收入/转账不进 AI 分析
+        let stat = expenses.filter { $0.isStatistical }
+        self.expenseCount = stat.count
+        self.totalSpending = stat.reduce(0) { $0 + $1.statAmount }
 
-        guard !expenses.isEmpty else {
+        guard !stat.isEmpty else {
             self.impulseRatio = 0
             self.dominantValue = nil
             self.topTrigger = nil
             return
         }
 
-        let impulseCount = expenses.filter { $0.nature == .impulse }.count
-        self.impulseRatio = Double(impulseCount) / Double(expenses.count)
+        let impulseCount = stat.filter { $0.nature == .impulse }.count
+        self.impulseRatio = Double(impulseCount) / Double(stat.count)
 
         // 主导价值观：统计 values 数组中出现频次最高的
         var valueCounts: [ValueTag: Int] = [:]
-        for e in expenses {
+        for e in stat {
             for v in e.values { valueCounts[v, default: 0] += 1 }
         }
         self.dominantValue = valueCounts.max(by: { $0.value < $1.value })?.key
 
         // 最频繁情绪触发点
         var triggerCounts: [String: Int] = [:]
-        for e in expenses {
+        for e in stat {
             if let t = e.emotionalTrigger, !t.isEmpty {
                 triggerCounts[t, default: 0] += 1
             }

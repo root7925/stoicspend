@@ -39,6 +39,20 @@ enum ReviewResult: String, Codable {
     case reconsider  // △ 会重新考虑
 }
 
+/// FR-31 资金流类型 — 统计只认消费；退款负冲抵；收入仅落库不统计（产品拍板：不做收入统计）；转账不进任何统计
+enum FlowType: String, Codable, CaseIterable, Identifiable {
+    case expense  = "flow.expense"   // 消费
+    case income   = "flow.income"    // 收入（仅导入落库）
+    case transfer = "flow.transfer"  // 转账/还款（不进分类统计）
+    case refund   = "flow.refund"    // 退款（负值冲抵）
+
+    var id: String { rawValue }
+
+    var localizedName: String {
+        NSLocalizedString(rawValue, comment: "")
+    }
+}
+
 /// 记账时可选的情绪 — 可不选
 enum ExpenseEmotion: String, Codable, CaseIterable, Identifiable {
     case calm      = "emo.calm"      // 平静
@@ -76,6 +90,12 @@ final class Expense {
 
     // FR-29 自定义分类（可空；"custom:<uuid>"，覆盖 category 的显示与统计）
     var categoryRawOverride: String?
+
+    // FR-31 资金流类型（默认消费，SwiftData 轻量迁移，旧数据自动回落）
+    var flowTypeRaw: String = FlowType.expense.rawValue
+
+    // FR-30 导入去重：外部账单交易单号
+    var refId: String?
 
     // 记账时情绪（可选）
     var emotion: ExpenseEmotion?
@@ -146,6 +166,34 @@ extension Expense {
             return CategoryStore.storageKey(for: id)
         }
         return category.rawValue
+    }
+}
+
+// MARK: - FR-31 资金流类型（统计口径统一出口）
+
+extension Expense {
+    var flowType: FlowType {
+        get { FlowType(rawValue: flowTypeRaw) ?? .expense }
+        set { flowTypeRaw = newValue.rawValue }
+    }
+
+    /// 是否计入统计（消费 + 退款；收入/转账永不进合计、图表、控制比、提醒）
+    var isStatistical: Bool {
+        flowType == .expense || flowType == .refund
+    }
+
+    /// 统计金额：消费为正，退款负冲抵，收入/转账为 0
+    var statAmount: Double {
+        switch flowType {
+        case .expense:  return amount
+        case .refund:   return -amount
+        case .income, .transfer: return 0
+        }
+    }
+
+    /// 列表展示用的类型标签（消费不显示）
+    var flowTag: String? {
+        flowType == .expense ? nil : flowType.localizedName
     }
 }
 

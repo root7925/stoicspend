@@ -23,6 +23,7 @@ struct QuickAddView: View {
     @State private var nature: ExpenseNature
     @State private var categoryKey: String   // 内置 rawValue 或 "custom:<uuid>"（FR-29）
     @State private var emotion: ExpenseEmotion?
+    @State private var flowType: FlowType = .expense   // FR-31 默认支出，补充 sheet 里切换
     @State private var zeroFlash = false
     @State private var dotInserted = false  // 长按 0 插入小数点后吞掉随后的 tap
     @State private var showExtra = false    // 补充三问 sheet（性质/情绪/备注）
@@ -52,6 +53,7 @@ struct QuickAddView: View {
             _categoryKey = State(initialValue: e.categoryGroupKey)
             _emotion = State(initialValue: e.emotion)
             _note = State(initialValue: e.note)
+            _flowType = State(initialValue: e.flowType)
         } else if let cap = capture {
             // 性质/分类走默认上次值，识别失败时金额留空手动输入
             let natureRaw = UserDefaults.standard.string(forKey: "lastNatureRaw") ?? ExpenseNature.chosen.rawValue
@@ -294,6 +296,25 @@ struct QuickAddView: View {
                         natureChip(.chosen, label: "✓ 主动选择")
                         natureChip(.necessity, label: "· 必须花")
                         natureChip(.impulse, label: "△ 冲动了")
+                    }
+                }
+
+                // FR-31 资金流类型（默认支出；收入仅落库不统计，退款负冲抵，转账不进分类）
+                VStack(alignment: .leading, spacing: DesignTokens.Spacing.sm) {
+                    Text("这笔钱的类型")
+                        .sansBody(13)
+                        .foregroundStyle(DesignTokens.ash)
+                    HStack(spacing: DesignTokens.Spacing.sm) {
+                        ForEach(FlowType.allCases) { t in
+                            chipButton(label: t.localizedName, selected: flowType == t) {
+                                flowType = t
+                            }
+                        }
+                    }
+                    if flowType != .expense {
+                        Text("收入不进任何统计；退款按负值冲抵本月支出；转账不进分类。")
+                            .sansBody(11)
+                            .foregroundStyle(DesignTokens.ash)
                     }
                 }
 
@@ -808,6 +829,7 @@ struct QuickAddView: View {
             e.customCategoryID = CategoryStore.uuid(fromKey: categoryKey)
             e.emotion = emotion
             e.note = note.trimmingCharacters(in: .whitespacesAndNewlines)
+            e.flowType = flowType
         } else {
             let expense = Expense(
                 amount: amountValue,
@@ -817,6 +839,7 @@ struct QuickAddView: View {
                 emotion: emotion
             )
             expense.customCategoryID = CategoryStore.uuid(fromKey: categoryKey)
+            expense.flowType = flowType
             modelContext.insert(expense)
 
             // FR-16 — 首页「已记下 · 撤销」通道
@@ -826,11 +849,13 @@ struct QuickAddView: View {
 
         Haptics.saveSuccess()
 
-        // 记忆本次选择 + 常用组合
-        lastNatureRaw = nature.rawValue
-        lastCategoryRaw = categoryKey
-        if let c = ExpenseCategory(rawValue: categoryKey) {
-            RecentComboStore.record(nature: nature, category: c)
+        // 记忆本次选择 + 常用组合（FR-31：仅消费进组合与最近分类记忆）
+        if flowType == .expense {
+            lastNatureRaw = nature.rawValue
+            lastCategoryRaw = categoryKey
+            if let c = ExpenseCategory(rawValue: categoryKey) {
+                RecentComboStore.record(nature: nature, category: c)
+            }
         }
 
         dismiss()

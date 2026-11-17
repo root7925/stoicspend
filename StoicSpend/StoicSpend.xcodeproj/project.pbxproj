@@ -18,7 +18,6 @@
 		15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92634626ABCB57287FBC297 /* ShareSheet.swift */; };
 		17868E48F604CE138CECB4A9 /* WidgetSnapshotWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AEA34219850CD9F7463EF5 /* WidgetSnapshotWriter.swift */; };
 		181EDC966027C51824061243 /* SubscriptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7711613A0E690722A6616E /* SubscriptionServiceTests.swift */; };
-		1B3F2BED9FA47711199C5381 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_D244E37A-7A49-4E6D-B6A0-650B55B1D057" /* StoicSpendApp.swift */; };
 		1EF6AE9AF34724FA0F2CD478 /* RazorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B6C6413D67BE64982F6836 /* RazorKit.swift */; };
 		1FBD4D06051629BE4ACF0D9E /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548A07849A4530BFCF3743C /* Haptics.swift */; };
 		211545D1447D4CD37E05413D /* CategoryStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B25D349CFF43502988A2429 /* CategoryStoreTests.swift */; };
@@ -41,6 +40,7 @@
 		56F0A4E65D9A963374876A5A /* KeyboardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F8C9F0C3621AD533D73D1 /* KeyboardHelpers.swift */; };
 		5BE6BBC5DFEEBBFDDD6150B1 /* RecentComboStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CF02B9F07D6BDF03A357C1 /* RecentComboStore.swift */; };
 		5F324A753AD33353AEE89CED /* RazorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B6C6413D67BE64982F6836 /* RazorKit.swift */; };
+		606A0563A68C605A4D055453 /* FlowTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D31E9C50776147D965276 /* FlowTypeTests.swift */; };
 		62AD9E5F6567D38C769442E0 /* StoicSpendShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D0EBB3D5C3AEABC169A5292E /* StoicSpendShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64D92CF6B7BD22E1BE26B899 /* WorkbenchHTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83301F68C86AC0C95C2A135A /* WorkbenchHTTPServer.swift */; };
 		65F17B8334349C457F9F00DD /* DailyQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786C9F7B49F1A5B2E976D35 /* DailyQuote.swift */; };
@@ -91,6 +91,7 @@
 		EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18C44CCC94999C066610E09 /* ShredderView.swift */; };
 		F4A59C506BFACC28441E23E2 /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2AE5E3FFE70AA4BED255E /* CategoryStore.swift */; };
 		F4AB575D5504388F4126628F /* BackupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06055E520C178D461648DDB /* BackupServiceTests.swift */; };
+		F5617BB5C9BD3362AF3A3304 /* StoicSpendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = "TEMP_445200D6-8D77-4947-BBEE-6BBE010CB95C" /* StoicSpendApp.swift */; };
 		F73D213CCCDD00C84BDBA047 /* PlayfairDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7D410C809B6868EB994DA27 /* PlayfairDisplay-Medium.ttf */; };
 		F94CBD39CE57ADB79A3B2BF1 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953103E53E5FA7A762EC6F14 /* WidgetSnapshot.swift */; };
 		F9F5B48A1B7AD6E399A11C41 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C4FD025C599713B6B729ED /* Categories.swift */; };
@@ -199,6 +200,7 @@
 		78EA082FF746022662BDD6B6 /* ModelContainerSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerSetup.swift; sourceTree = "<group>"; };
 		7B25D349CFF43502988A2429 /* CategoryStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryStoreTests.swift; sourceTree = "<group>"; };
 		7B9CEA9FB49F2887415D1C0B /* StoicSpend.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = StoicSpend.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C2D31E9C50776147D965276 /* FlowTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTypeTests.swift; sourceTree = "<group>"; };
 		801B0C6B0F2E8CA0BF5DECAA /* AppStoreShotSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreShotSupport.swift; sourceTree = "<group>"; };
 		83301F68C86AC0C95C2A135A /* WorkbenchHTTPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkbenchHTTPServer.swift; sourceTree = "<group>"; };
 		844EC22255AE7405F733CCA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -243,7 +245,7 @@
 		F4EB844FB62562753C3EE457 /* LegalLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalLinks.swift; sourceTree = "<group>"; };
 		F7DF9C59D62F8B9CED7E9B63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9B6C6413D67BE64982F6836 /* RazorKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorKit.swift; sourceTree = "<group>"; };
-		"TEMP_D244E37A-7A49-4E6D-B6A0-650B55B1D057" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
+		"TEMP_445200D6-8D77-4947-BBEE-6BBE010CB95C" /* StoicSpendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoicSpendApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -413,6 +415,7 @@
 			children = (
 				C06055E520C178D461648DDB /* BackupServiceTests.swift */,
 				7B25D349CFF43502988A2429 /* CategoryStoreTests.swift */,
+				7C2D31E9C50776147D965276 /* FlowTypeTests.swift */,
 				1A9BCFA2B8DCDF08C06FEE37 /* QuickAddV11Tests.swift */,
 				9C9C9ADBAA2A498B014AA2A0 /* ScreenshotParserTests.swift */,
 				CD608966A33E15FE6CBA3D99 /* StoicSpendTests.swift */,
@@ -510,10 +513,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		"TEMP_84CE1FBD-8E0E-4962-8C15-5F9241F26034" /* StoicSpend */ = {
+		"TEMP_CB6D4045-E989-4A84-A873-337A682F28D9" /* StoicSpend */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_D244E37A-7A49-4E6D-B6A0-650B55B1D057" /* StoicSpendApp.swift */,
+				"TEMP_445200D6-8D77-4947-BBEE-6BBE010CB95C" /* StoicSpendApp.swift */,
 				00DA4726EB3DAD9CB1D10EDA /* DesignSystem */,
 				EEF43067302B8BDBD3CF4B70 /* Resources */,
 				02E936D218D07A02D6E026F6 /* Shared */,
@@ -773,6 +776,7 @@
 			files = (
 				F4AB575D5504388F4126628F /* BackupServiceTests.swift in Sources */,
 				211545D1447D4CD37E05413D /* CategoryStoreTests.swift in Sources */,
+				606A0563A68C605A4D055453 /* FlowTypeTests.swift in Sources */,
 				DFB6747F712859635BBCA654 /* QuickAddV11Tests.swift in Sources */,
 				EDF015BCBA2D12581DD6BA06 /* ScreenshotParserTests.swift in Sources */,
 				91EF0FD27F9D7D46B3634F7D /* StoicSpendTests.swift in Sources */,
@@ -841,7 +845,7 @@
 				15B4A694E62AFD9582F37539 /* ShareSheet.swift in Sources */,
 				6F34F114AA55973023E4E587 /* ShredAmmo.swift in Sources */,
 				EE973CE05D6A3C606A5986FC /* ShredderView.swift in Sources */,
-				1B3F2BED9FA47711199C5381 /* StoicSpendApp.swift in Sources */,
+				F5617BB5C9BD3362AF3A3304 /* StoicSpendApp.swift in Sources */,
 				78F15EE8EAE4240C1351C5D4 /* SubscriptionService.swift in Sources */,
 				34AB22246EB0B8013F9623F4 /* Theme.swift in Sources */,
 				3A8E7533E61F3CC81A64EBC0 /* Typography.swift in Sources */,

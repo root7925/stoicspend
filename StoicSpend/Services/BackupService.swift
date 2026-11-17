@@ -36,6 +36,8 @@ enum BackupService {
         var customCategoryKey: String?   // FR-29 自定义分类（"custom:<uuid>"，旧备份无此字段）
         var emotion: String?
         var review: String?
+        var flowType: String?            // FR-31 资金流类型（nil = 旧备份，回落消费）
+        var refId: String?               // FR-30 外部账单交易单号
         var createdAt: Date
     }
 
@@ -148,21 +150,7 @@ enum BackupService {
             schemaVersion: schemaVersion,
             exportDate: .now,
             appVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0",
-            expenses: expenses.map { e in
-                ExpenseBackup(
-                    id: e.id,
-                    amount: e.amount,
-                    date: e.date,
-                    note: e.note,
-                    nature: e.nature?.rawValue,
-                    values: e.values.map(\.rawValue),
-                    emotionalTrigger: e.emotionalTrigger,
-                    category: e.category.rawValue,
-                    emotion: e.emotion?.rawValue,
-                    review: e.review?.rawValue,
-                    createdAt: e.createdAt
-                )
-            },
+            expenses: expenses.map(Self.expenseBackup),
             budgetMonthlyLimit: budget?.monthlyLimit,
             settings: settings.map {
                 SettingsBackup(
@@ -269,6 +257,8 @@ enum BackupService {
         var amount: Double
         var note: String
         var category: ExpenseCategory?
+        var flowType: FlowType = .expense   // FR-31「收/支」列映射
+        var refId: String?                  // FR-30 交易单号（去重）
     }
 
     struct CSVImportResult {
@@ -360,6 +350,8 @@ enum BackupService {
     static func insertCSVRecords(_ records: [CSVRecord], in context: ModelContext) throws -> Int {
         for r in records {
             let e = Expense(amount: r.amount, date: r.date, note: r.note, category: r.category ?? .other)
+            e.flowType = r.flowType
+            e.refId = r.refId
             context.insert(e)
         }
         try context.save()
@@ -368,13 +360,17 @@ enum BackupService {
 
     // MARK: - 私有工具
 
-    private static func expenseBackup(_ e: Expense) -> ExpenseBackup {
-        ExpenseBackup(
+    /// 仅供单测（FR-31 备份字段往返）
+    static func expenseBackupForTesting(_ e: Expense) -> ExpenseBackup { expenseBackup(e) }
+
+    private static func expenseBackup(_ e: Expense) -> ExpenseBackup {        ExpenseBackup(
             id: e.id, amount: e.amount, date: e.date, note: e.note,
             nature: e.nature?.rawValue, values: e.values.map(\.rawValue),
             emotionalTrigger: e.emotionalTrigger, category: e.category.rawValue,
             customCategoryKey: e.categoryGroupKey.hasPrefix("custom:") ? e.categoryGroupKey : nil,
-            emotion: e.emotion?.rawValue, review: e.review?.rawValue, createdAt: e.createdAt
+            emotion: e.emotion?.rawValue, review: e.review?.rawValue,
+            flowType: e.flowType == .expense ? nil : e.flowType.rawValue,
+            refId: e.refId, createdAt: e.createdAt
         )
     }
 
@@ -390,6 +386,8 @@ enum BackupService {
         e.id = item.id
         e.customCategoryID = item.customCategoryKey.flatMap(CategoryStore.uuid(fromKey:))
         e.review = item.review.flatMap(ReviewResult.init(rawValue:))
+        e.flowType = item.flowType.flatMap(FlowType.init(rawValue:)) ?? .expense
+        e.refId = item.refId
         e.createdAt = item.createdAt
         return e
     }

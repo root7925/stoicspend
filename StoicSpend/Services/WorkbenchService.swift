@@ -337,17 +337,19 @@ final class WorkbenchCore {
                 predicate: #Predicate { $0.date >= start && $0.date < end }
             )
             let expenses = (try? context.fetch(descriptor)) ?? []
-            let total = expenses.reduce(0) { $0 + $1.amount }
-            let controllable = expenses.filter { $0.isControllable }.reduce(0) { $0 + $1.amount }
+            // FR-31 统计口径：仅消费，退款负冲抵；收入/转账不进合计与分类
+            let stat = expenses.filter { $0.isStatistical }
+            let total = stat.reduce(0) { $0 + $1.statAmount }
+            let controllable = stat.filter { $0.isControllable }.reduce(0) { $0 + $1.statAmount }
             var categories = ExpenseCategory.allCases.compactMap { cat -> CategoryAmount? in
-                let amount = expenses.filter { $0.categoryGroupKey == cat.rawValue }.reduce(0) { $0 + $1.amount }
+                let amount = stat.filter { $0.categoryGroupKey == cat.rawValue }.reduce(0) { $0 + $1.statAmount }
                 guard amount > 0 else { return nil }
                 return CategoryAmount(key: cat.rawValue, name: cat.localizedName, amount: amount)
             }
             // FR-29 自定义分类
             for cat in CategoryStore.load() {
                 let key = CategoryStore.storageKey(for: cat.id)
-                let amount = expenses.filter { $0.categoryGroupKey == key }.reduce(0) { $0 + $1.amount }
+                let amount = stat.filter { $0.categoryGroupKey == key }.reduce(0) { $0 + $1.statAmount }
                 guard amount > 0 else { continue }
                 categories.append(CategoryAmount(key: key, name: "\(cat.emoji) \(cat.name)", amount: amount))
             }
@@ -357,7 +359,7 @@ final class WorkbenchCore {
                 total: total,
                 controllable: controllable,
                 controllableRatio: total > 0 ? controllable / total : 0,
-                count: expenses.count,
+                count: stat.count,
                 categories: categories
             ))
         }

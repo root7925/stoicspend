@@ -34,9 +34,9 @@ enum SubscriptionService {
     // MARK: - 识别
 
     static func detect(_ expenses: [Expense]) -> [SuspectedSubscription] {
-        // 按备注非空分组；空备注不识别
+        // 按备注非空分组；空备注不识别；FR-31 仅消费参与识别（收入/转账/退款不构成订阅）
         var groups: [String: [(Date, Double)]] = [:]
-        for e in expenses where !e.note.isEmpty {
+        for e in expenses where !e.note.isEmpty && e.flowType == .expense {
             groups[e.note, default: []].append((e.date, e.amount))
         }
 

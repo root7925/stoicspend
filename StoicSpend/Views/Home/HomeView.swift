@@ -29,18 +29,21 @@ struct HomeView: View {
         expenses.filter { calendar.isDate($0.date, equalTo: .now, toGranularity: .weekOfYear) }
     }
 
+    /// 本周统计口径（FR-31：仅消费，退款负冲抵；收入/转账不进统计）
+    private var weekStat: [Expense] { weekExpenses.filter { $0.isStatistical } }
+
     /// 控制比（周口径，金额口径；样本 < 3 笔不展示）
     private var controlRatio: Double? {
-        guard weekExpenses.count >= 3 else { return nil }
-        let total = weekExpenses.reduce(0) { $0 + $1.amount }
+        guard weekStat.count >= 3 else { return nil }
+        let total = weekStat.reduce(0) { $0 + $1.statAmount }
         guard total > 0 else { return nil }
-        let chosen = weekExpenses.filter { $0.nature == .chosen }.reduce(0) { $0 + $1.amount }
+        let chosen = weekStat.filter { $0.nature == .chosen }.reduce(0) { $0 + $1.statAmount }
         return chosen / total
     }
 
-    private var weekTotal: Double { weekExpenses.reduce(0) { $0 + $1.amount } }
-    private var weekChosen: Double { weekExpenses.filter { $0.nature == .chosen }.reduce(0) { $0 + $1.amount } }
-    private var weekNecessity: Double { weekExpenses.filter { $0.nature == .necessity }.reduce(0) { $0 + $1.amount } }
+    private var weekTotal: Double { weekStat.reduce(0) { $0 + $1.statAmount } }
+    private var weekChosen: Double { weekStat.filter { $0.nature == .chosen }.reduce(0) { $0 + $1.statAmount } }
+    private var weekNecessity: Double { weekStat.filter { $0.nature == .necessity }.reduce(0) { $0 + $1.statAmount } }
 
     /// 今日明细（倒序最多 5 笔）
     private var todayExpenses: [Expense] {
