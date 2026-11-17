@@ -343,6 +343,7 @@ struct QuickAddView: View {
                         .background(theme.current.accentColor)
                         .clipShape(RoundedRectangle(cornerRadius: DesignTokens.Radius.md))
                 }
+                .accessibilityIdentifier("quickadd.extra.close")
             }
             .padding(DesignTokens.Spacing.lg)
         }
@@ -432,6 +433,7 @@ struct QuickAddView: View {
             )
             .opacity(draggingKey == item.key ? 0.4 : 1)
         }
+        .accessibilityIdentifier("quickadd.cat.\(item.key)")
     }
 
     /// 管理入口 — 打开自定义分类页

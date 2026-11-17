@@ -180,11 +180,13 @@ struct SettingsView: View {
     }
 
     private func saveBudget(_ value: Double) {
-        if let budget = budgets.first {
+        // 直接从 context fetch（@Query 有刷新延迟，逐键输入会误建重复行）
+        let existing = (try? modelContext.fetch(FetchDescriptor<BudgetModel>())) ?? []
+        if let budget = existing.first {
             budget.monthlyLimit = value
+            for dup in existing.dropFirst() { modelContext.delete(dup) }   // 清掉历史竞态产生的重复行
         } else {
-            let budget = BudgetModel(monthlyLimit: value)
-            modelContext.insert(budget)
+            modelContext.insert(BudgetModel(monthlyLimit: value))
         }
         try? modelContext.save()
     }
@@ -693,6 +695,8 @@ struct SettingsView: View {
                 }
             }
             .buttonStyle(.plain)
+            .buttonStyle(.plain)
+            .accessibilityIdentifier("settings.categories")
 
             // FR-32 分类纠错规则管理
             NavigationLink {

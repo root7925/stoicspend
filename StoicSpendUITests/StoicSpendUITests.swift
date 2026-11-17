@@ -35,7 +35,7 @@ final class StoicSpendUITests: XCTestCase {
         XCTAssertEqual(app.tabBars.buttons.count, 4, "应为 4 个 Tab：首页/帐本/奥卡姆/设置")
     }
 
-    // MARK: - 2. 快记三问全流程（FR-02）
+    // MARK: - 2. 快记一屏流程（FR-02 + 一屏宫格重构）
 
     func testQuickAddThreeQuestionsSavedToLedger() {
         let app = launch()
@@ -48,22 +48,22 @@ final class StoicSpendUITests: XCTestCase {
         app.buttons["2"].tap()
         app.buttons["5"].tap()
 
-        // Q1 性质：默认折叠为一行（默认值即上次选择，弱化不强制点）
-        let natureRow = app.buttons.matching(NSPredicate(
-            format: "label CONTAINS '主动选择' OR label CONTAINS '必须花' OR label CONTAINS '冲动了'"
-        )).firstMatch
-        XCTAssertTrue(natureRow.waitForExistence(timeout: 3), "性质行应存在（折叠为一行）")
-
-        // Q2 分类：🍜 饮食
-        let foodChip = app.buttons.matching(NSPredicate(format: "label CONTAINS '饮食'")).firstMatch
-        XCTAssertTrue(foodChip.waitForExistence(timeout: 3), "三问之二：九分法分类宫格")
+        // 分类宫格一屏常驻（零滚动）
+        let foodChip = app.buttons["quickadd.cat.cat.food"]
+        XCTAssertTrue(foodChip.waitForExistence(timeout: 3), "4×4 宫格应一屏常驻")
         foodChip.tap()
 
-        // Q3 情绪：平静（可选，测一次）
-        let calmChip = app.buttons.matching(NSPredicate(format: "label CONTAINS '平静'")).firstMatch
-        if calmChip.waitForExistence(timeout: 2) {
-            calmChip.tap()
-        }
+        // 性质/情绪/备注在「补充」sheet
+        let extra = app.buttons["quickadd.extra"]
+        XCTAssertTrue(extra.waitForExistence(timeout: 3), "补充按钮应存在")
+        extra.tap()
+        let natureChip = app.buttons.matching(NSPredicate(format: "label CONTAINS '主动选择'")).firstMatch
+        XCTAssertTrue(natureChip.waitForExistence(timeout: 5), "补充 sheet 应含性质三选一")
+        natureChip.tap()
+
+        let close = app.buttons["quickadd.extra.close"]
+        XCTAssertTrue(close.waitForExistence(timeout: 3))
+        close.tap()
 
         // 保存
         let save = app.buttons["quickadd.save"]
@@ -76,6 +76,37 @@ final class StoicSpendUITests: XCTestCase {
         app.tabBars.buttons["帐本"].tap()
         let amountText = app.staticTexts.matching(NSPredicate(format: "label CONTAINS '25'")).firstMatch
         XCTAssertTrue(amountText.waitForExistence(timeout: 5), "帐本应显示刚记的 25 元支出")
+    }
+
+    // MARK: - 2.5 设置自定义分类后出现在快记宫格（FR-29）
+
+    func testCustomCategoryAddedAppearsInQuickAddGrid() {
+        let app = launch()
+        _ = app.buttons["+ 记一笔"].waitForExistence(timeout: 10)
+
+        app.tabBars.buttons["设置"].tap()
+        let entry = app.buttons["settings.categories"]
+        XCTAssertTrue(entry.waitForExistence(timeout: 5), "设置页应有自定义分类入口")
+        entry.tap()
+
+        // 添加自定义分类「通信费」
+        let field = app.textFields["category.name.field"]
+        XCTAssertTrue(field.waitForExistence(timeout: 5))
+        field.tap()
+        field.typeText("通信费")
+        let add = app.buttons["category.add"]
+        XCTAssertTrue(add.waitForExistence(timeout: 3))
+        add.tap()
+
+        // 返回 → 快记宫格应出现「通信费」
+        app.navigationBars.buttons.firstMatch.tap()
+        app.tabBars.buttons["首页"].tap()
+        let addButton = app.buttons["+ 记一笔"]
+        XCTAssertTrue(addButton.waitForExistence(timeout: 5))
+        addButton.tap()
+
+        let chip = app.buttons.matching(NSPredicate(format: "label CONTAINS '通信费'")).firstMatch
+        XCTAssertTrue(chip.waitForExistence(timeout: 5), "自定义分类应出现在快记宫格")
     }
 
     // MARK: - 3. 帐本月份穿梭与分区（FR-03）

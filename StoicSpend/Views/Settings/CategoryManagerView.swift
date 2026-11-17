@@ -128,6 +128,7 @@ struct CategoryManagerView: View {
                         .padding(.vertical, 10)
                         .background(DesignTokens.card)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .accessibilityIdentifier("category.name.field")
                         .onChange(of: newName) { _, newValue in
                             newName = String(newValue.prefix(20))
                         }
@@ -146,6 +147,7 @@ struct CategoryManagerView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                     .disabled(!canAdd)
+                    .accessibilityIdentifier("category.add")
                 }
             } else {
                 HStack {

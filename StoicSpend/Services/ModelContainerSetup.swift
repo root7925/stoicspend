@@ -5,9 +5,14 @@ import os.log
 /// SwiftData 容器配置 — 单例
 ///
 /// 工程化整改（2026-08-07）：
-/// - 引入 VersionedSchema + SchemaMigrationPlan，为未来 schema 变更提供轻量迁移能力
+/// - 引入 VersionedSchema，为 schema 变更提供版本参照
 /// - 移除「加载失败即销毁 store + fatalError」逻辑，避免升级时静默清空用户数据
 /// - 加载失败时降级为内存容器并记录日志，保证 App 可启动
+///
+/// P0 修复（2026-11-17，V1.4）：
+/// - 不再使用显式 SchemaMigrationPlan：加字段（FR-29/31）后 V2 版本哈希变化，
+///   staged migration 报「unknown model version」拒载 → 内存降级 → 真机升级数据不可见
+/// - 改用 SwiftData 自动轻量迁移（新增可选/带默认值字段可安全自动迁移）
 enum AppSchema: VersionedSchema {
     static var versionIdentifier: Schema.Version = .init(1, 0, 0)
     static var models: [any PersistentModel.Type] {
@@ -29,19 +34,6 @@ enum AppSchemaV2: VersionedSchema {
     }
 }
 
-enum AppMigrationPlan: SchemaMigrationPlan {
-    static var schemas: [any VersionedSchema.Type] { [AppSchema.self, AppSchemaV2.self] }
-    static var stages: [MigrationStage] {
-        [migrateV1toV2]
-    }
-
-    /// v1 → v2 仅新增 BudgetModel 实体，无需数据转换，使用轻量迁移
-    static let migrateV1toV2 = MigrationStage.lightweight(
-        fromVersion: AppSchema.self,
-        toVersion: AppSchemaV2.self
-    )
-}
-
 enum ModelContainerSetup {
     private static let logger = Logger(subsystem: "com.zhenglin.stoicspend", category: "ModelContainer")
     static let shared: ModelContainer = makeContainer()
@@ -55,10 +47,9 @@ enum ModelContainerSetup {
             cloudKitDatabase: cloudSync ? .automatic : .none
         )
 
-        // 优先按版本化 schema + 迁移计划加载（未来增字段将自动轻量迁移）
+        // 不传 migrationPlan：SwiftData 对「加可选字段/带默认值字段」自动轻量迁移
         if let container = try? ModelContainer(
             for: Schema(versionedSchema: AppSchemaV2.self),
-            migrationPlan: AppMigrationPlan.self,
             configurations: [config]
         ) {
             seedIfNeeded(in: container)
@@ -73,7 +64,6 @@ enum ModelContainerSetup {
         )
         let container = try! ModelContainer(
             for: Schema(versionedSchema: AppSchemaV2.self),
-            migrationPlan: AppMigrationPlan.self,
             configurations: [memoryConfig]
         )
         seedIfNeeded(in: container)
